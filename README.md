@@ -1,1 +1,1 @@
-# bjojoblacklist.github.io  
+# jojoblacklist.github.io      
