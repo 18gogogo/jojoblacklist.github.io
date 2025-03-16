@@ -1,55 +1,131 @@
-
 <!DOCTYPE html>
 <html lang="zh-HK">
 <head>
-
-<meta name="google-site-verification" content="HqQp8Y0iMW8SASrQC6AYts1st0lfwEAawtAfAvYLbeQ" />    
-
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">      
-    <title>18GOGOGO</title>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18GOGOGO - 專業租務管理指南</title>
     <style>
-               body { 
-            font-family: 'Microsoft JhengHei', sans-serif; 
-            max-width: 1000px;   
-            margin: 0 auto; 
-            padding: 20px;
-            background-color: #f5f5f5;  
+        :root {
+            --primary-color: #2A5C82;
+            --secondary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --dark-gray: #2C3E50;
+            --light-gray: #F8F9FA;
         }
+
+        body { 
+            font-family: 'Microsoft JhengHei', sans-serif; 
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-gray);
+            line-height: 1.8;
+        }
+
         .header {
             text-align: center;
-            padding: 40px 0;
-            background-color: #2c3e50;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-gray));
             color: white;
-            border-radius: 10px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
         .feature-box {
             background: white;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--accent-color);
+            transition: transform 0.3s ease;
         }
-        .download-btn {
-            background-color: #e74c3c;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: block;
-            width: fit-content;
-            margin: 30px auto;
-            font-weight: bold;
+
+        .feature-box:hover {
+            transform: translateY(-5px);
         }
+
+        .feature-box h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
         .warning {
-            color: #c0392b;  
-            border-left: 4px solid #c0392b;
-            padding-left: 15px;
-            margin: 20px 0;
+            background: #FFF9E6;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 6px solid #FFD700;
+            position: relative;
+        }
+
+        .warning::before {
+            content: "⚠️";
+            position: absolute;
+            left: -45px;
+            top: 20px;
+            font-size: 28px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #FF5252);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 40px auto;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+        }
+
+        ol {
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 60px 0 30px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .feature-box {
+                padding: 20px;
+                margin: 20px 0;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 保持原有HTML結構不變 -->
     
     <div class="header">    
         <h1>What is a professional renter and how can I avoid them?</h1>  
