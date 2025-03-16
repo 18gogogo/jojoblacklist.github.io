@@ -3,18 +3,18 @@
 <html lang="zh-HK">
 <head>
 
-<meta name="google-site-verification" content="HqQp8Y0iMW8SASrQC6AYts1st0lfwEAawtAfAvYLbeQ" />
+<meta name="google-site-verification" content="HqQp8Y0iMW8SASrQC6AYts1st0lfwEAawtAfAvYLbeQ" />  
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>暗黑裝修名冊 - 業主/裝修維修苦主裝修維修風險管理平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>18GOGOGOc</title>  
     <style>
         body { 
             font-family: 'Microsoft JhengHei', sans-serif; 
-            max-width: 1000px;   
+            max-width: 1000px;     
             margin: 0 auto; 
             padding: 20px;
-            background-color: #f5f5f5;  
+            background-color: #f5f5f5;    
         }
         .header {
             text-align: center;
@@ -31,7 +31,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .download-btn {
-            background-color: #e74c3c;
+            background-color: #e74c3c;  
             color: white;
             padding: 15px 40px;
             border-radius: 25px;
@@ -42,7 +42,7 @@
             font-weight: bold;
         }
         .warning {
-            color: #c0392b;  
+            color: #c0392b;    
             border-left: 4px solid #c0392b;
             padding-left: 15px;
             margin: 20px 0;
@@ -50,43 +50,135 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🚨 暗黑裝修名冊</h1>
-        <p>當地業主/裝修維修苦主裝修維修風險防範系統 | 依據《個人資料（私隱）條例》運作</p>
+    <div class="header">  
+        <h1>What is a professional renter and how can I avoid them?</h1>  
+        <p>Most renters mean well; they move in, pay rent on time, and have an overall positive relationship with their landlords. Professional renters, however, are a different story.
+
+These are people who treat renting like a game, seeing how much they can get away with (and how little they can pay) before being evicted and moving on to their next target.  
+
+Today we’re breaking down who these people are, the damage they can cause, and how to spot them—ideally before they ever set foot inside your property.</p>  
     </div>
-
-    <div class="feature-box">
-        <h2>核心功能</h2>
-        <ul>
-            <li>📌 裝修維修人士身份驗證：通過部分身份證號比對名單數據庫</li>
-            <li>🛡️ 風險評級系統：自行評估裝修維修風險</li>
-            <li>📤 數據上報：上傳不良裝修維修人士行為記錄</li>
-            <li>🔒 隱私優先設計：業主/裝修維修苦主需符合PCPD（當地私隱專員公署）規範</li>
-        </ul>
+----
+<div class="feature-box">        
+        <h2>1. Tenants who never planned on paying</h2>    
+        <ol>  
+            <li>Every landlord’s nightmare: the tenant who never had any intention of paying rent. Oftentimes this tenant looks good on paper, pays rent for a couple of months, and then shows their true colours. </li>  
+            <li>This might start as late payments that incrementally come to a stop altogether, or show up suddenly as a complete stoppage in rent altogether. </li>    
+     </ol>                  
     </div>
+    
+    <div class="warning">    
 
-    <div class="warning">
-        <h3>重要聲明</h3>
-        <p>本平台數據僅限裝修維修的業主/裝修維修苦主提交，禁止用於非法目的<br>
-           所有查詢需登入E-MAIL</p>
+        <h3>How to avoid tenants who don’t plan on paying</h3>  
+        <p>To avoid this type of tenant, check tenants’ credit scores, validate their employment and previous landlord references, check their vibe in person, and pay special attention to signs of unreliability. Some examples are: always letting you know that rent is going to be late, having consistent excuses for not being able to pay, or missing a payment without any explanation at all.</p>  
+   
+ </div>  
+----
+  <div class="feature-box">          
+        <h2>1. Tenants who never planned on paying</h2>      
+        <ol>    
+            <li>Every landlord’s nightmare: the tenant who never had any intention of paying rent. Oftentimes this tenant looks good on paper, pays rent for a couple of months, and then shows their true colours. </li>  
+            <li>This might start as late payments that incrementally come to a stop altogether, or show up suddenly as a complete stoppage in rent altogether. </li>    
+     </ol>                
     </div>
+    
+    <div class="warning">  
 
-    <a href="#" class="download-btn">前往APKPURE下載:暗黑裝修名冊</a>
-
-    <div class="feature-box">
-        <h2>運作流程</h2>
-        <ol>
-            <li>提交業主/裝修維修苦主需個人簽署</li>
-            <li>輸入不良裝修維修人士<strong>部分身份證號</strong>（例：A123)</li>
-            <li>系統返回風險評級與歷史記錄摘要</li>
-            <li>不可匿名提交新不良裝修維修人士記錄（需簽署資料）</li>
-        </ol>
+        <h3>How to avoid tenants who don’t plan on paying</h3>    
+        <p>To avoid this type of tenant, check tenants’ credit scores, validate their employment and previous landlord references, check their vibe in person, and pay special attention to signs of unreliability. Some examples are: always letting you know that rent is going to be late, having consistent excuses for not being able to pay, or missing a payment without any explanation at all.</p>      
+   
+ </div>  
+----
+<div class="feature-box">            
+        <h2>2. Tenants who rent out your property without your permission</h2>      
+        <ol>  
+            <li>Another common scam is tenants posing as you, the landlord. After moving in, they might pretend to be the landlord of the unit, rent their space to other people, and pocket the rent themselves. </li>    
+            <li>If you’re renting out a unit in a building with a concierge, these tenants also sometimes work out deals with the front desk people. They might give them money every month to allow the illegal tenants in and out of the building without any trouble.</li>      
+     </ol>                
     </div>
+    
+    <div class="warning">    
 
-    <footer style="text-align: center; margin-top: 50px;">  
-        <p><a href="/jojoblacklist.github.io/privacy-policy.html">隱私權政策</a>       
+        <h3>How to avoid tenants who rent out your property without your permission</h3>    
+        <p>Ask about any consistently short stays in rental histories, install a security system, and ask your concierge (if you have one) to let you know about any unauthorized guests. </p>    
+   
+ </div>    
+----
+<div class="feature-box">          
+        <h2>3. Tenants who sneak in other unauthorized tenants</h2>      
+        <ol>  
+            <li>Slightly different than acting as the landlord, tenants will sometimes not mention that they plan to have another person—someone not on the lease— live with them. This can, unknown to you, lead to more people in your units than the law permits, allow potentially dangerous people into your property, and cause other stresses.</li>    
+            <li>To be fair, this doesn’t always happen for nefarious reasons. Avoid assuming the worst if you find unauthorized tenants in your space, as it might be as simple as someone deciding after signing the lease to have their partner move in with them.</li>      
+     </ol>                    
+    </div>
+    
+    <div class="warning">    
+
+        <h3>How to avoid unauthorized tenants</h3>      
+        <p>Pay attention to sudden increases in energy bills, look for constant visits from unknown people in your security footage, occasionally pay a visit to your property (with proper notice), and vet tenants thoroughly before handing over the keys. </p>    
+   
+ </div>  
+----
+<div class="feature-box">            
+        <h2>4. Tenants who overpay on purpose</h2>            
+        <ol>  
+            <li>This scam involves a tenant intentionally giving you a cheque with more money than they owe you (for rent, a security deposit, etc.) and asking you to return the extra amount. But when you go to cash the cheque, it bounces, and they get away with the real money you sent back. </li>    
+            <li>Although rarer, this rouse is also sometimes done through e-transfer, wire transfer, or other online payment methods (i.e. PayPal). The tenant sends too much money, asks that you return the extra, and then cancels the payment before it’s actually deposited into your account. </li>      
+     </ol>                
+    </div>
+    
+    <div class="warning">  
+
+        <h3>How to avoid tenants who overpay on purpose</h3>    
+        <p>Verify with your bank that funds given to you by a tenant are in your account and available to withdraw before sending any money back. Receiving payments digitally is also generally safer than through physical cheques.</p>    
+   
+ </div>  
+----
+----
+<div class="feature-box">            
+        <h2>5. Tenants who fake who they are</h2>              
+        <ol>  
+            <li>It would be great if you could always trust people with their word. But in the world of renting, people aren’t always who they say they are. To increase their chances of getting your unit, some people try to paint a better picture of themselves by giving you fake credit reports, landlord references, employment records, and other information. </li>      
+            <li>Obviously, this can lead to all sorts of problems down the road. What looked like a great tenant on paper could end up being someone who doesn’t pay rent, causes problems, and is generally a bad tenant.</li>        
+     </ol>                
+    </div>
+    
+    <div class="warning">  
+
+        <h3>How to avoid tenants who fake who they are</h3>      
+        <p>The best way to avoid misrepresentative tenants is by thoroughly vetting them, such as: 
+
+ 
+
+。checking into all their references  
+。asking about their story in person or over the phone  
+。inquiring about any holes that pop up  
+。making sure area codes for phone numbers line up with where the references are supposed to be based  
+。requiring two pieces of ID upfront</p>        
+   
+ </div>  
+----
+----
+<div class="feature-box">              
+        <h2>6
+. Tenants who take advantage of the system</h2>              
+        <ol>    
+            <li>Unfortunately, navigating eviction is a way of life for some people. They familiarize themselves with all the loopholes, get themselves in the door of a rental property with no intention of paying rent beyond first and last (if that), get served with an eviction notice, and then enjoy however long they have until they’re legally forced to leave. Then they repeat the process again and again, effectively living rent-free. Learn more about how to manage a non-paying tenant.</li>      
+                </ol>                        
+    </div>
+    
+    <div class="warning">    
+
+        <h3>How to avoid tenants who take advantage of the system</h3>      
+        <p>Run criminal background checks on applicants, call previous landlords, and be wary of giving unaccompanied access to your property before checks have been done, rent has been paid, and a security deposit has been provided. The same goes for allowing tenants to stay longer than what’s stated in their lease, as even an extra day opens the door to opportunity.</p>      
+   
+ </div>  
+----
+
+    <footer style="text-align: center; margin-top: 50px;">    
+        <p><a href=""></a>         
         <p></p>
-        <p>© 2025 暗黑裝修名冊 保留所有權利</p>
+        <p>© 18GOGOGO. 2025. All rights reserved</p>  
     </footer>
 </body>
 </html>
