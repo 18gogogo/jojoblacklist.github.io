@@ -5,10 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>18GOGOGO</title>
     <style>
+ /* 新增DC按鈕樣式 */
+        .discord-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;  
+            background: #5865F2;  
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 40px auto;
+            max-width: 380px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .discord-icon {
+            width: 36px;
+            height: 36px;
+            filter: brightness(0) invert(1);
+        }
+
+        .discord-text {
+            line-height: 1.4;
+        }
+
+        .discord-text small {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* 原始樣式保持不變 */
         :root {
             --primary-color: #2A5C82;
+            /* 以下省略原有CSS變量... */
+        }
+        /* 其他原始樣式保持不變... */        
+
+:root {    
+            --primary-color: #2A5C82;
             --secondary-color: #FF6B6B;
-            --accent-color: #4ECDC4;
+            --accent-color: #4ECDC4;  
             --dark-gray: #2C3E50;
             --light-gray: #F8F9FA;
         }
@@ -26,7 +71,7 @@
             text-align: center;
             padding: 60px 40px;
             background: linear-gradient(135deg, var(--primary-color), var(--dark-gray));
-            color: white;
+            color: white;  
             border-radius: 16px;
             margin-bottom: 40px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -48,7 +93,7 @@
             transition: transform 0.3s ease;
         }
 
-        .feature-box:hover {
+        .feature-box:hover {  
             transform: translateY(-5px);
         }
 
@@ -131,13 +176,24 @@
         <h1>What is a professional renter and how can I avoid them?</h1>  
         <p>Most renters mean well; they move in, pay rent on time, and have an overall positive relationship with their landlords. Professional renters, however, are a different story.  
 
-These are people who treat renting like a game, seeing how much they can get away with (and how little they can pay) before being evicted and moving on to their next target.    
+These are people who treat renting like a game, seeing how much they can get away with (and how little they can pay) before being evicted and moving on to their next target.      
 
-Today we’re breaking down who these people are, the damage they can cause, and how to spot them—ideally before they ever set foot inside your property.</p>  
+Today we’re breaking down who these people are, the damage they can cause, and how to spot them—ideally before they ever set foot inside your property.</p>    
+    </div>
+<div style="text-align: center; margin: 30px 0 50px;">
+        <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg"   
+                 alt="Discord" 
+                 class="discord-icon">
+            <div class="discord-text">
+                <div>Join Discord</div>    
+                <small>Together Chat</small>  
+            </div>
+        </a>
     </div>
 
   <div class="feature-box">          
-        <h2>1. Tenants who never planned on paying</h2>      
+        <h2>1. Tenants who never planned on paying</h2>        
         <ol>    
             <li>Every landlord’s nightmare: the tenant who never had any intention of paying rent. Oftentimes this tenant looks good on paper, pays rent for a couple of months, and then shows their true colours. </li>  
             <li>This might start as late payments that incrementally come to a stop altogether, or show up suddenly as a complete stoppage in rent altogether. </li>    
@@ -177,7 +233,7 @@ Today we’re breaking down who these people are, the damage they can cause, and
     <div class="warning">    
 
         <h3>How to avoid unauthorized tenants</h3>      
-        <p>Pay attention to sudden increases in energy bills, look for constant visits from unknown people in your security footage, occasionally pay a visit to your property (with proper notice), and vet tenants thoroughly before handing over the keys. </p>    
+        <p>Pay attention to sudden increases in energy bills, look for constant visits from unknown people in your security footage, occasionally pay a visit to your property (with proper notice), and vet tenants thoroughly before handing over the keys. </p>      
    
  </div>  
 
@@ -212,7 +268,7 @@ Today we’re breaking down who these people are, the damage they can cause, and
  
 
 。checking into all their references  
-。asking about their story in person or over the phone  
+。asking about their story in person or over the phone    
 。inquiring about any holes that pop up  
 。making sure area codes for phone numbers line up with where the references are supposed to be based    
 。requiring two pieces of ID upfront</p>        
@@ -226,18 +282,30 @@ Today we’re breaking down who these people are, the damage they can cause, and
                 </ol>                        
     </div>
     
-    <div class="warning">      
+    <div class="warning">        
 
         <h3>How to avoid tenants who take advantage of the system</h3>      
         <p>Run criminal background checks on applicants, call previous landlords, and be wary of giving unaccompanied access to your property before checks have been done, rent has been paid, and a security deposit has been provided. The same goes for allowing tenants to stay longer than what’s stated in their lease, as even an extra day opens the door to opportunity.</p>      
    
  </div>  
 
+<div style="text-align: center; margin: 60px 0 40px;">  
+        <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">  
+            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" 
+                 alt="Discord" 
+                 class="discord-icon">  
+            <div class="discord-text">  
+                <div>Join Discord</div>    
+                <small>Together Chat</small>
+            </div>
+        </a>
+</div>
 
-    <footer style="text-align: center; margin-top: 50px;">    
+    
+    <footer style="text-align: center; margin-top: 50px;">      
         <p><a href=""></a>         
-        <p></p>
-        <p>© 18GOGOGO. 2025. All rights reserved</p>  
+        <p></p>  
+        <p>© 2025 JOJOBLACKLIST by 18GOGOGO. All rights reserved.</p>      
     </footer>
 </body>
 </html>
