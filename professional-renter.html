@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>18GOGOGO</title>
     <style>
+    
+:root {    
+            --primary-color: #2A5C82;
+            --secondary-color: #FF6B6B;
+            --accent-color: #4ECDC4;  
+            --dark-gray: #2C3E50;
+            --light-gray: #F8F9FA;
+        }
+
  /* 新增DC按鈕樣式 */
         .discord-btn {
-            display: flex;
+            display: flex;  
             align-items: center;
-            gap: 12px;  
+            gap: 12px;      
             background: #5865F2;  
             color: white !important;
             padding: 14px 28px;
@@ -43,21 +52,8 @@
             opacity: 0.9;
         }
 
-        /* 原始樣式保持不變 */
-        :root {
-            --primary-color: #2A5C82;
-            /* 以下省略原有CSS變量... */
-        }
-        /* 其他原始樣式保持不變... */        
 
-:root {    
-            --primary-color: #2A5C82;
-            --secondary-color: #FF6B6B;
-            --accent-color: #4ECDC4;  
-            --dark-gray: #2C3E50;
-            --light-gray: #F8F9FA;
-        }
-
+        
         body { 
             font-family: 'Microsoft JhengHei', sans-serif; 
             max-width: 1200px;
@@ -123,7 +119,7 @@
         }
 
         .download-btn {
-            background: linear-gradient(135deg, var(--secondary-color), #FF5252);
+            background: linear-gradient(135deg, var(--secondary-color), #FF5252);  
             color: white;
             padding: 18px 45px;
             border-radius: 30px;
