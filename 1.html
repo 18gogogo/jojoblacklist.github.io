@@ -2,23 +2,78 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOJOBLACKLIST LIST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>Tally.so 表單</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
         iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
+        /* 針對WebView優化 */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
+    <script type="text/javascript">
+        // 用於與Android WebView通信的接口
+        function setupWebViewJSBridge() {
+            window.onload = function() {
+                // 檢測Android WebView的JavaScript接口
+                if (window.Android) {
+                    console.log("Android WebView接口已連接");
+                }
+                
+                // 處理iframe加載完成事件
+                document.querySelector('iframe').onload = function() {
+                    console.log("iframe已加載完成");
+                    // 如果需要，可以在這裡通知Android
+                    if (window.Android && window.Android.onIframeLoaded) {
+                        window.Android.onIframeLoaded();
+                    }
+                };
+            };
+        }
+        
+        // 初始化WebView橋接
+        setupWebViewJSBridge();
+    </script>
 </head>
 <body>
-    <iframe src="https://tally.so/r/w2Dq6b" frameborder="0" marginheight="0" marginwidth="0" title="Tally.so 表單"></iframe>
+    <iframe src="https://tally.so/r/w2Dq6b" frameborder="0" marginheight="0" marginwidth="0" title="Tally.so 表單" allow="camera; microphone; autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+    
+    <script type="text/javascript">
+        // 處理WebView中的特殊情況
+        document.addEventListener("DOMContentLoaded", function() {
+            // 修復某些Android WebView版本中的滾動問題
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
+            // 處理可能的iframe跨域問題
+            var iframe = document.querySelector('iframe');
+            iframe.addEventListener('error', function() {
+                console.error("iframe加載失敗，可能是跨域問題");
+                // 可以在這裡添加備用方案
+            });
+        });
+    </script>
 </body>
 </html>
