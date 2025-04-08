@@ -3,16 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REPAIRBLACKLIST POWED BY 18GOGOGO</title>
+    <title>REPAIRBLACKLIST POWERED BY 18GOGOGO</title>
     <style>
+        :root {
+            --primary-color: #2A5C82;
+            --secondary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --dark-gray: #2C3E50;
+            --light-gray: #F8F9FA;
+        }
 
-        /* 新增DC按鈕樣式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-gray);
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-gray));
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-top: 30px;
+        }
+
+        .tip-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #FFF9E6;
+            padding: 15px;
+            border-left: 4px solid #FFD700;
+            margin: 15px 0;
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #45B7A7;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        /* Discord Button Styles */
         .discord-btn {
             display: flex;
             align-items: center;
             gap: 12px;
             background: #5865F2;
-            color: white !important;
+            color: white;
             padding: 14px 28px;
             border-radius: 8px;
             text-decoration: none;
@@ -41,112 +118,28 @@
 
         .discord-text small {
             font-size: 0.9em;
-            opacity: 0.9;  
-        }
-
-        /* 原始樣式保持不變 */
-        :root {
-            --primary-color: #2A5C82;
-            --secondary-color: #FF6B6B;
-            --accent-color: #4ECDC4;
-            --dark-gray: #F8F9FA;
-            --light-gray: #F8F9FA;
-            /* 以下省略原有CSS變量... dark-gray: #2C3E50*/
-        }
-        /* 其他原始樣式保持不變... */
-     .header {
-            text-align: center;
-            padding: 60px 40px;
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-gray));
-            color: white;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;  
-            line-height: 1.6;
-            max-width: 800px;  
-            margin: 0 auto;
-            padding: 20px;  
-            background-color: #f5f5f5;
-        }
-
-        h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-        }
-
-        h2 {
-            color: #3498db;
-            margin-top: 30px;
-        }
-
-        .tip-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin: 20px 0;
-        }
-
-        .warning {
-            background: #fff3cd;
-            padding: 15px;
-            border-left: 4px solid #ffc107;
-            margin: 15px 0;
-        }
-
-        .highlight {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-
-        .cta-button {
-            background: #3498db;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 20px 0;
-            transition: background 0.3s;  
-        }
-
-        .cta-button:hover {
-            background: #2980b9;
-        }
-
-        .icon {
-            font-size: 24px;
-            margin-right: 10px;
+            opacity: 0.9;
         }
     </style>
 </head>
 <body>
-<div class="header">    
-        <h1>Avoid Renovation Disasters: 3 Essential Tips</h1>  
-        <p>Buying a property is exciting, but renovation projects can turn into nightmares if not handled properly. Follow these professional tips to protect your investment and maintain peace of mind.</p>  
-
-<div style="text-align: center; margin: 30px 0 50px;">
-        <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">
-            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" 
-                 alt="Discord" 
-                 class="discord-icon">
-            <div class="discord-text">
-                <div>Join Discord</div>
-                <small>Chat Together</small>
-            </div>
-        </a>
-    </div>
-        
+    <div class="header">
+        <h1>Avoid Renovation Disasters: 3 Essential Tips</h1>
+        <p>Buying a property is exciting, but renovation projects can turn into nightmares if not handled properly. Follow these professional tips to protect your investment and maintain peace of mind.</p>
+        <div style="text-align: center; margin: 30px 0 50px;">
+            <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" 
+                     alt="Discord" 
+                     class="discord-icon">
+                <div class="discord-text">
+                    <div>Join Discord</div>
+                    <small>Chat Together</small>
+                </div>
+            </a>
+        </div>
     </div>
 
-
-    
-    <div class="tip-container">  
+    <div class="tip-container">
         <h2>🔍 Tip 1: Verify Custom Furniture Specifications</h2>
         <div class="warning">
             <strong>Real Case:</strong> A homeowner discovered bathroom doors didn't match ordered specifications post-renovation, leading to disputes and damaged relationships.
@@ -161,7 +154,7 @@
 
     <div class="tip-container">
         <h2>📝 Tip 2: Define Post-Completion Fixes</h2>
-        <p><span class="highlight">Key Considerations:</span></p>  
+        <p><span class="highlight">Key Considerations:</span></p>
         <ul>
             <li>Multiple trades (plumbing, electrical, etc.) create complex dependencies</li>
             <li>Minor imperfections are inevitable</li>
@@ -200,30 +193,28 @@
             <li>Maintain open communication with contractors</li>
             <li>Document all changes and agreements</li>
         </ul>
-        
         <h3>🛡️ Protect Your Investment</h3>
-        <p>Download our <a href="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist"<span class="highlight">Repairblacklist App</span></a> to:</p>
+        <p>Download our <a href="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist" class="highlight">Repairblacklist App</a> to:</p>
         <ul>
             <li>Check contractor credentials</li>
             <li>Access verified professional database</li>
             <li>Read genuine client reviews</li>
-
-            
+        </ul>
     </div>
-    
-    <footer style="text-align: center; margin-top: 50px;">    
-        <p><div style="text-align: center; margin: 60px 0 40px;">  
-        <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">  
-            <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" 
-                 alt="Discord" 
-                 class="discord-icon">  
-            <div class="discord-text">  
-                <div>Join Discord</div>    
-                <small>Together Chat</small>
-            </div>
-        </a>
-</div></p>
-        <p>© 2025 REPAIRBLACKLIST by 18GOGOGO. All rights reserved.</p>      
+
+    <footer style="text-align: center; margin-top: 50px;">
+        <div style="text-align: center; margin: 60px 0 40px;">
+            <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" 
+                     alt="Discord" 
+                     class="discord-icon">
+                <div class="discord-text">
+                    <div>Join Discord</div>
+                    <small>Together Chat</small>
+                </div>
+            </a>
+        </div>
+        <p>© 2025 REPAIRBLACKLIST by 18GOGOGO. All rights reserved.</p>
     </footer>
 </body>
 </html>
