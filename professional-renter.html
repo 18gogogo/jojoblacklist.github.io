@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>什麼是專業租客及如何避免他們 - JOJOBLACKLIST</title>
+    <title>JOJOBLACKLIST POWERED BY 18GOGOGO</title>
     <style>
         :root {
             --primary-color: #2A5C82;
@@ -15,56 +15,41 @@
 
         body {
             font-family: 'Microsoft JhengHei', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--dark-gray), var(--primary-color));
-            color: #fff;
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-
-        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-gray);
+            line-height: 1.8;
         }
 
         .header {
             text-align: center;
             padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-gray));
+            color: white;
             border-radius: 16px;
             margin-bottom: 40px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            border: 2px solid var(--accent-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
         }
 
         .header h1 {
             font-size: 2.5rem;
             margin-bottom: 25px;
             letter-spacing: 1px;
-            color: var(--accent-color);
-            text-transform: uppercase;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
         }
 
         .feature-box {
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             padding: 30px;
             margin: 30px 0;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border-left: 6px solid var(--accent-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: var(--dark-gray);
+            transition: transform 0.3s ease;
         }
 
         .feature-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
         .feature-box h2 {
@@ -76,27 +61,75 @@
         }
 
         .warning {
-            background: rgba(255, 249, 230, 0.9);
+            background: #FFF9E6;
             padding: 25px;
             border-radius: 8px;
             margin: 25px 0;
             border-left: 6px solid #FFD700;
             position: relative;
-            color: var(--dark-gray);
         }
 
-        .warning h3 {
-            color: #FFD700;
-            font-size: 1.5rem;
+        .warning::before {
+            content: "⚠️";
+            position: absolute;
+            left: -45px;
+            top: 20px;
+            font-size: 28px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #FF5252);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 40px auto;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+        }
+
+        ol {
+            padding-left: 30px;
+        }
+
+        li {
             margin-bottom: 15px;
+            padding-left: 10px;
         }
 
+        footer {
+            text-align: center;
+            margin: 60px 0 30px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .feature-box {
+                padding: 20px;
+                margin: 20px 0;
+            }
+        }
+
+        /* Discord Button Styles */
         .discord-btn {
             display: flex;
             align-items: center;
             gap: 12px;
             background: #5865F2;
-            color: white;
+            color: white !important;
             padding: 14px 28px;
             border-radius: 8px;
             text-decoration: none;
@@ -104,7 +137,7 @@
             max-width: 380px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(88, 101, 242, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .discord-btn:hover {
@@ -127,142 +160,124 @@
             font-size: 0.9em;
             opacity: 0.9;
         }
-
-        ol {
-            padding-left: 30px;
-        }
-
-        li {
-            margin-bottom: 15px;
-            padding-left: 10px;
-        }
-
-        footer {
-            text-align: center;
-            margin: 60px 0 30px;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 40px 20px;
-            }
-
-            .feature-box {
-                padding: 20px;
-                margin: 20px 0;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 頁頭 -->
-        <div class="header">
-            <h1>什麼是專業租客及如何避免他們？</h1>
-            <p>大多數租客都是誠實的，他們按時入住、支付租金，並與房東保持良好的關係。然而，專業租客卻完全不同。他們把租房當作一場遊戲，試圖在被驅逐前盡可能少付租金，並迅速轉向下一個目標。今天，我們將剖析這些人的特徵、他們可能造成的損害，以及如何在他們踏入您的物業前識別他們。</p>
+    <div class="header">
+        <h1>What is a Professional Renter and How Can I Avoid Them?</h1>
+        <p>Most renters mean well; they move in, pay rent on time, and have an overall positive relationship with their landlords. Professional renters, however, are a different story.</p>
+        <p>These are people who treat renting like a game, seeing how much they can get away with (and how little they can pay) before being evicted and moving on to their next target.</p>
+        <p>Today we’re breaking down who these people are, the damage they can cause, and how to spot them—ideally before they ever set foot inside your property.</p>
+        <div style="text-align: center; margin: 30px 0 50px;">
             <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">
-                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" alt="Discord" class="discord-icon">
+                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" 
+                     alt="Discord" 
+                     class="discord-icon">
                 <div class="discord-text">
-                    <div>加入 Discord</div>
-                    <small>一起交流</small>
+                    <div>Join Discord</div>
+                    <small>Chat Together</small>
                 </div>
             </a>
         </div>
-
-        <!-- 1. 从未打算付租的租客 -->
-        <div class="feature-box">
-            <h2>1. 從未打算付租的租客</h2>
-            <ol>
-                <li>每個房東的噩夢：從一開始就無意付租的租客。這類租客往往在表面上看起來不錯，會支付幾個月的租金，然後露出真面目。</li>
-                <li>這可能從遲交租金開始，逐漸完全停止支付，或者突然完全停止租金支付。</li>
-            </ol>
-        </div>
-        <div class="warning">
-            <h3>如何避免不付租的租客</h3>
-            <p>要避免這類租客，檢查租客的信用評分，驗證他們的就業情況和前房東的推薦信，親自與他們見面感受其可靠性，並特別注意不可靠的跡象。例如：總是提前告知租金會遲交、經常找藉口無法支付，或無故漏交租金。</p>
-        </div>
-
-        <!-- 2. 未經許可轉租物業的租客 -->
-        <div class="feature-box">
-            <h2>2. 未經許可轉租物業的租客</h2>
-            <ol>
-                <li>另一個常見騙局是租客假冒房東。入住後，他們可能假裝自己是房東，將空間轉租給他人，並私吞租金。</li>
-                <li>如果您的物業有門衛，這類租客有時會與前台達成交易，每月支付費用，讓非法租客自由進出大樓。</li>
-            </ol>
-        </div>
-        <div class="warning">
-            <h3>如何避免未經許可轉租的租客</h3>
-            <p>詢問租客過往租賃歷史中是否有頻繁的短期租賃，安裝安全系統，並請門衛（若有）通知您任何未經授權的訪客。</p>
-        </div>
-
-        <!-- 3. 偷偷帶入未授權租客的租客 -->
-        <div class="feature-box">
-            <h2>3. 偷偷帶入未授權租客的租客</h2>
-            <ol>
-                <li>與假冒房東略有不同，這類租客不會透露他們計劃讓未在租約上的人與他們同住。這可能導致您的物業內人數超過法律允許，或讓潛在危險人物進入，帶來其他壓力。</li>
-                <li>公平來說，這不總是出於惡意。如果發現未授權租客，不要立即假設最壞情況，可能只是租客在簽約後決定讓伴侶搬入。</li>
-            </ol>
-        </div>
-        <div class="warning">
-            <h3>如何避免未授權租客</h3>
-            <p>注意電費突然增加，檢查安全錄像中是否有陌生人頻繁出現，偶爾（提前通知）探訪物業，並在交付鑰匙前徹底審查租客。</p>
-        </div>
-
-        <!-- 4. 故意超額付款的租客 -->
-        <div class="feature-box">
-            <h2>4. 故意超額付款的租客</h2>
-            <ol>
-                <li>這種騙局涉及租客故意開出高於應付金額的支票（租金、押金等），並要求您退還多餘部分。但當您兌現支票時，支票會跳票，他們則拿走您退回的真金白銀。</li>
-                <li>雖然較少見，這種伎倆有時也通過電子轉帳、電匯或其他線上支付方式（如 PayPal）進行。租客超額付款，要求退款，然後在款項存入您帳戶前取消支付。</li>
-            </ol>
-        </div>
-        <div class="warning">
-            <h3>如何避免故意超額付款的租客</h3>
-            <p>在退還任何款項前，與銀行確認租客支付的資金已存入您的帳戶並可提取。數位支付通常比實體支票更安全。</p>
-        </div>
-
-        <!-- 5. 偽造身份的租客 -->
-        <div class="feature-box">
-            <h2>5. 偽造身份的租客</h2>
-            <ol>
-                <li>如果每個人都誠實可信就好了，但在租賃世界中，有些人並非他們所說的那樣。為了增加獲得物業的機會，他們可能提供偽造的信用報告、房東推薦信、就業記錄等信息。</li>
-                <li>顯然，這可能導致日後的種種問題。紙面上看似完美的租客，可能最終不付租金、製造麻煩，成為糟糕的租客。</li>
-            </ol>
-        </div>
-        <div class="warning">
-            <h3>如何避免偽造身份的租客</h3>
-            <p>徹底審查租客是避免此類問題的最佳方法，例如：檢查所有推薦信、親自或電話詢問他們的故事、查詢任何疑點、確保電話區號與推薦來源地一致、要求提供兩份身份證明。</p>
-        </div>
-
-        <!-- 6. 利用系統漏洞的租客 -->
-        <div class="feature-box">
-            <h2>6. 利用系統漏洞的租客</h2>
-            <ol>
-                <li>不幸的是，對某些人來說，應對驅逐是生活常態。他們熟知所有漏洞，入住時無意支付首末月租金以外的費用（甚至更少），收到驅逐通知後，盡可能拖延至被強制離開，然後重複此過程，實際上免租生活。</li>
-            </ol>
-        </div>
-        <div class="warning">
-            <h3>如何避免利用系統漏洞的租客</h3>
-            <p>對申請人進行犯罪背景調查，聯繫前房東，在完成檢查、支付租金和提供押金前謹慎給予無人陪同的物業訪問權。同樣，避免讓租客超出租約規定的時間逗留，哪怕多一天也可能帶來機會。</p>
-        </div>
-
-        <!-- 頁腳 -->
-        <footer>
-            <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">
-                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" alt="Discord" class="discord-icon">
-                <div class="discord-text">
-                    <div>加入 Discord</div>
-                    <small>一起交流</small>
-                </div>
-            </a>
-            <p>© 2025 JOJOBLACKLIST by 18GOGOGO. 版權所有。</p>
-        </footer>
     </div>
+
+    <div class="feature-box">
+        <h2>1. Tenants Who Never Planned on Paying</h2>
+        <ol>
+            <li>Every landlord’s nightmare: the tenant who never had any intention of paying rent. Oftentimes this tenant looks good on paper, pays rent for a couple of months, and then shows their true colours.</li>
+            <li>This might start as late payments that incrementally come to a stop altogether, or show up suddenly as a complete stoppage in rent altogether.</li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <h3>How to Avoid Tenants Who Don’t Plan on Paying</h3>
+        <p>To avoid this type of tenant, check tenants’ credit scores, validate their employment and previous landlord references, check their vibe in person, and pay special attention to signs of unreliability. Some examples are: always letting you know that rent is going to be late, having consistent excuses for not being able to pay, or missing a payment without any explanation at all.</p>
+    </div>
+
+    <div class="feature-box">
+        <h2>2. Tenants Who Rent Out Your Property Without Your Permission</h2>
+        <ol>
+            <li>Another common scam is tenants posing as you, the landlord. After moving in, they might pretend to be the landlord of the unit, rent their space to other people, and pocket the rent themselves.</li>
+            <li>If you’re renting out a unit in a building with a concierge, these tenants also sometimes work out deals with the front desk people. They might give them money every month to allow the illegal tenants in and out of the building without any trouble.</li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <h3>How to Avoid Tenants Who Rent Out Your Property Without Your Permission</h3>
+        <p>Ask about any consistently short stays in rental histories, install a security system, and ask your concierge (if you have one) to let you know about any unauthorized guests.</p>
+    </div>
+
+    <div class="feature-box">
+        <h2>3. Tenants Who Sneak in Other Unauthorized Tenants</h2>
+        <ol>
+            <li>Slightly different than acting as the landlord, tenants will sometimes not mention that they plan to have another person—someone not on the lease—live with them. This can, unknown to you, lead to more people in your units than the law permits, allow potentially dangerous people into your property, and cause other stresses.</li>
+            <li>To be fair, this doesn’t always happen for nefarious reasons. Avoid assuming the worst if you find unauthorized tenants in your space, as it might be as simple as someone deciding after signing the lease to have their partner move in with them.</li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <h3>How to Avoid Unauthorized Tenants</h3>
+        <p>Pay attention to sudden increases in energy bills, look for constant visits from unknown people in your security footage, occasionally pay a visit to your property (with proper notice), and vet tenants thoroughly before handing over the keys.</p>
+    </div>
+
+    <div class="feature-box">
+        <h2>4. Tenants Who Overpay on Purpose</h2>
+        <ol>
+            <li>This scam involves a tenant intentionally giving you a cheque with more money than they owe you (for rent, a security deposit, etc.) and asking you to return the extra amount. But when you go to cash the cheque, it bounces, and they get away with the real money you sent back.</li>
+            <li>Although rarer, this rouse is also sometimes done through e-transfer, wire transfer, or other online payment methods (i.e. PayPal). The tenant sends too much money, asks that you return the extra, and then cancels the payment before it’s actually deposited into your account.</li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <h3>How to Avoid Tenants Who Overpay on Purpose</h3>
+        <p>Verify with your bank that funds given to you by a tenant are in your account and available to withdraw before sending any money back. Receiving payments digitally is also generally safer than through physical cheques.</p>
+    </div>
+
+    <div class="feature-box">
+        <h2>5. Tenants Who Fake Who They Are</h2>
+        <ol>
+            <li>It would be great if you could always trust people with their word. But in the world of renting, people aren’t always who they say they are. To increase their chances of getting your unit, some people try to paint a better picture of themselves by giving you fake credit reports, landlord references, employment records, and other information.</li>
+            <li>Obviously, this can lead to all sorts of problems down the road. What looked like a great tenant on paper could end up being someone who doesn’t pay rent, causes problems, and is generally a bad tenant.</li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <h3>How to Avoid Tenants Who Fake Who They Are</h3>
+        <p>The best way to avoid misrepresentative tenants is by thoroughly vetting them, such as:</p>
+        <ul>
+            <li>Checking into all their references</li>
+            <li>Asking about their story in person or over the phone</li>
+            <li>Inquiring about any holes that pop up</li>
+            <li>Making sure area codes for phone numbers line up with where the references are supposed to be based</li>
+            <li>Requiring two pieces of ID upfront</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h2>6. Tenants Who Take Advantage of the System</h2>
+        <ol>
+            <li>Unfortunately, navigating eviction is a way of life for some people. They familiarize themselves with all the loopholes, get themselves in the door of a rental property with no intention of paying rent beyond first and last (if that), get served with an eviction notice, and then enjoy however long they have until they’re legally forced to leave. Then they repeat the process again and again, effectively living rent-free. Learn more about how to manage a non-paying tenant.</li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <h3>How to Avoid Tenants Who Take Advantage of the System</h3>
+        <p>Run criminal background checks on applicants, call previous landlords, and be wary of giving unaccompanied access to your property before checks have been done, rent has been paid, and a security deposit has been provided. The same goes for allowing tenants to stay longer than what’s stated in their lease, as even an extra day opens the door to opportunity.</p>
+    </div>
+
+    <footer>
+        <div style="text-align: center; margin: 30px 0 50px;">
+            <a href="https://discord.gg/KvssvFsHuh" class="discord-btn" target="_blank" rel="noopener noreferrer">
+                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62595384f934b806f37f4956_145dc557845548a36a82337912ca3ac5.svg" 
+                     alt="Discord" 
+                     class="discord-icon">
+                <div class="discord-text">
+                    <div>Join Discord</div>
+                    <small>Chat Together</small>
+                </div>
+            </a>
+        </div>
+        <p>© 2025 JOJOBLACKLIST by 18GOGOGO. All rights reserved.</p>
+    </footer>
 </body>
 </html>
