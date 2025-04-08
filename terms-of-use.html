@@ -3,68 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use</title>
+    <title>Terms of Use - 18GOGOGO</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@900&display=swap');
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #1a1a1a 0%, #1e90ff 100%);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .title-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
         }
-        h1, h2 {
-            text-align: center;
-            color: #333;
+        .card {
+            background: rgba(247, 231, 206, 0.1);
+            border: 2px solid #1e90ff;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        .card:hover {
+            transform: rotate(0deg) scale(1.05);
         }
-        li {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-left: 5px solid #3498db;
-            border-radius: 4px;
+        .geometric-shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.7;
         }
-        li:hover {
-            background-color: #f1f1f1;
+        .btn-download {
+            background: #1e90ff;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 1rem 2rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
         }
-        p {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #666;
+        .btn-download:hover {
+            background: #f7e7ce;
+            color: #1a1a1a;
+            transform: translateY(-5px);
+        }
+        .terms-list li {
+            background: rgba(30, 144, 255, 0.1);
+            border-left: 4px solid #f7e7ce;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .terms-list li:hover {
+            background: rgba(30, 144, 255, 0.3);
+            transform: translateX(5px);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Terms of Use</h1>
-        <h2>Membership Application Notes</h2>
-        <ul>
-            <li>Applicants are requested to carefully read the following terms. Clicking "Agree " indicates full acceptance of all terms below without objection. Otherwise, please exit this application and website.</li>
-            <li>Upon becoming a member, all data submitted will be considered the property of this application and website. Members may not request the deletion of any data. If a member insists on data deletion, in addition to paying for the services already used, an administrative fee of HK$500 will be charged for account deletion processing.</li>
-            <li>Each member may only register one account on this application and website, and the account usage rights cannot be transferred to a third party. If a member registers more than one account, once verified, the duplicate accounts will have all privileges terminated without notice, and no data within those accounts will be returned in any form. Furthermore, this application and website will charge fees for services used and an additional administrative fee for losses incurred due to duplicate registrations.</li>
-            <li>This application and website provide a platform for users to search for information. The staff of this application and website are only responsible for managing the platform and are not liable for the data, information, or files posted by members. Members are solely responsible for the data, information, and files they post. Therefore, when posting on this application and website, members must comply with both the platform’s rules and local laws.</li>
-            <li>Except for content posted by members of this application and website, the platform does not guarantee the authenticity of content posted independently by other members. Users should exercise their own judgment, and this application and website will not be held responsible for such content.</li>
-            <li>If content posted by a member on this application and website infringes on any rights, responsibility lies solely with the individual who posted it, and this application and website bear no liability.</li>
-            <li>It is prohibited to post, upload, email, or transmit any illegal, harmful, coercive, abusive, harassing, infringing, defamatory, vulgar, obscene, libelous, privacy-invading, harmful, racially discriminatory, or morally objectionable "content" on this application and website.</li>
-            <li>Promotional or advertising content is not allowed in any section of this application and website. Upon discovery, such content and posting privileges will be immediately suspended, and depending on the severity, login access may be blocked without notice.</li>
-            <li>It is forbidden to post links (directly or indirectly) or connect to other listing applications or websites anywhere on this application and website. Upon discovery, this may be deemed a severe violation of "posting promotional advertisements," potentially resulting in login suspension, and any stored data will not be returned in any form.</li>
-            <li>If this application and website deletes, moves, or adds any data, information, or files posted by members, no notification or compensation will be provided.</li>
-            <li>The staff of this application and website reserve the right to determine whether a member has violated the rules, the severity of the violation, and to impose penalties for actions beyond these terms that disrupt the operation of the platform.</li>
-            <li>If a member is found exploiting vulnerabilities in this application and website or interfering with its design in any way, the member’s account usage rights will be terminated, and any stored data will not be returned in any form.</li>
-        </ul>
-        <p>The above rules of this application and website may be added to, modified, or deleted without prior notice. Members are requested to periodically review the terms page on their own.</p>
+<body class="min-h-screen flex items-center justify-center p-8">
+    <div class="relative w-full max-w-5xl">
+        <!-- Geometric Shapes -->
+        <div class="geometric-shape w-64 h-64 bg-[#f7e7ce] rounded-full absolute -top-20 -left-20 transform rotate-45"></div>
+        <div class="geometric-shape w-48 h-48 bg-[#ffffff] absolute bottom-0 right-0 transform -rotate-12"></div>
+        
+        <!-- Main Content -->
+        <div class="text-center mb-16">
+            <h1 class="title-text text-[#f7e7ce] drop-shadow-lg">18GOGOGO</h1>
+            <p class="text-2xl font-bold text-white opacity-80">Terms of Use</p>
+        </div>
+
+        <!-- Terms Card -->
+        <div class="card p-8 mb-12 relative">
+            <h2 class="title-text text-4xl text-[#1e90ff] mb-6">Membership Application Notes</h2>
+            
+            <ul class="terms-list text-white">
+                <li>Applicants must carefully read the following terms. Clicking "Agree" indicates full acceptance of all terms without objection. Otherwise, please exit this application.</li>
+                <li>Upon becoming a member, all submitted data becomes property of this application. Members may not request data deletion. Account deletion requires payment for services used plus a HK$500 administrative fee.</li>
+                <li>Each member may register only one account. Account transfers are prohibited. Duplicate accounts will be terminated without notice and all data forfeited.</li>
+                <li>This platform provides information search services. We manage the platform but are not responsible for member-posted content. Members are solely responsible for their posts and must comply with platform rules and local laws.</li>
+                <li>We do not guarantee the authenticity of content posted by members. Users must exercise their own judgment.</li>
+                <li>Members are solely responsible for any rights infringements in their posts. The platform bears no liability.</li>
+                <li>Prohibited content includes illegal, harmful, abusive, harassing, infringing, defamatory, vulgar, obscene, privacy-invading, racially discriminatory or morally objectionable material.</li>
+                <li>Promotional or advertising content is forbidden. Violations may result in immediate suspension of posting privileges or account blocking.</li>
+                <li>Posting links to other listing platforms is prohibited and may be treated as severe advertising violations, potentially resulting in account suspension.</li>
+                <li>We reserve the right to modify or delete member-posted content without notification or compensation.</li>
+                <li>Our staff determines rule violations and appropriate penalties for actions disrupting platform operations.</li>
+                <li>Exploiting platform vulnerabilities or interfering with its design will result in account termination and data forfeiture.</li>
+            </ul>
+            
+            <p class="text-[#f7e7ce] mt-6 italic">These terms may be modified without prior notice. Members should periodically review this page.</p>
+        </div>
+
+        <!-- Footer -->
+        <p class="text-center text-[#f7e7ce] font-bold mt-12">© 2025 18GOGOGO All Rights Reserved</p>
     </div>
+
+    <!-- JavaScript for Animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(30, 144, 255, 0.3), rgba(247, 231, 206, 0.1))`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.background = 'rgba(247, 231, 206, 0.1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
