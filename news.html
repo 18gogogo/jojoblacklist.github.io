@@ -9,9 +9,55 @@
   <style>
     body { background: #f9fafb; }
     .news-content { white-space: pre-line; }
+    /* 手機優化樣式 */
+    @media (max-width: 640px) {
+      .btn-group { flex-direction: column; width: 100%; }
+      .btn-group a, .btn-group button { margin: 0.5rem 0; width: 100%; }
+      .news-card { margin-bottom: 1.5rem; }
+    }
+    /* 微信小程序彈窗樣式 */
+    .wx-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .wx-modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .wx-qrcode {
+      width: 200px;
+      height: 200px;
+      margin: 1rem auto;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
+  <!-- 微信小程序彈窗 -->
+  <div id="wxModal" class="wx-modal">
+    <div class="wx-modal-content">
+      <h3 class="text-xl font-bold mb-4">掃描二維碼打開微信小程序</h3>
+      <div class="wx-qrcode">
+        <!-- 使用更適合WebView掃描的二維碼格式 -->
+        <img src="https://open.weixin.qq.com/qr/code?username=gh_xxxx" alt="微信小程序二維碼" width="200" height="200">
+        <!-- 備用二維碼，確保在Google APK WebView中可掃描 -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=weixin://dl/business/?t=lMapNqZnF6v" alt="微信小程序二維碼備用" width="200" height="200" style="margin-top:10px;">  
+      </div>
+      <p class="mb-4 text-gray-600">請使用微信掃描二維碼</p>
+      <button id="closeWxModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg">關閉</button>
+    </div>
+  </div>
   <header class="bg-blue-900 text-white p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
     <div class="flex items-center space-x-3">
       <i class="fa-solid fa-newspaper fa-2x"></i>
@@ -21,20 +67,22 @@
   </header>
   <main class="flex-1 container mx-auto px-2 sm:px-4 py-6 md:py-10">
     <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0">
-      <div class="flex items-center space-x-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
         <h2 class="text-2xl md:text-3xl font-bold text-blue-900 tracking-tight">最新新聞</h2>
-        <a href="https://wxaurl.cn/lMapNqZnF6v" target="_blank" class="ml-0 md:ml-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition min-w-[180px] justify-center">
-          <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-6 h-6 mr-2"/>
-          不良租客名單 JOJOBLACKLIST 專業解答助理
-        </a>
-        <a href="https://apkpure.com/p/com.example.a18gogogo" target="_blank" class="ml-0 md:ml-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition min-w-[180px] justify-center"><i class="fa-solid fa-list-check mr-2"></i>不良租客名單 JOJOBLACKLIST 立即下載 Download Now</a>
+        <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <a href="javascript:void(0);" id="wxAppLink" class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto">
+            <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-6 h-6 mr-2"/>
+            不良租客名單 JOJOBLACKLIST 專業解答助理
+          </a>
+          <a href="https://apkpure.com/p/com.example.a18gogogo" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto"><i class="fa-solid fa-list-check mr-2"></i>不良租客名單 JOJOBLACKLIST 立即下載</a>
+        </div>
       </div>
-      <button id="refreshBtn" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full flex items-center shadow-md text-base font-semibold min-w-[140px] justify-center"><i class="fa-solid fa-rotate-right mr-2"></i>手動更新</button>
+      <button id="refreshBtn" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full flex items-center shadow-md text-base font-semibold justify-center w-full sm:w-auto mt-3 sm:mt-0"><i class="fa-solid fa-rotate-right mr-2"></i>手動更新</button>
     </div>
     <div class="mb-6 text-gray-800 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-lg shadow-sm text-base md:text-lg">
       為物業設計，旨在幫助您規避風險。您可以查詢潛在的不同風險，了解是否存在不良行為，從而做出更明智的決策。
     </div>
-    <div id="news-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
+    <div id="news-list" class="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
     <div id="loading" class="text-center text-gray-500 mt-8 text-lg hidden"><i class="fa-solid fa-spinner fa-spin"></i> 載入中...</div>
     <div id="error" class="text-center text-red-600 mt-8 text-lg hidden"></div>
   </main>
@@ -118,7 +166,7 @@
         return;
       }
       newsList.innerHTML = articles.slice(0, 30).map(article => `
-        <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col h-full border border-gray-100 hover:shadow-2xl transition-shadow duration-200">
+        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col h-full border border-gray-100 hover:shadow-2xl transition-shadow duration-200 news-card">
           <div class="mb-3 flex items-center text-gray-500 text-xs md:text-sm">
             <i class="fa-solid fa-calendar-days mr-1"></i>
             <span>${article.publishedAt ? new Date(article.publishedAt).toLocaleString('zh-Hant', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}) : ''}</span>
@@ -138,6 +186,41 @@
       timer = setInterval(fetchNews, 60 * 60 * 1000); // 每小時自動更新
     }
 
+    // 微信小程序彈窗功能
+    const wxModal = document.getElementById('wxModal');
+    const wxAppLink = document.getElementById('wxAppLink');
+    const closeWxModal = document.getElementById('closeWxModal');
+    
+    wxAppLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      wxModal.style.display = 'flex';
+      
+      // 在移動設備上，嘗試直接打開微信小程序
+      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // 使用更通用的方式打開微信小程序，適合Google APK WebView
+        try {
+          window.location.href = 'weixin://dl/business/?t=lMapNqZnF6v';
+          // 備用方案，使用Universal Link
+          setTimeout(function() {
+            window.location.href = 'https://wxaurl.cn/lMapNqZnF6v';
+          }, 500);
+        } catch(e) {
+          console.error('打開微信小程序失敗:', e);
+        }
+      }
+    });
+    
+    closeWxModal.addEventListener('click', function() {
+      wxModal.style.display = 'none';
+    });
+    
+    // 點擊彈窗外部關閉彈窗
+    wxModal.addEventListener('click', function(e) {
+      if (e.target === wxModal) {
+        wxModal.style.display = 'none';
+      }
+    });
+    
     refreshBtn.addEventListener('click', fetchNews);
     window.onload = () => {
       fetchNews();
