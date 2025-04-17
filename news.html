@@ -196,34 +196,38 @@
       
       // 在移動設備上，嘗試直接打開微信小程序
       if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        // 使用多種方式嘗試打開微信小程序，提高在Google APK WebView中的兼容性
+        // 使用直接方法嘗試打開微信小程序，避免使用iframe
         const wxAppScheme = 'weixin://dl/business/?t=lMapNqZnF6v';
         const wxUniversalLink = 'https://wxaurl.cn/lMapNqZnF6v';
         
-        // 創建一個隱藏的iframe來嘗試打開微信小程序
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-        
         try {
-          // 嘗試使用iframe打開微信小程序
-          iframe.src = wxAppScheme;
+          // 嘗試使用直接跳轉方式打開微信小程序
+          // 首先嘗試使用window.open方法
+          const opened = window.open(wxAppScheme, '_blank');
           
-          // 設置超時檢查是否成功打開
-          setTimeout(function() {
-            // 如果iframe方法失敗，嘗試直接location跳轉
-            window.location.href = wxAppScheme;
-            
-            // 再次設置超時，如果前面的方法都失敗，使用Universal Link
+          // 如果window.open失敗或被阻擋，嘗試使用location.href
+          if (!opened || opened.closed || typeof opened.closed === 'undefined') {
+            // 使用setTimeout確保UI不會被阻塞
             setTimeout(function() {
-              window.location.href = wxUniversalLink;
-              
-              // 如果所有方法都失敗，顯示QR碼彈窗
-              setTimeout(function() {
+              try {
+                // 嘗試使用scheme URL
+                window.location.href = wxAppScheme;
+                
+                // 設置一個短暫的延遲後嘗試Universal Link
+                setTimeout(function() {
+                  window.location.href = wxUniversalLink;
+                  
+                  // 如果都失敗，顯示QR碼
+                  setTimeout(function() {
+                    wxModal.style.display = 'flex';
+                  }, 200);
+                }, 200);
+              } catch(err) {
+                console.error('跳轉失敗:', err);
                 wxModal.style.display = 'flex';
-              }, 300);
-            }, 300);
-          }, 300);
+              }
+            }, 100);
+          }
         } catch(e) {
           console.error('打開微信小程序失敗:', e);
           // 出錯時顯示QR碼彈窗
