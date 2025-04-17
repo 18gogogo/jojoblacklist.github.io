@@ -44,8 +44,8 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <!-- 微信小程序彈窗 -->
- <!-- <div id="wxModal" class="wx-modal">  
+  <!-- 微信小程序彈窗 
+  <div id="wxModal" class="wx-modal">  
     <div class="wx-modal-content">  
       <h3 class="text-xl font-bold mb-4">掃描二維碼打開微信小程序</h3>
       <div class="wx-qrcode">  
@@ -56,7 +56,7 @@
       <p class="mb-4 text-gray-600"></p>  
       <button id="closeWxModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg">關閉</button>  
     </div>
-  </div>-->
+  </div> -->
   <header class="bg-blue-900 text-white p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">    
     <div class="flex items-center space-x-3">  
       <i class="fa-solid fa-newspaper fa-2x"></i>
@@ -74,34 +74,20 @@
             不良租客名單 JOJOBLACKLIST 專業解答助理
       </a> -->
           <a href="https://apkpure.com/p/com.example.a18gogogo" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto"><i class="fa-solid fa-external-link-alt mr-2"></i>JOJOBLACKLIST 立即下載 Download Now</a>      
-        </div>  
-      </div>
-      <button id="refreshBtn" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full flex items-center shadow-md text-base font-semibold justify-center w-full sm:w-auto mt-3 sm:mt-0"><i class="fa-solid fa-rotate-right mr-2"></i>手動更新</button>    
-    </div>
-    <div class="mb-6 text-gray-800 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-lg shadow-sm text-base md:text-lg">      
+        <div class="mb-6 text-gray-800 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-lg shadow-sm text-base md:text-lg">      
       宗旨是為物業設計，旨在幫助您規避風險。您可以查詢潛在的不同風險，了解是否存在不良行為，從而做出更明智的決策。
     </div>
-    <div id="news-list" class="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
+         </div>  
+      </div>
+      <button id="refreshBtn" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full flex items-center shadow-md text-base font-semibold justify-center w-full sm:w-auto mt-3 sm:mt-0"><i class="fa-solid fa-rotate-right mr-2"></i>手動更新</button>    
+
+    </div>
+        <div id="news-list" class="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
     <div id="loading" class="text-center text-gray-500 mt-8 text-lg hidden"><i class="fa-solid fa-spinner fa-spin"></i> 載入中...</div>
     <div id="error" class="text-center text-red-600 mt-8 text-lg hidden"></div>  
   </main>
   <footer class="bg-blue-900 text-white text-center py-4 mt-12 shadow-inner">
-        
-        
-          
-            
-          
-          重試
-          
-        
-          
-            
-          
-          錯誤原因
-        
-        
-          
-    <span>資料來源：Yahoo新聞RSS & Google News RSS | 每小時自動更新 | © 2025</span>
+ <span>資料來源：Yahoo新聞RSS & Google News RSS | 每小時自動更新 | © 2025</span>
   </footer>
   <script>
     const rssFeeds = [  
