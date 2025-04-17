@@ -41,6 +41,17 @@
       height: 200px;
       margin: 1rem auto;
     }
+    /* 獨立顯示樣式 */
+    .independent-display {
+      background-color: #f0f0f0;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -76,11 +87,11 @@
             <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-6 h-6 mr-2"/>
             不良租客名單 JOJOBLACKLIST 專業解答助理
           </a>
-          <!-- 立即下載按鈕 -->
-          <a href="https://apkpure.com/p/com.example.a18gogogo" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-full flex flex-col items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto">
+          <!-- 獨立顯示立即下載內容 -->
+          <div class="independent-display">
             <img src="https://www.birdie.com.hk/mobile/wp/wp-content/uploads/2019/02/h2-img-2.png" alt="立即下載" class="w-102 h-30 mb-2">
             <span class="text-sm">直接下載APK</span>
-          </a>
+          </div>
         </div>
       </div>
       <!-- 手動更新按鈕 -->
