@@ -49,10 +49,9 @@
     <div class="wx-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼打開微信小程序</h3>
       <div class="wx-qrcode">
-        <!-- 使用更適合WebView掃描的二維碼格式 -->
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=weixin://dl/business/?t=lMapNqZnF6v" alt="微信小程序二維碼" width="200" height="200">
-        <!-- 備用二維碼，使用Universal Link格式 -->
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wxaurl.cn/lMapNqZnF6v" alt="微信小程序二維碼備用" width="200" height="200" style="margin-top:10px;">
+        <!-- 只使用Universal Link格式的二維碼，更適合WebView環境 -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wxaurl.cn/lMapNqZnF6v" alt="微信小程序二維碼" width="200" height="200">
+        <p class="text-sm text-gray-500 mt-2">微信小程序：JOJOBLACKLIST</p>
       </div>
       <p class="mb-4 text-gray-600">請使用微信掃描二維碼</p>
       <button id="closeWxModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg">關閉</button>
@@ -194,48 +193,18 @@
     wxAppLink.addEventListener('click', function(e) {
       e.preventDefault();
       
-      // 在移動設備上，嘗試直接打開微信小程序
-      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        // 使用直接方法嘗試打開微信小程序，避免使用iframe
-        const wxAppScheme = 'weixin://dl/business/?t=lMapNqZnF6v';
-        const wxUniversalLink = 'https://wxaurl.cn/lMapNqZnF6v';
-        
+      // 簡化微信小程序打開方式，避免WebView崩潰
+      // 直接顯示QR碼彈窗，這是最可靠的方式
+      wxModal.style.display = 'flex';
+      
+      // 在微信瀏覽器中嘗試直接打開小程序
+      if (/MicroMessenger/i.test(navigator.userAgent)) {
         try {
-          // 嘗試使用直接跳轉方式打開微信小程序
-          // 首先嘗試使用window.open方法
-          const opened = window.open(wxAppScheme, '_blank');
-          
-          // 如果window.open失敗或被阻擋，嘗試使用location.href
-          if (!opened || opened.closed || typeof opened.closed === 'undefined') {
-            // 使用setTimeout確保UI不會被阻塞
-            setTimeout(function() {
-              try {
-                // 嘗試使用scheme URL
-                window.location.href = wxAppScheme;
-                
-                // 設置一個短暫的延遲後嘗試Universal Link
-                setTimeout(function() {
-                  window.location.href = wxUniversalLink;
-                  
-                  // 如果都失敗，顯示QR碼
-                  setTimeout(function() {
-                    wxModal.style.display = 'flex';
-                  }, 200);
-                }, 200);
-              } catch(err) {
-                console.error('跳轉失敗:', err);
-                wxModal.style.display = 'flex';
-              }
-            }, 100);
-          }
+          // 微信瀏覽器中使用Universal Link
+          location.href = 'https://wxaurl.cn/lMapNqZnF6v';
         } catch(e) {
-          console.error('打開微信小程序失敗:', e);
-          // 出錯時顯示QR碼彈窗
-          wxModal.style.display = 'flex';
+          console.error('在微信瀏覽器中打開失敗:', e);
         }
-      } else {
-        // 非移動設備直接顯示QR碼彈窗
-        wxModal.style.display = 'flex';
       }
     });
     
