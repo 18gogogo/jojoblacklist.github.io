@@ -182,7 +182,7 @@
             const pubDate = item.querySelector("pubDate")?.textContent?.trim() || "";
             const description = item.querySelector("description")?.textContent?.replace(/<[^>]+>/g, '').trim() || "";
             const source = xml.querySelector("channel > title")?.textContent?.trim() || "Yahoo新聞";
-            if (/(維修|裝修|爛尾|跑路|糾紛)/.test(title + description)) {
+            if (/(維修|裝修|爛尾|跑路|)/.test(title + description)) {
               allArticles.push({
                 title,
                 url: link,
