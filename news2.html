@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOJOBLACKLIST 每日租客與不良租客新聞 - 香港、台灣、中國</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>REPAIRBLACKLIST 每日裝修與維修新聞 - 香港、台灣、中國</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
   <style>
     body { background: #f9fafb; }
     .news-content { white-space: pre-line; }
@@ -23,7 +23,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0,0,0,0.7);  
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -45,63 +45,80 @@
 </head>
 <body class="min-h-screen flex flex-col">
   <!-- 微信小程序彈窗 -->
-  <div id="wxModal" class="wx-modal">
-    <div class="wx-modal-content">
+ <!-- <div id="wxModal" class="wx-modal">  
+    <div class="wx-modal-content">  
       <h3 class="text-xl font-bold mb-4">掃描二維碼打開微信小程序</h3>
-      <div class="wx-qrcode">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wxaurl.cn/lMapNqZnF6v" alt="微信小程序二維碼" width="200" height="200">
-      </div>
-      <p class="mb-4 text-gray-600">請使用微信掃描二維碼</p>
-      <button id="closeWxModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg">關閉</button>
+      <div class="wx-qrcode">  
+        <!-- 只使用Universal Link格式的二維碼，更適合WebView環境 
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wxaurl.cn/lMapNqZnF6v" alt="微信小程序二維碼" width="200" height="200">  
+        <p class="text-sm text-gray-500 mt-2">微信小程序：不良租客名單 JOJOBLACKLIST 專業解答助理</p>
+      </div> -->
+      <p class="mb-4 text-gray-600"></p>  
+      <button id="closeWxModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg">關閉</button>  
     </div>
   </div>
-  <header class="bg-blue-900 text-white p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
-    <div class="flex items-center space-x-3">
+  <header class="bg-blue-900 text-white p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">    
+    <div class="flex items-center space-x-3">  
       <i class="fa-solid fa-newspaper fa-2x"></i>
-      <span class="text-2xl md:text-3xl font-extrabold tracking-wide">JOJOBLACKLIST 每日租客與不良租客新聞</span>
+      <span class="text-2xl md:text-3xl font-extrabold tracking-wide">REPAIRBLACKLIST 每日裝修與維修新聞</span>        
     </div>
-    <span class="text-sm md:text-base mt-2 md:mt-0">香港・台灣・中國地區</span>
+    <span class="text-sm md:text-base mt-2 md:mt-0">香港・台灣・中國地區</span>    
   </header>
   <main class="flex-1 container mx-auto px-2 sm:px-4 py-6 md:py-10">
-    <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+    <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0">    
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">  
         <h2 class="text-2xl md:text-3xl font-bold text-blue-900 tracking-tight">最新新聞</h2>
-        <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-          <a href="javascript:void(0);" id="wxAppLink" class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto">
-            <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-6 h-6 mr-2"/>
+         <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">  
+         <!-- <a href="javascript:void(0);" id="wxAppLink" class="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto">    
+            <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-6 h-6 mr-2"/>  
             不良租客名單 JOJOBLACKLIST 專業解答助理
-          </a>
-          <a href="https://apkpure.com/p/com.example.a18gogogo" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto"><i class="fa-solid fa-list-check mr-2"></i>不良租客名單 JOJOBLACKLIST 立即下載</a>
-        </div>
+      </a> -->
+          <a href="https://apkpure.com/p/com.example.a18gogogo" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition justify-center w-full sm:w-auto"><i class="fa-solid fa-external-link-alt mr-2"></i>JOJOBLACKLIST 立即下載 Download Now</a>      
+        </div>  
       </div>
-      <button id="refreshBtn" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full flex items-center shadow-md text-base font-semibold justify-center w-full sm:w-auto mt-3 sm:mt-0"><i class="fa-solid fa-rotate-right mr-2"></i>手動更新</button>
+      <button id="refreshBtn" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full flex items-center shadow-md text-base font-semibold justify-center w-full sm:w-auto mt-3 sm:mt-0"><i class="fa-solid fa-rotate-right mr-2"></i>手動更新</button>    
     </div>
-    <div class="mb-6 text-gray-800 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-lg shadow-sm text-base md:text-lg">
-      為物業設計，旨在幫助您規避風險。您可以查詢潛在的不同風險，了解是否存在不良行為，從而做出更明智的決策。
+    <div class="mb-6 text-gray-800 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-lg shadow-sm text-base md:text-lg">      
+      宗旨是為物業設計，旨在幫助您規避風險。您可以查詢潛在的不同風險，了解是否存在不良行為，從而做出更明智的決策。
     </div>
     <div id="news-list" class="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
     <div id="loading" class="text-center text-gray-500 mt-8 text-lg hidden"><i class="fa-solid fa-spinner fa-spin"></i> 載入中...</div>
-    <div id="error" class="text-center text-red-600 mt-8 text-lg hidden"></div>
+    <div id="error" class="text-center text-red-600 mt-8 text-lg hidden"></div>  
   </main>
   <footer class="bg-blue-900 text-white text-center py-4 mt-12 shadow-inner">
+        
+        
+          
+            
+          
+          重試
+          
+        
+          
+            
+          
+          錯誤原因
+        
+        
+          
     <span>資料來源：Yahoo新聞RSS & Google News RSS | 每小時自動更新 | © 2025</span>
   </footer>
   <script>
-    const rssFeeds = [
+    const rssFeeds = [  
       // Yahoo香港、台灣、中國地區租屋/房產新聞RSS
-      "https://tw.news.yahoo.com/rss/real-estate",
+      "https://tw.news.yahoo.com/rss/Breach-of-contract",        
       "https://tw.news.yahoo.com/rss/living",
       "https://tw.news.yahoo.com/rss/property",
       "https://tw.news.yahoo.com/rss/finance",
-      "https://tw.news.yahoo.com/rss/society",
+      "https://tw.news.yahoo.com/rss/society",  
       "https://hk.news.yahoo.com/rss/property",
-      "https://hk.news.yahoo.com/rss/hong-kong",
-      "https://hk.news.yahoo.com/rss/finance",
-      "https://hk.news.yahoo.com/rss/society",
-      "https://cn.news.yahoo.com/rss/china",
+      "https://hk.news.yahoo.com/rss/hong-kong",  
+      "https://hk.news.yahoo.com/rss/finance",  
+      "https://hk.news.yahoo.com/rss/society",  
+      "https://cn.news.yahoo.com/rss/china",  
       // Google News 房產/地產相關RSS
-      "https://news.google.com/rss/search?q=租霸+OR+租客+OR+租務糾紛&hl=zh-Hant&gl=HK&ceid=HK:zh-Hant",
-      "https://news.google.com/rss/search?q=房客+OR+租約+OR+房屋糾紛+OR+租霸+OR+租客+OR+租務糾紛&hl=zh-Hant&gl=TW&ceid=TW:zh-Hant"
+      "https://news.google.com/rss/search?q=裝修+OR+維修+OR+裝修爛尾+OR+維修爛尾+OR+裝修糾紛+OR+維修糾紛+OR+爛尾+OR+工程爛尾&hl=zh-Hant&gl=HK&ceid=HK:zh-Hant",    
+      "https://news.google.com/rss/search?q=裝修+OR+維修+OR+裝修爛尾+OR+維修爛尾+OR+裝修糾紛+OR+維修糾紛+OR+裝修跑路+OR+工程爛尾+OR+爭議+OR+中途解約+OR+工程停擺+OR+品質問題&hl=zh-Hant&gl=TW&ceid=TW:zh-Hant"
     ];
     const newsList = document.getElementById('news-list');
     const loading = document.getElementById('loading');
@@ -110,7 +127,7 @@
     let timer = null;
 
     async function fetchNews() {
-      loading.classList.remove('hidden');
+      loading.classList.remove('hidden');  
       errorDiv.classList.add('hidden');
       newsList.innerHTML = '';
       let allArticles = [];
@@ -124,11 +141,11 @@
           items.forEach(item => {
             const title = item.querySelector("title")?.textContent?.trim() || "";
             const link = item.querySelector("link")?.textContent?.trim() || "";
-            const pubDate = item.querySelector("pubDate")?.textContent?.trim() || "";
+            const pubDate = item.querySelector("pubDate")?.textContent?.trim() || "";  
             const description = item.querySelector("description")?.textContent?.replace(/<[^>]+>/g, '').trim() || "";
-            const source = xml.querySelector("channel > title")?.textContent?.trim() || "Yahoo新聞";
+            const source = xml.querySelector("channel > title")?.textContent?.trim() || "Yahoo新聞";  
             // 關鍵字過濾（擴充關鍵字）(|租務糾紛|租屋|房東|房客|房產|租金|房屋|房市|房價|地產|樓市|房貸|包租|租約|租房|租金補貼|房屋糾紛|房屋仲介|房屋買賣|房屋出租|房屋租賃|房屋管理)
-            if (/(租客|租霸|租務糾紛)/.test(title+description)) {
+            if (/(維修|裝修|爛尾|裝修糾紛|維修糾紛)/.test(title+description)) {
               allArticles.push({
                 title,
                 url: link,
@@ -164,15 +181,15 @@
       }
       newsList.innerHTML = articles.slice(0, 30).map(article => `
         <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col h-full border border-gray-100 hover:shadow-2xl transition-shadow duration-200 news-card">
-          <div class="mb-3 flex items-center text-gray-500 text-xs md:text-sm">
+          <div class="mb-3 flex items-center text-gray-500 text-xs md:text-sm">  
             <i class="fa-solid fa-calendar-days mr-1"></i>
             <span>${article.publishedAt ? new Date(article.publishedAt).toLocaleString('zh-Hant', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}) : ''}</span>
             <span class="mx-2">|</span>
-            <i class="fa-solid fa-globe mr-1"></i>
+            <i class="fa-solid fa-globe mr-1"></i>  
             <span>${article.source.name || "未知來源"}</span>
           </div>
           <h3 class="font-bold text-lg md:text-xl mb-2 text-blue-800 leading-snug line-clamp-2">${article.title}</h3>
-          <div class="news-content text-gray-700 flex-1 mb-4 text-sm md:text-base leading-relaxed">${article.content}</div>
+          <div class="news-content text-gray-700 flex-1 mb-4 text-sm md:text-base leading-relaxed">${article.content}</div>  
           <a href="${article.url}" target="_blank" class="mt-auto text-blue-700 hover:underline flex items-center font-semibold"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>閱讀全文</a>
         </div>
       `).join('');
@@ -190,11 +207,19 @@
     
     wxAppLink.addEventListener('click', function(e) {
       e.preventDefault();
+      
+      // 簡化微信小程序打開方式，避免WebView崩潰
+      // 直接顯示QR碼彈窗，這是最可靠的方式
       wxModal.style.display = 'flex';
       
-      // 在移動設備上，嘗試直接打開微信小程序
-      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        window.location.href = 'weixin://dl/business/?t=lMapNqZnF6v';
+      // 在微信瀏覽器中嘗試直接打開小程序
+      if (/MicroMessenger/i.test(navigator.userAgent)) {
+        try {
+          // 微信瀏覽器中使用Universal Link
+          location.href = 'https://wxaurl.cn/lMapNqZnF6v';
+        } catch(e) {
+          console.error('在微信瀏覽器中打開失敗:', e);
+        }
       }
     });
     
