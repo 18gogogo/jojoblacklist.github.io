@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOJOBLACKLIST 每日租客與不良租客新聞 - 香港、台灣、中國</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background: #f9fafb; }
+    .news-content { white-space: pre-line; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="bg-blue-900 text-white p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
+    <div class="flex items-center space-x-3">
+      <i class="fa-solid fa-newspaper fa-2x"></i>
+      <span class="text-2xl md:text-3xl font-extrabold tracking-wide">JOJOBLACKLIST 每日租客與不良租客新聞</span>
+    </div>
+    <span class="text-sm md:text-base mt-2 md:mt-0">香港・台灣・中國地區</span>
+  </header>
+  <main class="flex-1 container mx-auto px-2 sm:px-4 py-6 md:py-10">
+    <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0">
+      <div class="flex items-center space-x-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-blue-900 tracking-tight">最新新聞</h2>
+        <a href="https://wxaurl.cn/lMapNqZnF6v" target="_blank" class="ml-0 md:ml-2 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition min-w-[180px] justify-center">
+          <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-6 h-6 mr-2"/>
+          不良租客名單 JOJOBLACKLIST 專業解答助理
+        </a>
+        <a href="https://apkpure.com/p/com.example.a18gogogo" target="_blank" class="ml-0 md:ml-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-full flex items-center text-base font-semibold shadow transition min-w-[180px] justify-center"><i class="fa-solid fa-list-check mr-2"></i>不良租客名單 JOJOBLACKLIST 立即下載 Download Now</a>
+      </div>
+      <button id="refreshBtn" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-full flex items-center shadow-md text-base font-semibold min-w-[140px] justify-center"><i class="fa-solid fa-rotate-right mr-2"></i>手動更新</button>
+    </div>
+    <div class="mb-6 text-gray-800 bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-lg shadow-sm text-base md:text-lg">
+      為物業設計，旨在幫助您規避風險。您可以查詢潛在的不同風險，了解是否存在不良行為，從而做出更明智的決策。
+    </div>
+    <div id="news-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
+    <div id="loading" class="text-center text-gray-500 mt-8 text-lg hidden"><i class="fa-solid fa-spinner fa-spin"></i> 載入中...</div>
+    <div id="error" class="text-center text-red-600 mt-8 text-lg hidden"></div>
+  </main>
+  <footer class="bg-blue-900 text-white text-center py-4 mt-12 shadow-inner">
+    <span>資料來源：Yahoo新聞RSS & Google News RSS | 每小時自動更新 | © 2025</span>
+  </footer>
+  <script>
+    const rssFeeds = [
+      // Yahoo香港、台灣、中國地區租屋/房產新聞RSS
+      "https://tw.news.yahoo.com/rss/real-estate",
+      "https://tw.news.yahoo.com/rss/living",
+      "https://tw.news.yahoo.com/rss/property",
+      "https://tw.news.yahoo.com/rss/finance",
+      "https://tw.news.yahoo.com/rss/society",
+      "https://hk.news.yahoo.com/rss/property",
+      "https://hk.news.yahoo.com/rss/hong-kong",
+      "https://hk.news.yahoo.com/rss/finance",
+      "https://hk.news.yahoo.com/rss/society",
+      "https://cn.news.yahoo.com/rss/china",
+      // Google News 房產/地產相關RSS
+      "https://news.google.com/rss/search?q=租霸+OR+租客+OR+租務糾紛&hl=zh-Hant&gl=HK&ceid=HK:zh-Hant",
+      "https://news.google.com/rss/search?q=房客+OR+租約+OR+房屋糾紛+OR+租霸+OR+租客+OR+租務糾紛&hl=zh-Hant&gl=TW&ceid=TW:zh-Hant"
+    ];
+    const newsList = document.getElementById('news-list');
+    const loading = document.getElementById('loading');
+    const errorDiv = document.getElementById('error');
+    const refreshBtn = document.getElementById('refreshBtn');
+    let timer = null;
+
+    async function fetchNews() {
+      loading.classList.remove('hidden');
+      errorDiv.classList.add('hidden');
+      newsList.innerHTML = '';
+      let allArticles = [];
+      try {
+        for (const feedUrl of rssFeeds) {
+          const resp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
+          const data = await resp.json();
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(data.contents, "text/xml");
+          const items = xml.querySelectorAll("item");
+          items.forEach(item => {
+            const title = item.querySelector("title")?.textContent?.trim() || "";
+            const link = item.querySelector("link")?.textContent?.trim() || "";
+            const pubDate = item.querySelector("pubDate")?.textContent?.trim() || "";
+            const description = item.querySelector("description")?.textContent?.replace(/<[^>]+>/g, '').trim() || "";
+            const source = xml.querySelector("channel > title")?.textContent?.trim() || "Yahoo新聞";
+            // 關鍵字過濾（擴充關鍵字）(|租務糾紛|租屋|房東|房客|房產|租金|房屋|房市|房價|地產|樓市|房貸|包租|租約|租房|租金補貼|房屋糾紛|房屋仲介|房屋買賣|房屋出租|房屋租賃|房屋管理)
+            if (/(租客|租霸|租務糾紛)/.test(title+description)) {
+              allArticles.push({
+                title,
+                url: link,
+                publishedAt: pubDate ? new Date(pubDate).toISOString() : "",
+                content: description,
+                source: { name: source }
+              });
+            }
+          });
+        }
+        // 過濾重複新聞（以標題為主）
+        const seen = new Set();
+        allArticles = allArticles.filter(a => {
+          if (seen.has(a.title)) return false;
+          seen.add(a.title);
+          return true;
+        });
+        // 依日期由新到舊排序
+        allArticles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+        renderNews(allArticles);
+      } catch (e) {
+        errorDiv.textContent = "載入新聞時發生錯誤，請稍後再試。\n" + (e && e.message ? e.message : "");
+        errorDiv.classList.remove('hidden');
+      } finally {
+        loading.classList.add('hidden');
+      }
+    }
+
+    function renderNews(articles) {
+      if (!articles.length) {
+        newsList.innerHTML = '<div class="col-span-full text-center text-gray-500">暫無相關新聞</div>';
+        return;
+      }
+      newsList.innerHTML = articles.slice(0, 30).map(article => `
+        <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col h-full border border-gray-100 hover:shadow-2xl transition-shadow duration-200">
+          <div class="mb-3 flex items-center text-gray-500 text-xs md:text-sm">
+            <i class="fa-solid fa-calendar-days mr-1"></i>
+            <span>${article.publishedAt ? new Date(article.publishedAt).toLocaleString('zh-Hant', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}) : ''}</span>
+            <span class="mx-2">|</span>
+            <i class="fa-solid fa-globe mr-1"></i>
+            <span>${article.source.name || "未知來源"}</span>
+          </div>
+          <h3 class="font-bold text-lg md:text-xl mb-2 text-blue-800 leading-snug line-clamp-2">${article.title}</h3>
+          <div class="news-content text-gray-700 flex-1 mb-4 text-sm md:text-base leading-relaxed">${article.content}</div>
+          <a href="${article.url}" target="_blank" class="mt-auto text-blue-700 hover:underline flex items-center font-semibold"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>閱讀全文</a>
+        </div>
+      `).join('');
+    }
+
+    function startAutoRefresh() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(fetchNews, 60 * 60 * 1000); // 每小時自動更新
+    }
+
+    refreshBtn.addEventListener('click', fetchNews);
+    window.onload = () => {
+      fetchNews();
+      startAutoRefresh();
+    };
+  </script>
+</body>
+</html>
