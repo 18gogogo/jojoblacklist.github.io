@@ -78,6 +78,15 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+/* Discord 按鈕樣式 */
+    .discord-btn {
+      background-color: #5865F2;
+      transition: background-color 0.2s;
+    }
+    .discord-btn:hover {
+      background-color: #4752C4;
+    }
+    
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -113,6 +122,13 @@
             <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-5 h-5 mr-2"/>
             不良租客名單 JOJOBLACKLIST 專業解答助理
           </a>
+
+ <!-- Discord 按鈕 -->
+          <a href="https://discord.gg/KvssvFsHuh" target="_blank" class="discord-btn text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+            <i class="fab fa-discord mr-2 text-lg"></i>
+            加入 Discord 社群
+          </a>
+          
           <!-- 獨立顯示立即下載內容 -->
           <div class="independent-display">
             <a href="https://play.google.com/store/apps/dev?id=7619891121674916095">   
