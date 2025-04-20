@@ -25,8 +25,8 @@
       .refresh-btn { padding: 0.75rem; }
     }
     
-    /* 微信小程序彈窗樣式 */
-    .wx-modal, .discord-modal {
+    /* 彈窗樣式 */
+    .wx-modal, .discord-modal, .playstore-modal, .apk-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -38,7 +38,7 @@
       align-items: center;
       justify-content: center;
     }
-    .wx-modal-content, .discord-modal-content {
+    .wx-modal-content, .discord-modal-content, .playstore-modal-content, .apk-modal-content {
       background-color: white;
       padding: 1.5rem;
       border-radius: 1rem;
@@ -46,7 +46,7 @@
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    .wx-qrcode, .discord-qrcode {
+    .wx-qrcode, .discord-qrcode, .playstore-qrcode, .apk-qrcode {
       width: 180px;
       height: 180px;
       margin: 1rem auto;
@@ -86,6 +86,22 @@
     .discord-btn:hover {
       background-color: #4752C4;
     }
+    
+    /* Play Store按鈕樣式 */
+    .playstore-btn {
+      background-color: #4285F4;
+    }
+    .playstore-btn:hover {
+      background-color: #3367D6;
+    }
+    
+    /* APK下載按鈕樣式 */
+    .apk-btn {
+      background-color: #34A853;
+    }
+    .apk-btn:hover {
+      background-color: #2D9248;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -103,13 +119,37 @@
   
   <!-- Discord彈窗 -->
   <div id="discordModal" class="discord-modal">
-    <div class="wx-modal-content">
+    <div class="discord-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼加入 Discord 社群</h3>
       <div class="discord-qrcode">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://discord.gg/KvssvFsHuh" alt="Discord二維碼" width="200" height="200">
       </div>
       <p class="mb-4 text-gray-600 text-sm">歡迎加入 Discord 社群</p>
       <button id="closeDiscordModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+    </div>
+  </div>
+  
+  <!-- Google Play商店彈窗 -->
+  <div id="playstoreModal" class="playstore-modal">
+    <div class="playstore-modal-content">
+      <h3 class="text-xl font-bold mb-4">掃描二維碼前往 Google Play 商店</h3>
+      <div class="playstore-qrcode">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://play.google.com/store/apps/dev?id=7619891121674916095" alt="Google Play二維碼" width="200" height="200">
+      </div>
+      <p class="mb-4 text-gray-600 text-sm">JOJOBLACKLIST 官方應用程式</p>
+      <button id="closePlaystoreModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+    </div>
+  </div>
+  
+  <!-- APK下載彈窗 -->
+  <div id="apkModal" class="apk-modal">
+    <div class="apk-modal-content">
+      <h3 class="text-xl font-bold mb-4">掃描二維碼下載 APK 檔案</h3>
+      <div class="apk-qrcode">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://apkpure.com/p/com.example.a18gogogo" alt="APK下載二維碼" width="200" height="200">
+      </div>
+      <p class="mb-4 text-gray-600 text-sm">JOJOBLACKLIST 官方 APK</p>
+      <button id="closeApkModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
   </div>
   
@@ -142,10 +182,10 @@
           
           <!-- 獨立顯示立即下載內容 -->
           <div class="independent-display">
-            <a href="https://play.google.com/store/apps/dev?id=7619891121674916095">   
+            <a href="javascript:void(0);" id="playstoreLink">   
               <img src="https://www.birdie.com.hk/mobile/wp/wp-content/uploads/2019/02/h2-img-2.png" alt="立即下載" class="download-img mb-1"> 
             </a>
-            <div class="text-xs"><a href="https://apkpure.com/p/com.example.a18gogogo">直接下載APK</a></div>
+            <div class="text-xs"><a href="javascript:void(0);" id="apkLink">直接下載APK</a></div>
           </div>
         </div>
       </div>
@@ -306,6 +346,46 @@
     discordModal.addEventListener('click', function(e) {
       if (e.target === discordModal) {
         discordModal.style.display = 'none';
+      }
+    });
+    
+    // Google Play商店彈窗功能
+    const playstoreModal = document.getElementById('playstoreModal');
+    const playstoreLink = document.getElementById('playstoreLink');
+    const closePlaystoreModal = document.getElementById('closePlaystoreModal');
+    
+    playstoreLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      playstoreModal.style.display = 'flex';
+    });
+    
+    closePlaystoreModal.addEventListener('click', function() {
+      playstoreModal.style.display = 'none';
+    });
+    
+    playstoreModal.addEventListener('click', function(e) {
+      if (e.target === playstoreModal) {
+        playstoreModal.style.display = 'none';
+      }
+    });
+    
+    // APK下載彈窗功能
+    const apkModal = document.getElementById('apkModal');
+    const apkLink = document.getElementById('apkLink');
+    const closeApkModal = document.getElementById('closeApkModal');
+    
+    apkLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      apkModal.style.display = 'flex';
+    });
+    
+    closeApkModal.addEventListener('click', function() {
+      apkModal.style.display = 'none';
+    });
+    
+    apkModal.addEventListener('click', function(e) {
+      if (e.target === apkModal) {
+        apkModal.style.display = 'none';
       }
     });
     
