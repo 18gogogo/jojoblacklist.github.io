@@ -108,6 +108,11 @@
     .apk-btn:hover {
       background-color: #2D9248;
     }
+    
+    /* 隱藏元素 */
+    .hidden-element {
+      display: none !important;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -136,7 +141,7 @@
   </div>
   
   <!-- Google Play商店彈窗 -->
-  <div id="playstoreModal" class="playstore-modal">
+  <div id="playstoreModal" class="playstore-modal hidden-element">
     <div class="playstore-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼前往 Google Play 商店</h3>
       <div class="playstore-qrcode">
@@ -148,7 +153,7 @@
   </div>
   
   <!-- APK下載彈窗 -->
-  <div id="apkModal" class="apk-modal">
+  <div id="apkModal" class="apk-modal hidden-element">
     <div class="apk-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼下載 APK 檔案</h3>
       <div class="apk-qrcode">
@@ -187,7 +192,7 @@
           </a>
           
           <!-- 獨立顯示立即下載內容 - 修正Android WebView置中問題 -->
-          <!--<div class="independent-display">
+          <div class="independent-display hidden-element">
             <a href="javascript:void(0);" id="playstoreLink" style="display: flex; justify-content: center;">   
               <img src="https://www.birdie.com.hk/mobile/wp/wp-content/uploads/2019/02/h2-img-2.png" alt="立即下載" class="download-img mb-1"> 
             </a>
@@ -197,10 +202,10 @@
           </div>
         </div>
       </div>
-       <!-- 手動更新按鈕 -->
-     <!-- <button id="refreshBtn" class="refresh-btn bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full flex items-center shadow text-sm font-semibold justify-center w-full sm:w-auto mt-0">
+      <!-- 手動更新按鈕 -->
+      <button id="refreshBtn" class="refresh-btn bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full flex items-center shadow text-sm font-semibold justify-center w-full sm:w-auto mt-0 hidden-element">
         <i class="fa-solid fa-rotate-right mr-2"></i>手動更新新聞
-      </button> -->
+      </button>
     </div>
 
     <!-- 新聞列表 -->
