@@ -282,7 +282,7 @@
         allArticles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
         renderNews(allArticles);
       } catch (e) {
-        errorDiv.textContent = "載入新聞時發生錯誤，請稍後再試。\n" + (e && e.message ? e.message : "");
+        errorDiv.textContent = "載入新聞時發生錯誤，請稍後再試點擊市場資訊按鈕。\n" + (e && e.message ? e.message : "");
         errorDiv.classList.remove('hidden');
       } finally {
         loading.classList.add('hidden');
