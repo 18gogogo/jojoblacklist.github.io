@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>維修廣告頁面 - JOJOBLACKLIST APP</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background: #f9fafb; }
+    
+    /* 手機優化樣式 */
+    @media (max-width: 640px) {
+      .header-title { font-size: 1.25rem; }
+      .header-subtitle { font-size: 0.75rem; }
+      .btn-group { flex-direction: column; width: 100%; gap: 0.75rem; }
+      .btn-group a, .btn-group button { margin: 0; width: 100%; }
+      .main-title { font-size: 1rem; }
+    }
+
+    /* 主內容樣式 */
+    .main-container {
+      margin: 2rem auto;
+      max-width: 800px;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* 广告商列表 */
+    .advertiser-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .advertiser-card {
+      background-color: #f9fafb; /* 淡色背景 */
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .advertiser-card img {
+      max-width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .advertiser-name {
+      font-size: 1.25rem;
+      color: #333;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* 隱藏元素 */
+    .hidden-element {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  
+  <!-- 頁首 -->
+  <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
+    <div class="flex items-center space-x-2">
+      <i class="fa-solid fa-tools text-xl md:text-2xl"></i>
+      <span class="header-title text-xl md:text-3xl font-extrabold tracking-tight">維修廣告頁面</span>
+    </div>
+  </header>
+
+  <!-- 主內容 -->
+  <main class="flex-1 container mx-auto px-3 py-4 md:py-6">
+    <div class="mb-6 main-container">
+      <h2 class="main-title text-xl md:text-3xl font-bold text-blue-900 tracking-tight mb-4">選擇維修服務商</h2>
+      <p class="text-gray-700 mb-4">以下是我們合作的維修服務商列表，請選擇您信任的廠商：</p>
+
+<!-- 廣告商列表 -->
+<div class="advertiser-list">
+  <!-- 示例廣告商卡片 -->
+  <div class="advertiser-card w-full md:w-1/3 p-4">
+    <img src="companyA-logo.png" alt="維修公司A 圖片" class="mx-auto mb-4">
+    <h3 class="advertiser-name text-xl font-bold">維修公司A</h3>
+    <p class="text-gray-600">專業的維修服務，值得信賴。</p>
+    <div class="flex justify-center gap-4 mt-4">
+      <a href="http://www.companyA.com" target="_blank" class="text-blue-500 hover:underline">WEB</a>
+      <a href="https://www.youtube.com/channel/UCCompanyA" target="_blank" class="text-red-600 hover:underline">YOUTUBE</a>
+      <a href="https://wa.me/1234567890" target="_blank" class="text-green-500 hover:underline">WHATAPPS</a>
+    </div>
+  </div>
+
+  <div class="advertiser-card w-full md:w-1/3 p-4">
+    <img src="companyB-logo.png" alt="維修公司B 圖片" class="mx-auto mb-4">
+    <h3 class="advertiser-name text-xl font-bold">維修公司B</h3>
+    <p class="text-gray-600">我們的團隊有超過10年的經驗。</p>
+    <div class="flex justify-center gap-4 mt-4">
+      <a href="http://www.companyB.com" target="_blank" class="text-blue-500 hover:underline">WEB</a>
+      <a href="https://www.youtube.com/channel/UCCompanyB" target="_blank" class="text-red-600 hover:underline">YOUTUBE</a>
+      <a href="https://wa.me/1234567890" target="_blank" class="text-green-500 hover:underline">WHATAPPS</a>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="bg-blue-900 text-white text-center py-3 mt-8 shadow-inner text-xs md:text-sm">
+    <span>© 2025 JOJOBLACKLIST APP. All rights reserved.</span>
+  </footer>
+
+  <!-- JavaScript 腳本 -->
+  <script>
+    // No script needed
+  </script>
+</body>
+</html>
