@@ -61,6 +61,7 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
+<div id="toast" class="hidden fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-md"></div>
   
   <!-- 頁首 -->
   <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
@@ -85,8 +86,8 @@
       <p class="text-gray-600">承接全科裝修工程及為DIY人士提供解決方案。</p>
       <div class="flex gap-4 mt-4">
         <a href="https://www.facebook.com/p/%E4%BF%AE%E7%91%AA%E5%AE%A4%E5%85%A7%E8%A8%AD%E8%A8%88%E5%B7%A5%E7%A8%8B-100054510067227/?locale=zh_HK" target="_blank" class="text-blue-500 hover:underline">WEB</a>
-        <button onclick="copyToClipboard('https://www.youtube.com/@humalo3342')" class="text-red-600 hover:underline">YOUTUBE</button>
-        <button onclick="copyToClipboard('https://wa.me/94648049')" class="text-green-500 hover:underline">WHATAPPS</button>
+<button onclick="copyToClipboard('https://www.youtube.com/@humalo3342')" class="text-red-600 hover:underline">YOUTUBE</button>
+<button onclick="copyToClipboard('https://wa.me/94648049')" class="text-green-500 hover:underline">WHATAPPS</button>
       </div>
     </div>
     <img src="AA1.png" alt="維修公司A 圖片">
@@ -118,11 +119,17 @@
   <!-- JavaScript 腳本 -->
   <script>
     // 添加 copyToClipboard 函數
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('已複製到剪貼板: ' + text);
-      });
-    }
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.textContent = '已複製連結';
+    toast.classList.remove('hidden');
+
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 2000);
+  });
+}
   </script>
 </body>
 </html>
