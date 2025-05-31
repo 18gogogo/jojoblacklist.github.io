@@ -476,7 +476,12 @@ const closeRentModal = document.getElementById('closeRentModal');
 
 rentBtn.addEventListener('click', function(e) {
   e.preventDefault();
-  rentModal.style.display = 'flex';
+  if (window.Android && window.Android.loadUrl) {
+    window.Android.loadUrl('file:///android_asset/repair-ads.html');
+  } else {
+    // Fallback for testing outside WebView
+    location.href = 'repair-ads.html';
+  }
 });
 
 closeRentModal.addEventListener('click', function() {
