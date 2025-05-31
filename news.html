@@ -52,7 +52,7 @@
       margin: 1rem auto;
     }
 
-    /* 裝修維修/清潔彈窗內容樣式 */
+    /* 維修/清潔彈窗內容樣式 */
 #rentModal .wx-modal-content, #sellModal .wx-modal-content {
   padding: 2rem;
 }
@@ -162,10 +162,10 @@
     </div>
   </div>
 
-  <!-- 裝修維修彈窗 -->
+  <!-- 維修彈窗 -->
 <div id="rentModal" class="wx-modal">
   <div class="wx-modal-content">
-    <h3 class="text-xl font-bold mb-4">裝修維修</h3>
+    <h3 class="text-xl font-bold mb-4">維修</h3>
     <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
     <button id="closeRentModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
   </div>
@@ -234,7 +234,7 @@
        
 <!-- 新增的七個按鈕 -->
 <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
-  <button id="rentBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</button>
+  <button id="rentBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">維修</button>
   <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
   <button id="homeInsuranceBtn" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">家居保險</button>
 <button id="movingBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
@@ -469,14 +469,19 @@
       }
     });
     
-// 裝修維修按鈕功能
+// 維修按鈕功能
 const rentModal = document.getElementById('rentModal');
 const rentBtn = document.getElementById('rentBtn');
 const closeRentModal = document.getElementById('closeRentModal');
 
 rentBtn.addEventListener('click', function(e) {
   e.preventDefault();
-  rentModal.style.display = 'flex';
+  if (window.Android && window.Android.loadUrl) {
+    window.Android.loadUrl('file:///android_asset/repair-ads.html');
+  } else {
+    // Fallback for testing outside WebView
+    location.href = 'repair-ads.html';
+  }
 });
 
 closeRentModal.addEventListener('click', function() {
