@@ -52,7 +52,7 @@
       margin: 1rem auto;
     }
 
-    /* 出租/出售彈窗內容樣式 */
+    /* 維修/清潔彈窗內容樣式 */
 #rentModal .wx-modal-content, #sellModal .wx-modal-content {
   padding: 2rem;
 }
@@ -162,19 +162,19 @@
     </div>
   </div>
 
-  <!-- 出租彈窗 -->
+  <!-- 維修彈窗 -->
 <div id="rentModal" class="wx-modal">
   <div class="wx-modal-content">
-    <h3 class="text-xl font-bold mb-4">自助出租</h3>
+    <h3 class="text-xl font-bold mb-4">維修</h3>
     <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
     <button id="closeRentModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
   </div>
 </div>
 
-<!-- 出售彈窗 -->
+<!-- 清潔彈窗 -->
 <div id="sellModal" class="wx-modal">
   <div class="wx-modal-content">
-    <h3 class="text-xl font-bold mb-4">自助出售</h3>
+    <h3 class="text-xl font-bold mb-4">清潔</h3>
     <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
     <button id="closeSellModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
   </div>
@@ -234,8 +234,8 @@
        
 <!-- 新增的六個按鈕 -->
 <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
-  <button id="rentBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">自助出租</button>
-  <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">自助出售</button>
+  <button id="rentBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">維修</button>
+  <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
 </div>
 
           <!-- 獨立顯示立即下載內容 - 修正Android WebView置中問題 -->
@@ -449,7 +449,7 @@
       }
     });
     
-    // 出租按鈕功能
+    // 維修按鈕功能
     const rentModal = document.getElementById('rentModal');
     const rentBtn = document.getElementById('rentBtn');
     const closeRentModal = document.getElementById('closeRentModal');
@@ -469,7 +469,7 @@
       }
     });
 
-    // 出售按鈕功能
+    // 清潔按鈕功能
     const sellModal = document.getElementById('sellModal');
     const sellBtn = document.getElementById('sellBtn');
     const closeSellModal = document.getElementById('closeSellModal');
