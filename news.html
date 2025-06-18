@@ -162,7 +162,7 @@
     </div>
   </div>
 
-  <!-- 裝修維修彈窗 -->
+  <!-- 裝修維修彈窗（保留但不會被觸發） -->
   <div id="rentModal" class="wx-modal">
     <div class="wx-modal-content">
       <h3 class="text-xl font-bold mb-4">裝修維修</h3>
@@ -231,9 +231,9 @@
             加入Discord社群
           </a>
        
-          <!-- 新增的七個按鈕 -->
+          <!-- 新增的七個按鈕（裝修維修已改為連結） -->
           <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
-            <button id="rentBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</button>
+            <a href="repair-ads.html" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
             <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
             <button id="homeInsuranceBtn" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">家居保險</button>
             <button id="movingBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
@@ -266,7 +266,7 @@
 
     <!-- 新聞列表 -->
     <div id="news-list" class="news-list grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
-    <div id="loading" class="text-center text-gray-500 my-6 text-base hidden">
+    <div id="loading" class="text-center text-gray-600 my-6 text-base hidden">
       <div class="inline-block loading-spinner mr-2"><i class="fa-solid fa-spinner"></i></div>
       載入中...
     </div>
@@ -288,7 +288,7 @@
 
     async function fetchNews() {
       const apiKey = 'pub_9834bfcaba7e4eb3a66ef563c7d15783';
-      const query = '租'; //房客 OR 租約 OR 房屋糾紛 OR 租霸 OR 租客 OR 租務糾紛
+      const query = '租';//房客 OR 租約 OR 房屋糾紛 OR 租霸 OR 租客 OR 租務糾紛
       const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(query)}&language=zh`;
       loading.classList.remove('hidden');
       errorDiv.classList.add('hidden');
@@ -390,15 +390,17 @@
       }
     });
     
-    // 裝修維修按鈕功能
+    // 裝修維修按鈕功能（已移除 ID，添加檢查以避免錯誤）
     const rentModal = document.getElementById('rentModal');
     const rentBtn = document.getElementById('rentBtn');
     const closeRentModal = document.getElementById('closeRentModal');
     
-    rentBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      rentModal.style.display = 'flex';
-    });
+    if (rentBtn) {
+      rentBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        rentModal.style.display = 'flex';
+      });
+    }
     
     closeRentModal.addEventListener('click', function() {
       rentModal.style.display = 'none';
