@@ -150,17 +150,7 @@
     </div>
   </div>
   
-  <!-- Discord彈窗 -->
-  <div id="discordModal" class="discord-modal">
-    <div class="discord-modal-content">
-      <h3 class="text-xl font-bold mb-4">掃描二維碼加入 Discord 社群</h3>
-      <div class="discord-qrcode">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://discord.gg/KvssvFsHuh" alt="Discord二維碼" width="200" height="200">
-      </div>
-      <p class="mb-4 text-gray-600 text-sm">或複製以下連結：https://discord.gg/KvssvFsHuh</p>
-      <button id="closeDiscordModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-    </div>
-  </div>
+
 
   <!-- 裝修維修彈窗（保留但不會被觸發） -->
   <div id="rentModal" class="wx-modal">
@@ -225,8 +215,8 @@
             不良租客名單 JOJOBLACKLIST 專業解答助理
           </a>
           
-          <!-- Discord按鈕 -->
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+          <!-- Buy Me A Coffee 按鈕 -->
+          <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
        
           <!-- 新增的七個按鈕（裝修維修已改為連結） -->
           <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
@@ -367,25 +357,7 @@
       }
     });
     
-    // Discord彈窗功能
-    const discordModal = document.getElementById('discordModal');
-    const discordLink = document.getElementById('discordLink');
-    const closeDiscordModal = document.getElementById('closeDiscordModal');
-    
-    discordLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      discordModal.style.display = 'flex';
-    });
-    
-    closeDiscordModal.addEventListener('click', function() {
-      discordModal.style.display = 'none';
-    });
-    
-    discordModal.addEventListener('click', function(e) {
-      if (e.target === discordModal) {
-        discordModal.style.display = 'none';
-      }
-    });
+
     
     // 裝修維修按鈕功能（已移除 ID，添加檢查以避免錯誤）
     const rentModal = document.getElementById('rentModal');
