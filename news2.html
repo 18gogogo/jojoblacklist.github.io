@@ -128,17 +128,7 @@
     </div>
   </div>
   
-  <!-- Discord彈窗 -->
-  <div id="discordModal" class="discord-modal">
-    <div class="discord-modal-content">
-      <h3 class="text-xl font-bold mb-4">掃描二維碼加入 Discord 社群</h3>
-      <div class="discord-qrcode">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://discord.gg/KvssvFsHuh" alt="Discord二維碼" width="200" height="200">
-      </div>
-      <p class="mb-4 text-gray-600 text-sm">或複製以下連結：https://discord.gg/KvssvFsHuh</p>
-      <button id="closeDiscordModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-    </div>
-  </div>
+
   
   <!-- Google Play商店彈窗 -->
   <div id="playstoreModal" class="playstore-modal hidden-element">
@@ -185,11 +175,8 @@
             暗黑裝修名冊 REPAIRBLACKLIST 專業解答助理
           </a>
           
-          <!-- Discord按鈕 -->
-          <a href="javascript:void(0);" id="discordLink" class="discord-btn text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-            <i class="fab fa-discord mr-2 text-lg"></i>
-            加入 Discord 社群
-          </a>
+          <!-- Buy Me A Coffee 按鈕 -->
+          <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
           
           <!-- 獨立顯示立即下載內容 - 修正Android WebView置中問題 -->
           <div class="independent-display hidden-element">
@@ -332,25 +319,7 @@
       }
     });
     
-    // Discord彈窗功能
-    const discordModal = document.getElementById('discordModal');
-    const discordLink = document.getElementById('discordLink');
-    const closeDiscordModal = document.getElementById('closeDiscordModal');
-    
-    discordLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      discordModal.style.display = 'flex';
-    });
-    
-    closeDiscordModal.addEventListener('click', function() {
-      discordModal.style.display = 'none';
-    });
-    
-    discordModal.addEventListener('click', function(e) {
-      if (e.target === discordModal) {
-        discordModal.style.display = 'none';
-      }
-    });
+
     
     // Google Play商店彈窗功能
     const playstoreModal = document.getElementById('playstoreModal');
