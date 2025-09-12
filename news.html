@@ -42,15 +42,25 @@
     .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(16px, 2vw, 24px); }
     @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
 
-    .tile { background: color-mix(in oklab, #ffffff 65%, transparent); border: 1px solid color-mix(in oklab, #ffffff 40%, #0000); border-radius: 16px; padding: 18px; display: grid; grid-template-columns: 220px 1fr; gap: 18px; align-items: center; }
+    .tile { background: color-mix(in oklab, #ffffff 65%, transparent); border: 1px solid color-mix(in oklab, #ffffff 40%, #0000); border-radius: 16px; padding: 18px; display: grid; grid-template-columns: 220px 1fr; gap: 18px; align-items: start; }
     @media (max-width: 620px) { .tile { grid-template-columns: 1fr; text-align: center; } }
     .qrwrap { aspect-ratio: 1/1; width: 220px; max-width: 100%; border-radius: 14px; background: #fff; display: grid; place-items: center; overflow: hidden; border: 1px solid #eef2ff; }
     .qr { width: 100%; height: 100%; object-fit: cover; }
     /* 新增：平台徽章樣式 */
     .t-left { display: flex; flex-direction: column; align-items: center; }
+    .t-right { display: flex; flex-direction: column; align-self: stretch; }
+    .t-right .t-meta { display: flex; flex-direction: column; flex: 1 1 auto; }
+    .t-right .t-meta .row { margin-top: auto; }
     .plat-badges { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    .plat-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; font-weight: 600; font-size: 12px; background: color-mix(in oklab, #0b1220 8%, transparent); color: var(--text); border: 1px solid color-mix(in oklab, #000 10%, #fff 0%); }
+    /* 徽章樣式：更接近官方風格 */
+    .plat-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: .2px; background: #fff; color: #111827; border: 1px solid #e5e7eb; box-shadow: 0 8px 18px -12px rgba(0,0,0,.25); }
     .plat-badge svg { width: 16px; height: 16px; }
+    /* Google Play 徽章配色 */
+    .plat-badge.play { background: #fff; color: #111827; border-color: #e5e7eb; }
+    .plat-badge.play svg { color: #34a853; }
+    /* GitHub 徽章配色 */
+    .plat-badge.gh { background: #24292f; color: #fff; border-color: #24292f; }
+    .plat-badge.gh svg { color: #fff; }
     .t-meta h3 { margin: 0 0 6px; font-size: 18px; }
     .t-meta p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
     .row { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -70,6 +80,8 @@
 
     /* 倒數與自動轉址條 */
     .auto-box { margin: 14px 0 18px; padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, #000 12%, #fff 0%); background: color-mix(in oklab, #ffffff 70%, transparent); }
+    /* 已停用自動導向設計，隱藏區塊 */
+    .auto-box { display: none !important; }
     .auto-top { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
     .auto-actions { display: inline-flex; gap: 8px; }
     .progress { height: 6px; width: 100%; background: color-mix(in oklab, #000 8%, #fff 0%); border-radius: 999px; overflow: hidden; margin-top: 10px; }
@@ -131,18 +143,19 @@
               <img class="qr" alt="Google Play 下載連結 QR Code" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.i8gogogo.repairblacklist" />
             </div>
             <div class="plat-badges">
-              <span class="plat-badge" aria-label="Google Play">
+              <span class="plat-badge play" aria-label="Google Play">
                 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
                 <span id="gplay-chip">Google Play</span>
               </span>
             </div>
           </div>
-          <div class="t-meta">
-            <h3 id="gplay-title">Google Play 商店</h3>
-            <p id="gplay-desc">建議從官方商店安裝，以獲得最佳相容性與自動更新。</p>
-            <div class="row">
-              <a class="btn" id="gplay-btn" href="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist" target="_blank" rel="noopener noreferrer">前往 Google Play</a>
-              <button class="ghost" data-copy="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist" id="gplay-copy">複製連結</button>
+          <div class="t-right">
+            <div class="t-meta">
+              <h3 id="gplay-title">Google Play 商店</h3>
+              <p id="gplay-desc">建議從官方商店安裝，以獲得最佳相容性與自動更新。</p>
+              <div class="row">
+                <button class="btn" data-copy="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist" id="gplay-copy">複製連結</button>
+              </div>
             </div>
           </div>
         </section>
@@ -154,18 +167,19 @@
               <img class="qr" alt="GitHub APK 直接下載 QR Code" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fgithub.com%2F18gogogo%2Fjojoblacklist-Apk%2Freleases%2Fdownload%2Fv1.4.7.1%2FJojoblacklistv1.4.7.1.apk" />
             </div>
             <div class="plat-badges">
-              <span class="plat-badge" aria-label="GitHub">
+              <span class="plat-badge gh" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.17-3.37-1.17-.46-1.18-1.12-1.5-1.12-1.5-.91-.62.07-.61.07-.61 1 .07 1.53 1.05 1.53 1.05.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
                 <span id="gh-chip">GitHub</span>
               </span>
             </div>
           </div>
-          <div class="t-meta">
-            <h3 id="gh-title">GitHub 直接下載 APK</h3>
-            <p id="gh-desc">如您無法使用商店，可改用官方發布的 APK 檔案進行安裝。</p>
-            <div class="row">
-              <a class="btn" id="gh-btn" href="https://github.com/18gogogo/jojoblacklist-Apk/releases/download/v1.4.7.1/Jojoblacklistv1.4.7.1.apk" target="_blank" rel="noopener noreferrer">下載 APK</a>
-              <button class="ghost" data-copy="https://github.com/18gogogo/jojoblacklist-Apk/releases/download/v1.4.7.1/Jojoblacklistv1.4.7.1.apk" id="gh-copy">複製連結</button>
+          <div class="t-right">
+            <div class="t-meta">
+              <h3 id="gh-title">GitHub 直接下載 APK</h3>
+              <p id="gh-desc">如您無法使用商店，可改用官方發布的 APK 檔案進行安裝。</p>
+              <div class="row">
+                <button class="btn" data-copy="https://github.com/18gogogo/jojoblacklist-Apk/releases/download/v1.4.7.1/Jojoblacklistv1.4.7.1.apk" id="gh-copy">複製連結</button>
+              </div>
             </div>
           </div>
         </section>
@@ -251,7 +265,8 @@
     }
 
     // 語言切換
-    let current = (new URLSearchParams(location.search).get('lang')) || (navigator.language||'').toLowerCase().startsWith('zh') ? 'zh' : 'en';
+    const urlLang = new URLSearchParams(location.search).get('lang');
+    let current = urlLang || (((navigator.language || '').toLowerCase().startsWith('zh')) ? 'zh' : 'en');
     let I18N = TEXT[current];
     const zhBtn = document.getElementById('lang-zh');
     const enBtn = document.getElementById('lang-en');
@@ -265,54 +280,34 @@
       document.getElementById('lead').textContent = I18N.lead;
       document.getElementById('gplay-title').textContent = I18N.gplayTitle;
       document.getElementById('gplay-desc').textContent = I18N.gplayDesc;
-      document.getElementById('gplay-btn').textContent = I18N.gplayBtn;
-      document.getElementById('gplay-copy').textContent = I18N.gplayCopy;
+      // gplay 複製鍵：文字 + 無障礙屬性
+      const gplayCopyEl = document.getElementById('gplay-copy');
+      if (gplayCopyEl) {
+        gplayCopyEl.textContent = I18N.gplayCopy;
+        gplayCopyEl.setAttribute('aria-label', I18N.gplayCopy);
+        gplayCopyEl.setAttribute('title', I18N.gplayCopy);
+      }
       document.getElementById('gh-title').textContent = I18N.ghTitle;
       document.getElementById('gh-desc').textContent = I18N.ghDesc;
-      document.getElementById('gh-btn').textContent = I18N.ghBtn;
-      document.getElementById('gh-copy').textContent = I18N.ghCopy;
+      // GitHub 複製鍵：文字 + 無障礙屬性
+      const ghCopyEl = document.getElementById('gh-copy');
+      if (ghCopyEl) {
+        ghCopyEl.textContent = I18N.ghCopy;
+        ghCopyEl.setAttribute('aria-label', I18N.ghCopy);
+        ghCopyEl.setAttribute('title', I18N.ghCopy);
+      }
       const gpc = document.getElementById('gplay-chip'); if (gpc) gpc.textContent = I18N.chipGplay;
       const ghc = document.getElementById('gh-chip'); if (ghc) ghc.textContent = I18N.chipGithub;
       document.getElementById('tips').textContent = I18N.tips;
       document.getElementById('footer').textContent = I18N.footer;
       document.getElementById('help').textContent = I18N.help;
-      document.getElementById('auto-text').innerHTML = I18N.auto(remaining);
-      document.getElementById('go-now').textContent = I18N.go;
-      document.getElementById('cancel-auto').textContent = I18N.cancel;
+      // 已取消自動導向設計，不再更新 auto 文案與控制
     }
 
     zhBtn.addEventListener('click', ()=>applyLang('zh'));
     enBtn.addEventListener('click', ()=>applyLang('en'));
 
-    // 倒數自動導向到 Google Play
-    const targetUrl = 'https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist';
-    const total = 30; // 秒
-    let remaining = total;
-    const bar = document.getElementById('bar');
-    const countEl = document.getElementById('count');
-    const cancelBtn = document.getElementById('cancel-auto');
-    const goNow = document.getElementById('go-now');
-
-    let timer = setInterval(() => {
-      remaining--;
-      countEl.textContent = remaining;
-      bar.style.width = `${((total-remaining)/total)*100}%`;
-      document.getElementById('auto-text').innerHTML = I18N.auto(remaining);
-      if (remaining <= 0) {
-        clearInterval(timer);
-        location.href = targetUrl;
-      }
-    }, 1000);
-
-    cancelBtn.addEventListener('click', () => {
-      if (timer) { clearInterval(timer); timer = null; }
-      bar.style.width = '0%';
-      document.getElementById('auto-text').innerHTML = I18N.auto('—');
-    });
-
-    goNow.addEventListener('click', () => {
-      if (timer) { clearInterval(timer); timer = null; }
-    });
+    // 已取消自動導向設計：移除倒數與相關事件繫結
 
     // 初始語言與一鍵複製
     applyLang(current);
