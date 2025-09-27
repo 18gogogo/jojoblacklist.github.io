@@ -1,317 +1,80 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="color-scheme" content="light dark" />
-  <title>重要通知｜本程式將於下個月停止更新</title>
-  <meta name="description" content="重要通知：本程式將於下個月停止更新，請至 Google Play 或 GitHub 下載新版應用程式。提供 QR Code、快速開啟與一鍵複製連結。" />
-  <style>
-    :root {
-      --bg: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%);
-      --card-bg: color-mix(in oklab, white 78%, transparent);
-      --text: #0b1220;
-      --muted: #4b5563;
-      --primary: #3b82f6;
-      --btn: linear-gradient(135deg, #22d3ee, #3b82f6 60%, #8b5cf6);
-      --ring: 0 10px 40px -10px rgba(59,130,246,.35);
-      --glass: blur(10px) saturate(1.15);
-    }
-    @media (prefers-color-scheme: dark) {
-      :root { --card-bg: color-mix(in oklab, #0b1220 70%, transparent); --text: #e5e7eb; --muted: #9ca3af; }
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
-      background: var(--bg); color: var(--text); display: grid; place-items: center; padding: 24px;
-    }
-    .shell { width: min(1080px, 100%); }
-    .card {
-      background: var(--card-bg); -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
-      border: 1px solid color-mix(in oklab, #ffffff 60%, #0000); border-radius: 20px; box-shadow: var(--ring);
-      padding: clamp(20px, 4vw, 36px); overflow: hidden; position: relative;
-    }
-    .ribbons { position: absolute; inset: -80px -40px auto auto; height: 220px; width: 220px; opacity: .12; filter: blur(2px); pointer-events: none; }
-    header { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
-    .logo { height: 40px; width: 40px; display: inline-grid; place-items: center; border-radius: 12px; background: var(--btn); color: #fff; box-shadow: 0 10px 25px -10px rgba(139,92,246,.6); }
-    h1 { margin: 0; font-size: clamp(20px, 2.2vw, 28px); letter-spacing: .2px; }
-    .badge { display:inline-flex; align-items:center; gap:8px; font-size: 12px; color: #fff; background: #ef4444; padding: 4px 10px; border-radius: 999px; box-shadow: 0 8px 20px -10px rgba(239,68,68,.7); }
-    .lead { margin: 10px 0 22px; color: var(--muted); font-size: clamp(14px, 1.4vw, 16px); line-height: 1.7; }
-
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(16px, 2vw, 24px); }
-    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
-
-    .tile { background: color-mix(in oklab, #ffffff 65%, transparent); border: 1px solid color-mix(in oklab, #ffffff 40%, #0000); border-radius: 16px; padding: 18px; display: grid; grid-template-columns: 220px 1fr; gap: 18px; align-items: start; }
-    @media (max-width: 620px) { .tile { grid-template-columns: 1fr; text-align: center; } }
-    .qrwrap { aspect-ratio: 1/1; width: 220px; max-width: 100%; border-radius: 14px; background: #fff; display: grid; place-items: center; overflow: hidden; border: 1px solid #eef2ff; }
-    .qr { width: 100%; height: 100%; object-fit: cover; }
-    /* 新增：平台徽章樣式 */
-    .t-left { display: flex; flex-direction: column; align-items: center; }
-    .t-right { display: flex; flex-direction: column; align-self: stretch; }
-    .t-right .t-meta { display: flex; flex-direction: column; flex: 1 1 auto; }
-    .t-right .t-meta .row { margin-top: auto; }
-    .plat-badges { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-    /* 徽章樣式：更接近官方風格 */
-    .plat-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: .2px; background: #fff; color: #111827; border: 1px solid #e5e7eb; box-shadow: 0 8px 18px -12px rgba(0,0,0,.25); }
-    .plat-badge svg { width: 16px; height: 16px; }
-    /* Google Play 徽章配色 */
-    .plat-badge.play { background: #fff; color: #111827; border-color: #e5e7eb; }
-    .plat-badge.play svg { color: #34a853; }
-    /* GitHub 徽章配色 */
-    .plat-badge.gh { background: #24292f; color: #fff; border-color: #24292f; }
-    .plat-badge.gh svg { color: #fff; }
-    .t-meta h3 { margin: 0 0 6px; font-size: 18px; }
-    .t-meta p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
-    .row { display: flex; flex-wrap: wrap; gap: 10px; }
-    .btn, .ghost { appearance: none; border: 0; cursor: pointer; padding: 10px 14px; border-radius: 12px; font-weight: 600; font-size: 14px; transition: transform .04s ease, filter .2s ease; }
-    .btn { background: var(--btn); color: #fff; box-shadow: 0 12px 28px -10px rgba(34,211,238,.45); }
-    .ghost { background: color-mix(in oklab, #0b1220 10%, transparent); color: var(--text); border: 1px solid color-mix(in oklab, #000 10%, #fff 0%); }
-    .btn:active, .ghost:active { transform: translateY(1px); }
-
-    .tips { margin-top: 20px; color: var(--muted); font-size: 12.5px; }
-    footer { margin-top: 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 12.5px; }
-    a.link { color: #2563eb; text-decoration: none; border-bottom: 1px dashed #93c5fd; }
-
-    /* 語言切換 */
-    .lang { margin-left: auto; display: inline-flex; gap: 8px; align-items: center; }
-    .lang button { appearance: none; border: 1px solid color-mix(in oklab, #000 10%, #fff 0%); background: color-mix(in oklab, #0b1220 8%, transparent); color: var(--text); padding: 8px 12px; border-radius: 999px; font-weight: 600; font-size: 12.5px; cursor: pointer; }
-    .lang button.active { background: var(--btn); color: #fff; border-color: transparent; box-shadow: 0 8px 20px -10px rgba(34,211,238,.45); }
-
-    /* 倒數與自動轉址條 */
-    .auto-box { margin: 14px 0 18px; padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, #000 12%, #fff 0%); background: color-mix(in oklab, #ffffff 70%, transparent); }
-    /* 已停用自動導向設計，隱藏區塊 */
-    .auto-box { display: none !important; }
-    .auto-top { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-    .auto-actions { display: inline-flex; gap: 8px; }
-    .progress { height: 6px; width: 100%; background: color-mix(in oklab, #000 8%, #fff 0%); border-radius: 999px; overflow: hidden; margin-top: 10px; }
-    .progress > .bar { height: 100%; width: 0%; background: linear-gradient(90deg, #22d3ee, #3b82f6 60%, #8b5cf6); border-radius: inherit; transition: width .6s ease; }
-
-    /* 行動裝置優化 */
-    @media (max-width: 760px) {
-      .row > a.btn, .row > button.ghost, .row > a, .row > button { flex: 1 1 100%; min-height: 44px; }
-      .lead { font-size: 14.5px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>JOJOBLACKLIST LIST</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* 針對WebView優化 */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script type="text/javascript">
+        // 用於與Android WebView通信的接口
+        function setupWebViewJSBridge() {
+            window.onload = function() {
+                // 檢測Android WebView的JavaScript接口
+                if (window.Android) {
+                    console.log("Android WebView接口已連接");
+                }
+                
+                // 處理iframe加載完成事件
+                document.querySelector('iframe').onload = function() {
+                    console.log("iframe已加載完成");
+                    // 如果需要，可以在這裡通知Android
+                    if (window.Android && window.Android.onIframeLoaded) {
+                        window.Android.onIframeLoaded();
+                    }
+                };
+            };
+        }
+        
+        // 初始化WebView橋接
+        setupWebViewJSBridge();
+    </script>
 </head>
 <body>
-  <div class="shell">
-    <div class="card">
-      <svg class="ribbons" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#22d3ee"/>
-            <stop offset="60%" stop-color="#3b82f6"/>
-            <stop offset="100%" stop-color="#8b5cf6"/>
-          </linearGradient>
-        </defs>
-        <path d="M0,120 C40,90 60,160 100,130 C140,100 160,160 200,130 L200,200 L0,200 Z" fill="url(#g)"/>
-      </svg>
-
-      <header>
-        <div class="logo" aria-hidden="true">
-          <img src="512icon.png" alt="App Logo" style="width:100%;height:100%;border-radius:12px;object-fit:cover" />
-        </div>
-        <div>
-          <div class="badge" id="badge" title="Service Notice">系統公告</div>
-          <h1 id="title">重要通知：本程式將於下個月停止更新</h1>
-        </div>
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" id="lang-zh" class="active">繁中</button>
-          <button type="button" id="lang-en">EN</button>
-        </div>
-      </header>
-
-      <p class="lead" id="lead">為確保您持續獲得安全維護與功能更新，請盡快下載新版應用程式。您可透過下方 Google Play 或 GitHub APK 下載管道，掃描 QR Code 或直接點擊開啟連結。</p>
-
-      <div class="auto-box" role="status" aria-live="polite">
-        <div class="auto-top">
-          <div id="auto-text">將在 <strong><span id="count">30</span>s</strong> 後自動導向至 Google Play</div>
-          <div class="auto-actions">
-            <button class="ghost" id="cancel-auto">取消自動導向</button>
-            <a class="btn" id="go-now" href="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist" target="_blank" rel="noopener">立即前往</a>
-          </div>
-        </div>
-        <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
-      </div>
-
-      <div class="grid">
-        <!-- Google Play -->
-        <section class="tile" aria-labelledby="gplay-title">
-          <div class="t-left">
-            <div class="qrwrap">
-              <img class="qr" alt="Google Play 下載連結 QR Code" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.i8gogogo.repairblacklist" />
-            </div>
-            <div class="plat-badges">
-              <span class="plat-badge play" aria-label="Google Play">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-                <span id="gplay-chip">Google Play</span>
-              </span>
-            </div>
-          </div>
-          <div class="t-right">
-            <div class="t-meta">
-              <h3 id="gplay-title">Google Play 商店</h3>
-              <p id="gplay-desc">建議從官方商店安裝，以獲得最佳相容性與自動更新。</p>
-              <div class="row">
-                <button class="btn" data-copy="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist" id="gplay-copy">複製連結</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- GitHub APK -->
-        <section class="tile" aria-labelledby="gh-title">
-          <div class="t-left">
-            <div class="qrwrap">
-              <img class="qr" alt="GitHub APK 直接下載 QR Code" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2github.com%2F18gogogo%2Fjojoblacklist-Apk%2Freleases%2Fdownload%2Fv1.5.1.1%2FJojoblacklist-release-1.5.1.1.apk" />
-            </div>
-            <div class="plat-badges">
-              <span class="plat-badge gh" aria-label="GitHub">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.17-3.37-1.17-.46-1.18-1.12-1.5-1.12-1.5-.91-.62.07-.61.07-.61 1 .07 1.53 1.05 1.53 1.05.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-                <span id="gh-chip">GitHub</span>
-              </span>
-            </div>
-          </div>
-          <div class="t-right">
-            <div class="t-meta">
-              <h3 id="gh-title">GitHub 直接下載 APK</h3>
-              <p id="gh-desc">如您無法使用商店，可改用官方發布的 APK 檔案進行安裝。</p>
-              <div class="row">
-                <button class="btn" data-copy="https://github.com/18gogogo/jojoblacklist-Apk/releases/download/v1.5.1.1/Jojoblacklist-release-1.5.1.1.apk" id="gh-copy">複製連結</button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="tips" id="tips">提示：安裝 APK 前請於裝置設定中允許「安裝未知來源」，並確認來源可信。為了您的安全，請勿從非官方連結下載安裝檔。</div>
-
-      <footer>
-        <div>Copyright © <span id="y"></span> <span id="footer">本站僅作更新通知與導引。</span></div>
-        <div id="help">如需協助，請聯繫我們或至專案頁面查詢最新資訊。</div>
-      </footer>
-    </div>
-  </div>
-
-  <script>
-    // 年份
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // 多語文案
-    const TEXT = {
-      zh: {
-        badge: '系統公告',
-        title: '重要通知：本程式將於下個月停止更新',
-        lead: '為確保您持續獲得安全維護與功能更新，請盡快下載新版應用程式。您可透過下方 Google Play 或 GitHub APK 下載管道，掃描 QR Code 或直接點擊開啟連結。',
-        auto: (s) => `將在 <strong><span id="count">${s}</span>s</strong> 後自動導向至 Google Play`,
-        cancel: '取消自動導向',
-        go: '立即前往',
-        gplayTitle: 'Google Play 商店',
-        gplayDesc: '建議從官方商店安裝，以獲得最佳相容性與自動更新。',
-        gplayBtn: '前往 Google Play',
-        gplayCopy: '複製連結',
-        ghTitle: 'GitHub 直接下載 APK',
-        ghDesc: '如您無法使用商店，可改用官方發布的 APK 檔案進行安裝。',
-        ghBtn: '下載 APK',
-        ghCopy: '複製連結',
-        tips: '提示：安裝 APK 前請於裝置設定中允許「安裝未知來源」，並確認來源可信。為了您的安全，請勿從非官方連結下載安裝檔。',
-        footer: '本站僅作更新通知與導引。',
-        help: '如需協助，請聯繫我們或至專案頁面查詢最新資訊。',
-        toastCopied: '已複製連結',
-        chipGplay: 'Google Play',
-        chipGithub: 'GitHub'
-      },
-      en: {
-        badge: 'Service Notice',
-        title: 'Important: This app will stop receiving updates next month',
-        lead: 'To continue receiving security fixes and new features, please download the new app version. Use Google Play or the GitHub APK link below. Scan the QR codes or tap the buttons to proceed.',
-        auto: (s) => `Auto-redirect to Google Play in <strong><span id="count">${s}</span>s</strong>`,
-        cancel: 'Cancel Auto Redirect',
-        go: 'Go Now',
-        gplayTitle: 'Google Play Store',
-        gplayDesc: 'Recommended for best compatibility and auto updates.',
-        gplayBtn: 'Open Google Play',
-        gplayCopy: 'Copy Link',
-        ghTitle: 'GitHub Direct APK',
-        ghDesc: 'If you cannot use the store, download the official APK release.',
-        ghBtn: 'Download APK',
-        ghCopy: 'Copy Link',
-        tips: 'Tip: Before installing APK, allow “Unknown Sources” in your device settings and ensure the source is trusted. Do not download from unofficial links.',
-        footer: 'This site is for update notice and guidance only.',
-        help: 'Need help? Contact us or check the project page for updates.',
-        toastCopied: 'Link copied',
-        chipGplay: 'Google Play',
-        chipGithub: 'GitHub'
-      }
-    };
-
-    // 工具：一鍵複製與吐司
-    function bindCopyI18n() {
-      document.querySelectorAll('button[data-copy]').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          try { await navigator.clipboard.writeText(btn.dataset.copy); toast(I18N.toastCopied); }
-          catch { fallbackCopy(btn.dataset.copy); toast(I18N.toastCopied); }
-        }, { once: true });
-      });
-    }
-    function fallbackCopy(text) {
-      const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-    }
-    function toast(msg){
-      let t = document.createElement('div'); t.innerHTML = msg; t.style.cssText = 'position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);z-index:9999;font-size:13px;opacity:.98';
-      if (matchMedia('(prefers-color-scheme: light)').matches) t.style.background = '#111827';
-      document.body.appendChild(t); setTimeout(()=>t.remove(), 1600);
-    }
-
-    // 語言切換
-    const urlLang = new URLSearchParams(location.search).get('lang');
-    let current = urlLang || (((navigator.language || '').toLowerCase().startsWith('zh')) ? 'zh' : 'en');
-    let I18N = TEXT[current];
-    const zhBtn = document.getElementById('lang-zh');
-    const enBtn = document.getElementById('lang-en');
-
-    function applyLang(lang) {
-      current = lang; I18N = TEXT[lang];
-      zhBtn.classList.toggle('active', lang==='zh');
-      enBtn.classList.toggle('active', lang==='en');
-      document.getElementById('badge').textContent = I18N.badge;
-      document.getElementById('title').textContent = I18N.title;
-      document.getElementById('lead').textContent = I18N.lead;
-      document.getElementById('gplay-title').textContent = I18N.gplayTitle;
-      document.getElementById('gplay-desc').textContent = I18N.gplayDesc;
-      // gplay 複製鍵：文字 + 無障礙屬性
-      const gplayCopyEl = document.getElementById('gplay-copy');
-      if (gplayCopyEl) {
-        gplayCopyEl.textContent = I18N.gplayCopy;
-        gplayCopyEl.setAttribute('aria-label', I18N.gplayCopy);
-        gplayCopyEl.setAttribute('title', I18N.gplayCopy);
-      }
-      document.getElementById('gh-title').textContent = I18N.ghTitle;
-      document.getElementById('gh-desc').textContent = I18N.ghDesc;
-      // GitHub 複製鍵：文字 + 無障礙屬性
-      const ghCopyEl = document.getElementById('gh-copy');
-      if (ghCopyEl) {
-        ghCopyEl.textContent = I18N.ghCopy;
-        ghCopyEl.setAttribute('aria-label', I18N.ghCopy);
-        ghCopyEl.setAttribute('title', I18N.ghCopy);
-      }
-      const gpc = document.getElementById('gplay-chip'); if (gpc) gpc.textContent = I18N.chipGplay;
-      const ghc = document.getElementById('gh-chip'); if (ghc) ghc.textContent = I18N.chipGithub;
-      document.getElementById('tips').textContent = I18N.tips;
-      document.getElementById('footer').textContent = I18N.footer;
-      document.getElementById('help').textContent = I18N.help;
-      // 已取消自動導向設計，不再更新 auto 文案與控制
-    }
-
-    zhBtn.addEventListener('click', ()=>applyLang('zh'));
-    enBtn.addEventListener('click', ()=>applyLang('en'));
-
-    // 已取消自動導向設計：移除倒數與相關事件繫結
-
-    // 初始語言與一鍵複製
-    applyLang(current);
-    bindCopyI18n();
-  </script>
+    <iframe src="https://18gogogo.net/18deal.html" frameborder="0" marginheight="0" marginwidth="0" title="Tally.so 表單" allow="camera; microphone; autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+    
+    <script type="text/javascript">
+        // 處理WebView中的特殊情況
+        document.addEventListener("DOMContentLoaded", function() {
+            // 修復某些Android WebView版本中的滾動問題
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
+            // 處理可能的iframe跨域問題
+            var iframe = document.querySelector('iframe');
+            iframe.addEventListener('error', function() {
+                console.error("iframe加載失敗，可能是跨域問題");
+                // 可以在這裡添加備用方案
+            });
+        });
+    </script>
 </body>
 </html>
