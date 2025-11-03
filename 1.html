@@ -159,7 +159,7 @@
               <h3 id="gplay-title">Google Play 商店</h3>
               <p id="gplay-desc">建議從官方商店安裝，以獲得最佳相容性與自動更新。</p>
               <div class="row">
-                <button class="btn" data-copy="https://play.google.com/store/apps/details?id=com.i8gogogo.repairblacklist" id="gplay-copy">複製連結</button>
+                <button class="btn" data-copy="https://play.google.com/store/apps/dev?id=7619891121674916095" id="gplay-copy">複製連結</button>
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@
 
       <footer>
         <div>Copyright © <span id="y"></span> <span id="footer">本站僅作更新通知與導引。</span></div>
-        <div id="help">如需協助，請聯繫我們或至18GOGOGO頁面查詢最新資訊。</div>
+        <div id="help">如需協助，請聯繫我們Email或至18GOGOGO Blog頁面查詢最新資訊。</div>
       </footer>
     </div>
   </div>
@@ -215,4 +215,124 @@
         gplayTitle: 'Google Play 商店',
         gplayDesc: '建議從官方商店安裝，以獲得最佳相容性與自動更新。',
         gplayBtn: '前往 Google Play',
-        gplayCopy
+        gplayCopy: '複製連結',
+        ghTitle: '部落格內容',
+        ghDesc: '瀏覽最新部落格文章與資訊。',
+        ghBtn: '開啟部落格',
+        ghCopy: '複製連結',
+        tips: '提示：安裝 APK 前請於裝置設定中允許「安裝未知來源」，並確認來源可信。為了您的安全，請勿從非官方連結下載安裝檔。',
+        footer: '本站僅作更新通知與導引。',
+        help: '如需協助，請聯繫我們或至專案頁面查詢最新資訊。',
+        toastCopied: '已複製連結',
+        chipGplay: 'Google Play',
+        chipGithub: 'Blog'
+      },
+      en: {
+        badge: 'Service Notice',
+        title: 'Important: This app will stop receiving updates next month',
+        lead: 'To continue receiving security fixes and new features, please download the new app version. Use Google Play or the GitHub APK link below. Scan the QR codes or tap the buttons to proceed.',
+        auto: (s) => `Auto-redirect to Google Play in <strong><span id="count">${s}</span>s</strong>`,
+        cancel: 'Cancel Auto Redirect',
+        go: 'Go Now',
+        gplayTitle: 'Google Play Store',
+        gplayDesc: 'Recommended for best compatibility and auto updates.',
+        gplayBtn: 'Open Google Play',
+        gplayCopy: 'Copy Link',
+        ghTitle: 'Blog Content',
+        ghDesc: 'Browse the latest blog posts and information.',
+        ghBtn: 'Open Blog',
+        ghCopy: 'Copy Link',
+        tips: 'Tip: Before installing APK, allow “Unknown Sources” in your device settings and ensure the source is trusted. Do not download from unofficial links.',
+        footer: 'This site is for update notice and guidance only.',
+        help: 'Need help? Contact us or check the project page for updates.',
+        toastCopied: 'Link copied',
+        chipGplay: 'Google Play',
+        chipGithub: 'Blog'
+      }
+    };
+
+    // 工具：一鍵複製與吐司
+    function bindCopyI18n() {
+      document.querySelectorAll('button[data-copy]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          try { 
+            await navigator.clipboard.writeText(btn.dataset.copy); 
+            toast(I18N.toastCopied); 
+          } catch { 
+            fallbackCopy(btn.dataset.copy); 
+            toast(I18N.toastCopied); 
+          }
+        }); // 移除 { once: true } 以允許多次點擊複製
+      });
+    }
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea'); 
+      ta.value = text; 
+      document.body.appendChild(ta); 
+      ta.select(); 
+      document.execCommand('copy'); 
+      document.body.removeChild(ta);
+    }
+    function toast(msg){
+      let t = document.createElement('div'); 
+      t.innerHTML = msg; 
+      t.style.cssText = 'position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);z-index:9999;font-size:13px;opacity:.98';
+      if (matchMedia('(prefers-color-scheme: light)').matches) t.style.background = '#111827';
+      document.body.appendChild(t); 
+      setTimeout(()=>t.remove(), 1600);
+    }
+
+    // 語言切換
+    const urlLang = new URLSearchParams(location.search).get('lang');
+    let current = urlLang || (((navigator.language || '').toLowerCase().startsWith('zh')) ? 'zh' : 'en');
+    let I18N = TEXT[current];
+    const zhBtn = document.getElementById('lang-zh');
+    const enBtn = document.getElementById('lang-en');
+
+    function applyLang(lang) {
+      current = lang; 
+      I18N = TEXT[lang];
+      zhBtn.classList.toggle('active', lang==='zh');
+      enBtn.classList.toggle('active', lang==='en');
+      document.getElementById('badge').textContent = I18N.badge;
+      document.getElementById('title').textContent = I18N.title;
+      document.getElementById('lead').textContent = I18N.lead;
+      document.getElementById('gplay-title').textContent = I18N.gplayTitle;
+      document.getElementById('gplay-desc').textContent = I18N.gplayDesc;
+      // gplay 複製鍵：文字 + 無障礙屬性
+      const gplayCopyEl = document.getElementById('gplay-copy');
+      if (gplayCopyEl) {
+        gplayCopyEl.textContent = I18N.gplayCopy;
+        gplayCopyEl.setAttribute('aria-label', I18N.gplayCopy);
+        gplayCopyEl.setAttribute('title', I18N.gplayCopy);
+      }
+      document.getElementById('gh-title').textContent = I18N.ghTitle;
+      document.getElementById('gh-desc').textContent = I18N.ghDesc;
+      // GitHub 複製鍵：文字 + 無障礙屬性
+      const ghCopyEl = document.getElementById('gh-copy');
+      if (ghCopyEl) {
+        ghCopyEl.textContent = I18N.ghCopy;
+        ghCopyEl.setAttribute('aria-label', I18N.ghCopy);
+        ghCopyEl.setAttribute('title', I18N.ghCopy);
+      }
+      const gpc = document.getElementById('gplay-chip'); if (gpc) gpc.textContent = I18N.chipGplay;
+      const ghc = document.getElementById('gh-chip'); if (ghc) ghc.textContent = I18N.chipGithub;
+      document.getElementById('tips').textContent = I18N.tips;
+      document.getElementById('footer').textContent = I18N.footer;
+      document.getElementById('help').textContent = I18N.help;
+      // 已取消自動導向設計，不再更新 auto 文案與控制
+
+      // 語言切換後重新綁定複製事件（以確保多語言切換時功能正常）
+      bindCopyI18n();
+    }
+
+    zhBtn.addEventListener('click', ()=>applyLang('zh'));
+    enBtn.addEventListener('click', ()=>applyLang('en'));
+
+    // 已取消自動導向設計：移除倒數與相關事件繫結
+
+    // 初始語言與一鍵複製
+    applyLang(current);
+  </script>
+</body>
+</html>
