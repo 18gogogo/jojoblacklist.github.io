@@ -53,26 +53,26 @@
     }
 
     /* 裝修維修/清潔彈窗內容樣式 */
-#rentModal .wx-modal-content, #sellModal .wx-modal-content {
-  padding: 2rem;
-}
-#rentModal h3, #sellModal h3 {
-  color: #333;
-}
-#rentModal p, #sellModal p {
-  color: #666;
-}
-#rentModal button, #sellModal button {
-  background-color: #007bff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-#rentModal button:hover, #sellModal button:hover {
-  background-color: #0056b3;
-}
+    #rentModal .wx-modal-content, #sellModal .wx-modal-content {
+      padding: 2rem;
+    }
+    #rentModal h3, #sellModal h3 {
+      color: #333;
+    }
+    #rentModal p, #sellModal p {
+      color: #666;
+    }
+    #rentModal button, #sellModal button {
+      background-color: #007bff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #rentModal button:hover, #sellModal button:hover {
+      background-color: #0056b3;
+    }
     
     /* 獨立顯示樣式 - 修正Android WebView顯示問題 */
     .independent-display {
@@ -150,37 +150,26 @@
     </div>
   </div>
   
-  <!-- Discord彈窗 -->
-  <div id="discordModal" class="discord-modal">
-    <div class="discord-modal-content">
-      <h3 class="text-xl font-bold mb-4">掃描二維碼加入 Discord 社群</h3>
-      <div class="discord-qrcode">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://discord.gg/KvssvFsHuh" alt="Discord二維碼" width="200" height="200">
-      </div>
-      <p class="mb-4 text-gray-600 text-sm">或複製以下連結：https://discord.gg/KvssvFsHuh</p>
-      <button id="closeDiscordModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+
+
+  <!-- 裝修維修彈窗（保留但不會被觸發） -->
+  <div id="rentModal" class="wx-modal">
+    <div class="wx-modal-content">
+      <h3 class="text-xl font-bold mb-4">裝修維修</h3>
+      <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+      <button id="closeRentModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
   </div>
 
-  <!-- 裝修維修彈窗 -->
-<div id="rentModal" class="wx-modal">
-  <div class="wx-modal-content">
-    <h3 class="text-xl font-bold mb-4">裝修維修</h3>
-    <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-    <button id="closeRentModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+  <!-- 清潔彈窗 -->
+  <div id="sellModal" class="wx-modal">
+    <div class="wx-modal-content">
+      <h3 class="text-xl font-bold mb-4">清潔</h3>
+      <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+      <button id="closeSellModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+    </div>
   </div>
-</div>
 
-<!-- 清潔彈窗 -->
-<div id="sellModal" class="wx-modal">
-  <div class="wx-modal-content">
-    <h3 class="text-xl font-bold mb-4">清潔</h3>
-    <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-    <button id="closeSellModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-  </div>
-</div>
-
-  
   <!-- Google Play商店彈窗 -->
   <div id="playstoreModal" class="playstore-modal hidden-element">
     <div class="playstore-modal-content">
@@ -226,45 +215,32 @@
             不良租客名單 JOJOBLACKLIST 專業解答助理
           </a>
           
-          <!-- Discord按鈕 -->
-          <a href="javascript:void(0);" id="discordLink" class="discord-btn text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-            <i class="fab fa-discord mr-2 text-lg"></i>
-            加入Discord社群
-          </a>
+          <!-- Buy Me A Coffee 按鈕 -->
+          <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
        
-<!-- 新增的七個按鈕 -->
-<div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
-  <button id="rentBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</button>
-  <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
-  <button id="homeInsuranceBtn" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">家居保險</button>
-<button id="movingBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
-</div>
+          <!-- 新增的七個按鈕（裝修維修已改為連結） -->
+          <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
+            <a href="repair-ads.html" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
+            <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
+            <button id="homeInsuranceBtn" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">家居保險</button>
+            <button id="movingBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
+          </div>
 
-<!-- 搬運彈窗 -->
-<div id="movingModal" class="wx-modal">
-  <div class="wx-modal-content">
-    <h3 class="text-xl font-bold mb-4">搬運</h3>
-    <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-    <button id="closeMovingModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-  </div>
-</div>
+          <!-- 搬運彈窗 -->
+          <div id="movingModal" class="wx-modal">
+            <div class="wx-modal-content">
+              <h3 class="text-xl font-bold mb-4">搬運</h3>
+              <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+              <button id="closeMovingModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+            </div>
+          </div>
 
-<!-- 家居保險彈窗 -->
-<div id="homeInsuranceModal" class="wx-modal">
-  <div class="wx-modal-content">
-    <h3 class="text-xl font-bold mb-4">家居保險</h3>
-    <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-    <button id="closeHomeInsuranceModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-  </div>
-</div>
-
-          <!-- 獨立顯示立即下載內容 - 修正Android WebView置中問題 -->
-          <div class="independent-display hidden-element">
-            <a href="javascript:void(0);" id="playstoreLink" style="display: flex; justify-content: center;">   
-              <img src="https://www.birdie.com.hk/mobile/wp/wp-content/uploads/2019/02/h2-img-2.png" alt="立即下載" class="download-img mb-1"> 
-            </a>
-            <div class="text-xs" style="text-align: center;">
-              <a href="javascript:void(0);" id="apkLink" style="display: inline-block;">直接下載APK</a>
+          <!-- 家居保險彈窗 -->
+          <div id="homeInsuranceModal" class="wx-modal">
+            <div class="wx-modal-content">
+              <h3 class="text-xl font-bold mb-4">家居保險</h3>
+              <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+              <button id="closeHomeInsuranceModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
             </div>
           </div>
         </div>
@@ -277,7 +253,7 @@
 
     <!-- 新聞列表 -->
     <div id="news-list" class="news-list grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
-    <div id="loading" class="text-center text-gray-500 my-6 text-base hidden">
+    <div id="loading" class="text-center text-gray-600 my-6 text-base hidden">
       <div class="inline-block loading-spinner mr-2"><i class="fa-solid fa-spinner"></i></div>
       載入中...
     </div>
@@ -286,25 +262,11 @@
 
   <!-- 頁尾 -->
   <footer class="bg-blue-900 text-white text-center py-3 mt-8 shadow-inner text-xs md:text-sm">
-    <span>資料來源：Yahoo新聞RSS & Google News RSS | 每小時自動更新 | © 2025</span>
+    <span>資料來源：NewsData.io | 每小時自動更新 | © 2025 18GOGOGO 保留所有權利</span>
   </footer>
 
   <!-- JavaScript 腳本 -->
   <script>
-    const rssFeeds = [
-      "https://tw.news.yahoo.com/rss/real-estate",
-      "https://tw.news.yahoo.com/rss/living",
-      "https://tw.news.yahoo.com/rss/property",
-      "https://tw.news.yahoo.com/rss/finance",
-      "https://tw.news.yahoo.com/rss/society",
-      "https://hk.news.yahoo.com/rss/property",
-      "https://hk.news.yahoo.com/rss/hong-kong",
-      "https://hk.news.yahoo.com/rss/finance",
-      "https://hk.news.yahoo.com/rss/society",
-      "https://cn.news.yahoo.com/rss/china",
-      "https://news.google.com/rss/search?q=租霸+OR+租客+OR+租務糾紛&hl=zh-Hant&gl=HK&ceid=HK:zh-Hant",
-      "https://news.google.com/rss/search?q=房客+OR+租約+OR+房屋糾紛+OR+租霸+OR+租客+OR+租務糾紛&hl=zh-Hant&gl=TW&ceid=TW:zh-Hant"
-    ];
     const newsList = document.getElementById('news-list');
     const loading = document.getElementById('loading');
     const errorDiv = document.getElementById('error');
@@ -312,44 +274,30 @@
     let timer = null;
 
     async function fetchNews() {
+      const apiKey = 'pub_9834bfcaba7e4eb3a66ef563c7d15783';
+      const query = '租';//房客 OR 租約 OR 房屋糾紛 OR 租霸 OR 租客 OR 租務糾紛
+      const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(query)}&language=zh`;
       loading.classList.remove('hidden');
       errorDiv.classList.add('hidden');
       newsList.innerHTML = '';
       let allArticles = [];
       try {
-        for (const feedUrl of rssFeeds) {
-          const resp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
-          const data = await resp.json();
-          const parser = new DOMParser();
-          const xml = parser.parseFromString(data.contents, "text/xml");
-          const items = xml.querySelectorAll("item");
-          items.forEach(item => {
-            const title = item.querySelector("title")?.textContent?.trim() || "";
-            const link = item.querySelector("link")?.textContent?.trim() || "";
-            const pubDate = item.querySelector("pubDate")?.textContent?.trim() || "";
-            const description = item.querySelector("description")?.textContent?.replace(/<[^>]+>/g, '').trim() || "";
-            const source = xml.querySelector("channel > title")?.textContent?.trim() || "Yahoo新聞";
-            if (/(租客|租霸|租務糾紛)/.test(title + description)) {
-              allArticles.push({
-                title,
-                url: link,
-                publishedAt: pubDate ? new Date(pubDate).toISOString() : "",
-                content: description,
-                source: { name: source }
-              });
-            }
-          });
+        const resp = await fetch(url);
+        const data = await resp.json();
+        if (data.status === 'success') {
+          allArticles = data.results.map(article => ({
+            title: article.title,
+            url: article.link,
+            publishedAt: article.pubDate,
+            content: article.description || '',
+            source: { name: article.source_id || '未知來源' }
+          }));
+          renderNews(allArticles);
+        } else {
+          throw new Error(data.message);
         }
-        const seen = new Set();
-        allArticles = allArticles.filter(a => {
-          if (seen.has(a.title)) return false;
-          seen.add(a.title);
-          return true;
-        });
-        allArticles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-        renderNews(allArticles);
       } catch (e) {
-        errorDiv.textContent = "因觀看人數眾多導致載入新聞時發生錯誤，請稍後再試點擊市場資訊按鈕。\n" + (e && e.message ? e.message : "");
+        errorDiv.textContent = "因觀看新聞流量過高導致服務器不穩定，請稍後再試點擊市場資訊按鈕。" + e.message;
         errorDiv.classList.remove('hidden');
       } finally {
         loading.classList.add('hidden');
@@ -409,151 +357,90 @@
       }
     });
     
-    // Discord彈窗功能
-    const discordModal = document.getElementById('discordModal');
-    const discordLink = document.getElementById('discordLink');
-    const closeDiscordModal = document.getElementById('closeDiscordModal');
+
     
-    discordLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      discordModal.style.display = 'flex';
+    // 裝修維修按鈕功能（已移除 ID，添加檢查以避免錯誤）
+    const rentModal = document.getElementById('rentModal');
+    const rentBtn = document.getElementById('rentBtn');
+    const closeRentModal = document.getElementById('closeRentModal');
+    
+    if (rentBtn) {
+      rentBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        rentModal.style.display = 'flex';
+      });
+    }
+    
+    closeRentModal.addEventListener('click', function() {
+      rentModal.style.display = 'none';
     });
     
-    closeDiscordModal.addEventListener('click', function() {
-      discordModal.style.display = 'none';
-    });
-    
-    discordModal.addEventListener('click', function(e) {
-      if (e.target === discordModal) {
-        discordModal.style.display = 'none';
+    rentModal.addEventListener('click', function(e) {
+      if (e.target === rentModal) {
+        rentModal.style.display = 'none';
       }
     });
     
-    // Google Play商店彈窗功能
-    const playstoreModal = document.getElementById('playstoreModal');
-    const playstoreLink = document.getElementById('playstoreLink');
-    const closePlaystoreModal = document.getElementById('closePlaystoreModal');
+    // 清潔按鈕功能
+    const sellModal = document.getElementById('sellModal');
+    const sellBtn = document.getElementById('sellBtn');
+    const closeSellModal = document.getElementById('closeSellModal');
     
-    playstoreLink.addEventListener('click', function(e) {
+    sellBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      playstoreModal.style.display = 'flex';
+      sellModal.style.display = 'flex';
     });
     
-    closePlaystoreModal.addEventListener('click', function() {
-      playstoreModal.style.display = 'none';
+    closeSellModal.addEventListener('click', function() {
+      sellModal.style.display = 'none';
     });
     
-    playstoreModal.addEventListener('click', function(e) {
-      if (e.target === playstoreModal) {
-        playstoreModal.style.display = 'none';
+    sellModal.addEventListener('click', function(e) {
+      if (e.target === sellModal) {
+        sellModal.style.display = 'none';
       }
     });
     
-    // APK下載彈窗功能
-    const apkModal = document.getElementById('apkModal');
-    const apkLink = document.getElementById('apkLink');
-    const closeApkModal = document.getElementById('closeApkModal');
+    // 家居保險按鈕功能
+    const homeInsuranceModal = document.getElementById('homeInsuranceModal');
+    const homeInsuranceBtn = document.getElementById('homeInsuranceBtn');
+    const closeHomeInsuranceModal = document.getElementById('closeHomeInsuranceModal');
     
-    apkLink.addEventListener('click', function(e) {
+    homeInsuranceBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      apkModal.style.display = 'flex';
+      homeInsuranceModal.style.display = 'flex';
     });
     
-    closeApkModal.addEventListener('click', function() {
-      apkModal.style.display = 'none';
+    closeHomeInsuranceModal.addEventListener('click', function() {
+      homeInsuranceModal.style.display = 'none';
     });
     
-    apkModal.addEventListener('click', function(e) {
-      if (e.target === apkModal) {
-        apkModal.style.display = 'none';
+    homeInsuranceModal.addEventListener('click', function(e) {
+      if (e.target === homeInsuranceModal) {
+        homeInsuranceModal.style.display = 'none';
       }
     });
     
-// 裝修維修按鈕功能
-const rentModal = document.getElementById('rentModal');
-const rentBtn = document.getElementById('rentBtn');
-const closeRentModal = document.getElementById('closeRentModal');
-
-rentBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  if (window.Android && window.Android.loadUrl) {
-    window.Android.loadUrl('file:///android_asset/repair-ads.html');
-  } else {
-    // Fallback for testing outside WebView
-    location.href = 'repair-ads.html';
-  }
-});
-
-closeRentModal.addEventListener('click', function() {
-  rentModal.style.display = 'none';
-});
-
-rentModal.addEventListener('click', function(e) {
-  if (e.target === rentModal) {
-    rentModal.style.display = 'none';
-  }
-});
-
-// 清潔按鈕功能
-const sellModal = document.getElementById('sellModal');
-const sellBtn = document.getElementById('sellBtn');
-const closeSellModal = document.getElementById('closeSellModal');
-
-sellBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  sellModal.style.display = 'flex';
-});
-
-closeSellModal.addEventListener('click', function() {
-  sellModal.style.display = 'none';
-});
-
-sellModal.addEventListener('click', function(e) {
-  if (e.target === sellModal) {
-    sellModal.style.display = 'none';
-  }
-});
-
-// 家居保險按鈕功能
-const homeInsuranceModal = document.getElementById('homeInsuranceModal');
-const homeInsuranceBtn = document.getElementById('homeInsuranceBtn');
-const closeHomeInsuranceModal = document.getElementById('closeHomeInsuranceModal');
-
-homeInsuranceBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  homeInsuranceModal.style.display = 'flex';
-});
-
-closeHomeInsuranceModal.addEventListener('click', function() {
-  homeInsuranceModal.style.display = 'none';
-});
-
-homeInsuranceModal.addEventListener('click', function(e) {
-  if (e.target === homeInsuranceModal) {
-    homeInsuranceModal.style.display = 'none';
-  }
-});
-
-// 搬運按鈕功能
-const movingModal = document.getElementById('movingModal');
-const movingBtn = document.getElementById('movingBtn');
-const closeMovingModal = document.getElementById('closeMovingModal');
-
-movingBtn.addEventListener('click', function(e) {
-  e.preventDefault();
-  movingModal.style.display = 'flex';
-});
-
-closeMovingModal.addEventListener('click', function() {
-  movingModal.style.display = 'none';
-});
-
-movingModal.addEventListener('click', function(e) {
-  if (e.target === movingModal) {
-    movingModal.style.display = 'none';
-  }
-});
-
+    // 搬運按鈕功能
+    const movingModal = document.getElementById('movingModal');
+    const movingBtn = document.getElementById('movingBtn');
+    const closeMovingModal = document.getElementById('closeMovingModal');
+    
+    movingBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      movingModal.style.display = 'flex';
+    });
+    
+    closeMovingModal.addEventListener('click', function() {
+      movingModal.style.display = 'none';
+    });
+    
+    movingModal.addEventListener('click', function(e) {
+      if (e.target === movingModal) {
+        movingModal.style.display = 'none';
+      }
+    });
+    
     refreshBtn.addEventListener('click', fetchNews);
     window.onload = () => {
       fetchNews();
