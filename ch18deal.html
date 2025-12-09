@@ -11,60 +11,48 @@
 <title>18Deal</title>
 <style>
 html,body{margin:0;padding:0;height:100%;overflow:hidden;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;touch-action:manipulation;overscroll-behavior:none}
-iframe{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;border:0;display:block;background:transparent}
+iframe{position:fixed;inset:0;width:100vw;height:100dvh;border:0;display:block;background:transparent}
+#fallback{position:fixed;inset:0;display:none;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#333;text-align:center;padding:24px}
 </style>
-
-
-                    // 通知Android應用
-                    if (window.Android && window.Android.onIframeLoaded) {
-                        window.Android.onIframeLoaded();
-                    }
-                };
-            });
-        }
-        
-        // 初始化
-        setupWebViewJSBridge();
-    </script>
 </head>
 <body>
-<iframe id="frame" title="18Deal" allow="camera; microphone; autoplay; encrypted-media; fullscreen; geolocation; clipboard-read; clipboard-write" allowfullscreen loading="eager"></iframe>
-<div id="fallback" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#333;text-align:center;padding:24px">
-  <div>
-    <div style="font-size:18px;font-weight:600;margin-bottom:8px">內容載入失敗</div>
-    <div style="font-size:14px;opacity:.8">請確認網路或目標網址是否可用</div>
-  </div>
-  </div>
+<iframe id="frame" title="18Deal" allow="camera; microphone; autoplay; encrypted-media; fullscreen; geolocation; clipboard-read; clipboard-write" allowfullscreen loading="eager" sandbox="allow-scripts allow-forms allow-same-origin allow-popups allow-modals allow-popups-to-escape-sandbox" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<div id="fallback"><div><div style="font-size:18px;font-weight:600;margin-bottom:8px">內容載入失敗</div><div style="font-size:14px;opacity:.8">請確認網路或目標網址是否可用</div></div></div>
 <script type="text/javascript">
 (function(){
   var frame=document.getElementById('frame');
   var fallback=document.getElementById('fallback');
-  var params=new URLSearchParams(location.search);
-  var u=params.get('url');
-  var h=params.get('html');
-  var hb64=params.get('html_b64');
+  var p=new URLSearchParams(location.search);
+  var u=p.get('url');
+  var ub64=p.get('url_b64');
+  var h=p.get('html');
+  var hb64=p.get('html_b64');
   var defaultSrc='https://18gogogo-7tl.pages.dev/18deal';
   function decodeB64(s){try{return decodeURIComponent(escape(atob(s)));}catch(e){try{return atob(s);}catch(_){return null;}}}
   function buildSrcdoc(content){
-    var style='<style>html,body{margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}a,button{outline:none;-webkit-tap-highlight-color:transparent}<\/style>';
+    var style='<style>html,body{margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}a,button{outline:none;-webkit-tap-highlight-color:transparent}</style>';
     return style+content;
   }
+  var srcSet=false;
   if(hb64){
     var d=decodeB64(hb64);
-    if(d!=null){frame.setAttribute('srcdoc',buildSrcdoc(d));}else{frame.src=defaultSrc;}
+    if(d!=null){frame.setAttribute('srcdoc',buildSrcdoc(d));srcSet=true;}
   }else if(h){
     try{frame.setAttribute('srcdoc',buildSrcdoc(decodeURIComponent(h)));}catch(e){frame.setAttribute('srcdoc',buildSrcdoc(h));}
-  }else{
-    frame.src=u?decodeURIComponent(u):defaultSrc;
+    srcSet=true;
+  }else if(ub64){
+    var du=decodeB64(ub64);
+    if(du){try{frame.src=decodeURIComponent(du);}catch(e){frame.src=du;}} else {frame.src=defaultSrc;}
+    srcSet=true;
+  }else if(u){
+    try{frame.src=decodeURIComponent(u);}catch(e){frame.src=u;}
+    srcSet=true;
   }
-  function resize(){frame.style.width=window.innerWidth+'px';frame.style.height=window.innerHeight+'px';}
-  window.addEventListener('resize',function(){resize();});
-  resize();
+  if(!srcSet){frame.src=defaultSrc;}
   var timer=setTimeout(function(){fallback.style.display='flex';},9000);
   frame.addEventListener('load',function(){clearTimeout(timer);fallback.style.display='none';if(window.Android&&typeof window.Android.onIframeLoaded==='function'){try{window.Android.onIframeLoaded();}catch(_){}}});
   frame.addEventListener('error',function(){clearTimeout(timer);fallback.style.display='flex';if(window.Android&&typeof window.Android.onIframeError==='function'){try{window.Android.onIframeError();}catch(_){}}});
 })();
 </script>
-   
 </body>
 </html>
