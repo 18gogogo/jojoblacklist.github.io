@@ -30,8 +30,23 @@ iframe{position:fixed;inset:0;width:100vw;height:100dvh;border:0;display:block;b
   var defaultSrc='https://18gogogo-7tl.pages.dev/18deal';
   function decodeB64(s){try{return decodeURIComponent(escape(atob(s)));}catch(e){try{return atob(s);}catch(_){return null;}}}
   function buildSrcdoc(content){
-    var style='<style>html,body{margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}a,button{outline:none;-webkit-tap-highlight-color:transparent}</style>';
-    return style+content;
+    var meta='<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">';
+    var style='<style>'+
+      'html,body{margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;width:100%;height:100%;overflow-x:hidden}'+
+      '*{outline:none!important;-webkit-tap-highlight-color:transparent!important;box-shadow:none!important}'+
+      '*:focus{outline:none!important}'+
+      '/* Hide common dev tools overlay elements */'+
+      '#__vconsole,.vc-switch,.__react_component_tooltip,[class*="inspector"],[id*="inspector"]{display:none!important}'+
+      '</style>';
+    // Ensure content has a body if it's just a fragment
+    if(content.indexOf('<body')===-1 && content.indexOf('<html')===-1){
+        return '<!DOCTYPE html><html><head>'+meta+style+'</head><body>'+content+'</body></html>';
+    }
+    // Inject into head if possible
+    if(content.indexOf('<head')!==-1){
+        return content.replace('<head>', '<head>'+meta+style);
+    }
+    return meta+style+content;
   }
   var srcSet=false;
   if(hb64){
