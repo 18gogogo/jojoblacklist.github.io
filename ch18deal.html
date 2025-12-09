@@ -1,56 +1,168 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="format-detection" content="telephone=no">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<title>18Deal</title>
-<style>
-html,body{margin:0;padding:0;height:100%;overflow:hidden;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;touch-action:manipulation;overscroll-behavior:none}
-iframe{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;border:0;display:block;background:transparent}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="theme-color" content="#000000">
+    <title>18Deal</title>
+    <style>
+        /* 基礎重置 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* 防止主頁面出現滾動條，讓iframe處理滾動 */
+            background-color: #fff;
+            -webkit-tap-highlight-color: transparent; /* 移除點擊高亮 */
+        }
+
+        /* 容器樣式 */
+        .iframe-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* iframe 樣式 */
+        iframe {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            /* iOS 滾動優化 */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* 加載動畫容器 */
+        .loader-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 針對WebView的特定優化，但保留交互能力 */
+        /* 僅禁止長按彈出菜單，不禁止選擇和輸入 */
+        body {
+            -webkit-touch-callout: none; /* iOS長按菜單 */
+        }
+    </style>
+    <script type="text/javascript">
+        // 用於與Android WebView通信的接口
+        function setupWebViewJSBridge() {
+            // 定義橋接函數
+            function connectWebView() {
+                if (window.Android) {
+                    console.log("Android WebView接口已連接");
+                }
+            }
+
+            // 立即嘗試連接
+            connectWebView();
+
+            // 頁面加載完成後再次確認並處理iframe
+            window.addEventListener('load', function() {
+                connectWebView();
+                
+                var iframe = document.querySelector('iframe');
+                
+                // 監聽iframe加載完成
+                iframe.onload = function() {
+                    console.log("iframe已加載完成");
+                    
+                    // 隱藏加載動畫
+                    var loader = document.getElementById('loader');
+                    if(loader) {
+                        loader.classList.add('hidden');
+                        // 動畫結束後移除元素
+                        setTimeout(function() {
+                            loader.style.display = 'none';
+                        }, 300);
+                    }
+
+                    // 通知Android應用
+                    if (window.Android && window.Android.onIframeLoaded) {
+                        window.Android.onIframeLoaded();
+                    }
+                };
+            });
+        }
+        
+        // 初始化
+        setupWebViewJSBridge();
+    </script>
 </head>
 <body>
-<iframe id="frame" title="18Deal" allow="camera; microphone; autoplay; encrypted-media; fullscreen; geolocation; clipboard-read; clipboard-write" allowfullscreen loading="eager"></iframe>
-<div id="fallback" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#333;text-align:center;padding:24px">
-  <div>
-    <div style="font-size:18px;font-weight:600;margin-bottom:8px">內容載入失敗</div>
-    <div style="font-size:14px;opacity:.8">請確認網路或目標網址是否可用</div>
-  </div>
-  </div>
-<script type="text/javascript">
-(function(){
-  var frame=document.getElementById('frame');
-  var fallback=document.getElementById('fallback');
-  var params=new URLSearchParams(location.search);
-  var u=params.get('url');
-  var h=params.get('html');
-  var hb64=params.get('html_b64');
-  var defaultSrc='https://18gogogo-7tl.pages.dev/18deal';
-  function decodeB64(s){try{return decodeURIComponent(escape(atob(s)));}catch(e){try{return atob(s);}catch(_){return null;}}}
-  function buildSrcdoc(content){
-    var style='<style>html,body{margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}a,button{outline:none;-webkit-tap-highlight-color:transparent}<\/style>';
-    return style+content;
-  }
-  if(hb64){
-    var d=decodeB64(hb64);
-    if(d!=null){frame.setAttribute('srcdoc',buildSrcdoc(d));}else{frame.src=defaultSrc;}
-  }else if(h){
-    try{frame.setAttribute('srcdoc',buildSrcdoc(decodeURIComponent(h)));}catch(e){frame.setAttribute('srcdoc',buildSrcdoc(h));}
-  }else{
-    frame.src=u?decodeURIComponent(u):defaultSrc;
-  }
-  function resize(){frame.style.width=window.innerWidth+'px';frame.style.height=window.innerHeight+'px';}
-  window.addEventListener('resize',function(){resize();});
-  resize();
-  var timer=setTimeout(function(){fallback.style.display='flex';},9000);
-  frame.addEventListener('load',function(){clearTimeout(timer);fallback.style.display='none';if(window.Android&&typeof window.Android.onIframeLoaded==='function'){try{window.Android.onIframeLoaded();}catch(_){}}});
-  frame.addEventListener('error',function(){clearTimeout(timer);fallback.style.display='flex';if(window.Android&&typeof window.Android.onIframeError==='function'){try{window.Android.onIframeError();}catch(_){}}});
-})();
-</script>
+    <!-- 加載動畫 -->
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <!-- iframe 容器 -->
+    <div class="iframe-container">
+        <!-- 
+             提示：若要轉載其他網頁，只需修改下方的 src 屬性即可。
+             注意：目標網頁必須支持被 iframe 嵌入 (X-Frame-Options 允許)。
+        -->
+        <iframe 
+            id="content-frame"
+            src="https://18gogogo-7tl.pages.dev/18deal" 
+            title="18Deal" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; camera; microphone; fullscreen" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    
+    <script type="text/javascript">
+        // 處理通用兼容性問題
+        document.addEventListener("DOMContentLoaded", function() {
+            // 處理 iOS 視口高度問題 (100vh 在某些瀏覽器包含地址欄)
+            function setAppHeight() {
+                var vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', vh + 'px');
+            }
+            
+            window.addEventListener('resize', setAppHeight);
+            setAppHeight();
+        });
+    </script>
 </body>
 </html>
