@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOJOBLACKLIST APP 每日資訊 - 香港、台灣、中國</title>
+  <title>JOJOBLACKLIST 每日資訊 - 香港、台灣、中國</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body { background: #f9fafb; }
     .news-content { white-space: pre-line; }
     
-    /* 手機優化樣式 */
     @media (max-width: 640px) {
       .header-title { font-size: 1.25rem; }
       .header-subtitle { font-size: 0.75rem; }
@@ -23,15 +22,12 @@
       .download-img { max-width: 180px; height: auto; display: block; margin: 0 auto; }
       .main-title { font-size: 1.5rem; }
       .refresh-btn { padding: 0.75rem; }
-      
-      /* 手機端 iframe 高度調整 */
       .iframe-wrap {
-        padding-bottom: 50%; /* 4:3 比例，適合手機顯示 */
+        padding-bottom: 50%;
         margin-bottom: 1.5rem;
       }
     }
     
-    /* 彈窗樣式 */
     .wx-modal, .discord-modal, .playstore-modal, .apk-modal {
       display: none;
       position: fixed;
@@ -60,16 +56,11 @@
       margin: 1rem auto;
     }
 
-    /* 裝修維修/清潔彈窗內容樣式 */
     #rentModal .wx-modal-content, #sellModal .wx-modal-content {
       padding: 2rem;
     }
-    #rentModal h3, #sellModal h3 {
-      color: #333;
-    }
-    #rentModal p, #sellModal p {
-      color: #666;
-    }
+    #rentModal h3, #sellModal h3 { color: #333; }
+    #rentModal p, #sellModal p { color: #666; }
     #rentModal button, #sellModal button {
       background-color: #007bff;
       border: none;
@@ -82,7 +73,6 @@
       background-color: #0056b3;
     }
     
-    /* 獨立顯示樣式 - 修正Android WebView顯示問題 */
     .independent-display {
       background-color: #f0f0f0;
       padding: 0.75rem;
@@ -101,59 +91,34 @@
       text-align: center;
     }
     
-    /* 資訊卡片間距優化 */
-    .news-list {
-      gap: 1rem;
-    }
+    .news-list { gap: 1rem; }
     
-    /* 加載動畫優化 */
-    .loading-spinner {
-      animation: spin 1s linear infinite;
-    }
+    .loading-spinner { animation: spin 1s linear infinite; }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
     
-    /* Discord按鈕樣式 */
-    .discord-btn {
-      background-color: #5865F2;
-    }
-    .discord-btn:hover {
-      background-color: #4752C4;
-    }
+    .discord-btn { background-color: #5865F2; }
+    .discord-btn:hover { background-color: #4752C4; }
     
-    /* Play Store按鈕樣式 */
-    .playstore-btn {
-      background-color: #4285F4;
-    }
-    .playstore-btn:hover {
-      background-color: #3367D6;
-    }
+    .playstore-btn { background-color: #4285F4; }
+    .playstore-btn:hover { background-color: #3367D6; }
     
-    /* APK下載按鈕樣式 */
-    .apk-btn {
-      background-color: #34A853;
-    }
-    .apk-btn:hover {
-      background-color: #2D9248;
-    }
+    .apk-btn { background-color: #34A853; }
+    .apk-btn:hover { background-color: #2D9248; }
     
-    /* 隱藏元素 */
-    .hidden-element {
-      display: none !important;
-    }
+    .hidden-element { display: none !important; }
     
-    /* iframe 包裹器樣式 - 手機優化 */
     .iframe-wrap {
       position: relative;
       width: 100%;
-      padding-bottom: 70%; /* 4:3 比例，更適合手機顯示 */
+      padding-bottom: 70%;
       height: 0;
       overflow: hidden;
-      margin: 1rem 0; /* 上下間距 */
-      border-radius: 0.5rem; /* 添加圓角 */
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 添加陰影 */
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .iframe-wrap iframe {
@@ -163,32 +128,18 @@
       width: 100%;
       height: 100%;
       border: 0;
-      border-radius: 0.5rem; /* iframe 也添加圓角 */
+      border-radius: 0.5rem;
     }
     
-    /* 桌面端 iframe 優化 */
     @media (min-width: 768px) {
       .iframe-wrap {
-        padding-bottom: 28.125%; /* 桌面端使用 16:9 比例 */
+        padding-bottom: 28.125%;
         margin: 2rem 0;
       }
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <!-- 微信小程序彈窗 -->
-  <div id="wxModal" class="wx-modal">
-    <div class="wx-modal-content">
-      <h3 class="text-xl font-bold mb-4">掃描二維碼打開微信小程序</h3>
-      <div class="wx-qrcode">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wxaurl.cn/lMapNqZnF6v" alt="微信小程序二維碼" width="200" height="200">
-      </div>
-      <p class="mb-4 text-gray-600 text-sm">微信小程序：不良租客名單 JOJOBLACKLIST 專業解答助理</p>
-      <button id="closeWxModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-    </div>
-  </div>
-
-  <!-- 裝修維修彈窗（保留但不會被觸發） -->
   <div id="rentModal" class="wx-modal">
     <div class="wx-modal-content">
       <h3 class="text-xl font-bold mb-4">裝修維修</h3>
@@ -197,7 +148,6 @@
     </div>
   </div>
 
-  <!-- 清潔彈窗 -->
   <div id="sellModal" class="wx-modal">
     <div class="wx-modal-content">
       <h3 class="text-xl font-bold mb-4">清潔</h3>
@@ -206,7 +156,6 @@
     </div>
   </div>
 
-  <!-- Google Play商店彈窗 -->
   <div id="playstoreModal" class="playstore-modal hidden-element">
     <div class="playstore-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼前往 Google Play 商店</h3>
@@ -218,7 +167,6 @@
     </div>
   </div>
   
-  <!-- APK下載彈窗 -->
   <div id="apkModal" class="apk-modal hidden-element">
     <div class="apk-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼下載 APK 檔案</h3>
@@ -230,29 +178,21 @@
     </div>
   </div>
   
-  <!-- 頁首 -->
   <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
     <div class="flex items-center space-x-2">
       <i class="fa-solid fa-newspaper text-xl md:text-2xl"></i>
-      <span class="header-title text-xl md:text-3xl font-extrabold tracking-tight">JOJOBLACKLIST APP 每日資訊</span>
+      <span class="header-title text-xl md:text-3xl font-extrabold tracking-tight">JOJOBLACKLIST 每日資訊</span>
     </div>
     <span class="header-subtitle text-xs md:text-base">香港・台灣・中國地區</span>
   </header>
 
-  <!-- 主內容 -->
   <main class="flex-1 container mx-auto px-3 py-4 md:py-6">
     <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
         <h2 class="main-title text-xl md:text-3xl font-bold text-blue-900 tracking-tight">最新資訊</h2>
-        
-        <!-- 手動更新按鈕 -->
-        <button id="refreshBtn" class="refresh-btn bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full flex items-center shadow text-sm font-semibold justify-center w-full sm:w-auto mt-0 hidden-element">
-          <i class="fa-solid fa-rotate-right mr-2"></i>手動更新資訊
-        </button> 
       </div>
     </div>
 
-    <!-- 博客內容 iframe - 位於「最新資訊」標題下方，按鈕區域上方 -->
     <div class="iframe-wrap">
       <iframe 
         src="https://blog.18gogogo.top/" 
@@ -266,19 +206,15 @@
       </iframe>
     </div>
 
-    <!-- 按鈕區域 -->
     <div class="mb-6">
       <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-        <!-- 微信小程序按鈕 -->
-        <a href="javascript:void(0);" id="wxAppLink" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-          <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" alt="微信小程序" class="w-5 h-5 mr-2"/>
-          不良租客名單 JOJOBLACKLIST 專業解答助理
+        <a href="https://github.com/18gogogo/jojoblacklist/releases" target="_blank" rel="noopener" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+          <i class="fa-solid fa-cloud-arrow-down mr-2"></i>
+          檢查更新 Check for updates
         </a>
         
-        <!-- Buy Me A Coffee 按鈕 -->
         <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
      
-        <!-- 新增的按鈕組 -->
         <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
           <a href="repair-ads.html" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
           <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
@@ -286,7 +222,6 @@
           <button id="movingBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
         </div>
 
-        <!-- 搬運彈窗 -->
         <div id="movingModal" class="wx-modal">
           <div class="wx-modal-content">
             <h3 class="text-xl font-bold mb-4">搬運</h3>
@@ -295,7 +230,6 @@
           </div>
         </div>
 
-        <!-- 家居保險彈窗 -->
         <div id="homeInsuranceModal" class="wx-modal">
           <div class="wx-modal-content">
             <h3 class="text-xl font-bold mb-4">家居保險</h3>
@@ -306,7 +240,6 @@
       </div>
     </div>
 
-    <!-- 資訊列表 -->
     <div id="news-list" class="news-list grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
     <div id="loading" class="text-center text-gray-600 my-6 text-base hidden">
       <div class="inline-block loading-spinner mr-2"><i class="fa-solid fa-spinner"></i></div>
@@ -315,22 +248,19 @@
     <div id="error" class="text-center text-red-600 my-6 text-sm hidden"></div>
   </main>
 
-  <!-- 頁尾 -->
   <footer class="bg-blue-900 text-white text-center py-3 mt-8 shadow-inner text-xs md:text-sm">
-    <span>資料來源：NewsData.io | 每小時自動更新 | © 2025-2026 18GOGOGO 保留所有權利</span>
+    <span>資料來源：NewsData.io | 每小時自動更新 | © 2025 18GOGOGO 保留所有權利</span>
   </footer>
 
-  <!-- JavaScript 腳本 -->
   <script>
     const newsList = document.getElementById('news-list');
     const loading = document.getElementById('loading');
     const errorDiv = document.getElementById('error');
-    const refreshBtn = document.getElementById('refreshBtn');
     let timer = null;
 
     async function fetchNews() {
       const apiKey = 'pub_9834bfcaba7e4eb3a66ef563c7d15783';
-      const query = '租';//房客 OR 租約 OR 房屋糾紛 OR 租霸 OR 租客 OR 租務糾紛
+      const query = '租';
       const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(query)}&language=zh`;
       loading.classList.remove('hidden');
       errorDiv.classList.add('hidden');
@@ -382,37 +312,9 @@
 
     function startAutoRefresh() {
       if (timer) clearInterval(timer);
-      timer = setInterval(fetchNews, 60 * 60 * 1000); // 每小時更新
+      timer = setInterval(fetchNews, 60 * 60 * 1000);
     }
 
-    // 微信小程序彈窗功能
-    const wxModal = document.getElementById('wxModal');
-    const wxAppLink = document.getElementById('wxAppLink');
-    const closeWxModal = document.getElementById('closeWxModal');
-    
-    wxAppLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      wxModal.style.display = 'flex';
-      if (/MicroMessenger/i.test(navigator.userAgent)) {
-        try {
-          location.href = 'https://wxaurl.cn/lMapNqZnF6v';
-        } catch(e) {
-          console.error('在微信瀏覽器中打開失敗:', e);
-        }
-      }
-    });
-    
-    closeWxModal.addEventListener('click', function() {
-      wxModal.style.display = 'none';
-    });
-    
-    wxModal.addEventListener('click', function(e) {
-      if (e.target === wxModal) {
-        wxModal.style.display = 'none';
-      }
-    });
-
-    // 裝修維修按鈕功能（已移除 ID，添加檢查以避免錯誤）
     const rentModal = document.getElementById('rentModal');
     const rentBtn = document.getElementById('rentBtn');
     const closeRentModal = document.getElementById('closeRentModal');
@@ -434,7 +336,6 @@
       }
     });
     
-    // 清潔按鈕功能
     const sellModal = document.getElementById('sellModal');
     const sellBtn = document.getElementById('sellBtn');
     const closeSellModal = document.getElementById('closeSellModal');
@@ -454,7 +355,6 @@
       }
     });
     
-    // 家居保險按鈕功能
     const homeInsuranceModal = document.getElementById('homeInsuranceModal');
     const homeInsuranceBtn = document.getElementById('homeInsuranceBtn');
     const closeHomeInsuranceModal = document.getElementById('closeHomeInsuranceModal');
@@ -474,7 +374,6 @@
       }
     });
     
-    // 搬運按鈕功能
     const movingModal = document.getElementById('movingModal');
     const movingBtn = document.getElementById('movingBtn');
     const closeMovingModal = document.getElementById('closeMovingModal');
@@ -494,7 +393,6 @@
       }
     });
     
-    refreshBtn.addEventListener('click', fetchNews);
     window.onload = () => {
       fetchNews();
       startAutoRefresh();
@@ -502,4 +400,3 @@
   </script>
 </body>
 </html>
-
