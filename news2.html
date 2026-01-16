@@ -26,7 +26,7 @@
     }
     
     /* 彈窗樣式 */
-    .wx-modal, .discord-modal, .playstore-modal, .apk-modal {
+    .wx-modal, .discord-modal, .playstore-modal, .apk-modal, .tg-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -38,7 +38,7 @@
       align-items: center;
       justify-content: center;
     }
-    .wx-modal-content, .discord-modal-content, .playstore-modal-content, .apk-modal-content {
+    .wx-modal-content, .discord-modal-content, .playstore-modal-content, .apk-modal-content, .tg-modal-content {
       background-color: white;
       padding: 1.5rem;
       border-radius: 1rem;
@@ -46,7 +46,7 @@
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    .wx-qrcode, .discord-qrcode, .playstore-qrcode, .apk-qrcode {
+    .wx-qrcode, .discord-qrcode, .playstore-qrcode, .apk-qrcode, .tg-qrcode {
       width: 180px;
       height: 180px;
       margin: 1rem auto;
@@ -131,12 +131,46 @@
       background-color: #2D9248;
     }
     
-    /* TG按鈕樣式 - Telegram官方藍色 */
+    /* Telegram按鈕樣式 */
     .tg-btn {
-      background-color: #0088cc;
+      background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
     }
     .tg-btn:hover {
-      background-color: #006db3;
+      background: linear-gradient(135deg, #0077b5 0%, #0066aa 100%);
+    }
+    
+    /* 複製按鈕樣式 */
+    .copy-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .copy-btn:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+    .copy-btn.copied {
+      background-color: #2e7d32;
+    }
+    
+    /* URL顯示區域樣式 */
+    .url-display {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 10px 0;
+      font-family: monospace;
+      font-size: 12px;
+      word-break: break-all;
+      color: #333;
     }
     
     /* 隱藏元素 */
@@ -187,6 +221,23 @@
       <button id="closeApkModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
   </div>
+
+  <!-- Telegram群組彈窗 -->
+  <div id="tgModal" class="tg-modal">
+    <div class="tg-modal-content">
+      <h3 class="text-xl font-bold mb-4" style="color: #0088cc;">加入 JOJOBLACKLIST TG 群組</h3>
+      <div class="tg-qrcode">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/jojoblacklist" alt="TG群組二維碼" width="200" height="200">
+      </div>
+      <p class="mb-2 text-gray-600 text-sm">掃描二維碼加入 Telegram 群組</p>
+      <div class="url-display">https://t.me/jojoblacklist</div>
+      <button class="copy-btn mb-3" onclick="copyTGURL()">
+        <i class="fa-solid fa-copy"></i>
+        <span id="copyText">一鍵複製連結</span>
+      </button>
+      <button id="closeTgModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+    </div>
+  </div>
   
   <!-- 頁首 -->
   <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
@@ -209,11 +260,11 @@
             檢查更新 Check for updates
           </a>
           
-          <!-- 新增TG群組按鈕 - Telegram風格 -->
-          <a href="https://t.me/jojoblacklist" target="_blank" rel="noopener" class="tg-btn text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-            <i class="fab fa-telegram-plane mr-2"></i>
+          <!-- TG群組按鈕 -->
+          <button id="tgBtn" class="tg-btn hover:opacity-90 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+            <i class="fab fa-telegram mr-2"></i>
             加入TG群組 JOIN TG GROUP
-          </a>
+          </button>
           
           <!-- Buy Me A Coffee 按鈕 -->
           <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
@@ -230,7 +281,7 @@
           <div id="movingModal" class="wx-modal">
             <div class="wx-modal-content">
               <h3 class="text-xl font-bold mb-4">搬運</h3>
-              <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+              <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
               <button id="closeMovingModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
             </div>
           </div>
@@ -239,7 +290,7 @@
           <div id="homeInsuranceModal" class="wx-modal">
             <div class="wx-modal-content">
               <h3 class="text-xl font-bold mb-4">家居保險</h3>
-              <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+              <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
               <button id="closeHomeInsuranceModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
             </div>
           </div>
@@ -328,6 +379,68 @@
     function startAutoRefresh() {
       if (timer) clearInterval(timer);
       timer = setInterval(fetchNews, 60 * 60 * 1000); // 每小時更新
+    }
+
+    // TG群組按鈕功能
+    const tgModal = document.getElementById('tgModal');
+    const tgBtn = document.getElementById('tgBtn');
+    const closeTgModal = document.getElementById('closeTgModal');
+    
+    tgBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      tgModal.style.display = 'flex';
+    });
+    
+    closeTgModal.addEventListener('click', function() {
+      tgModal.style.display = 'none';
+      // 重置複製按鈕狀態
+      const copyBtn = document.querySelector('.copy-btn');
+      const copyText = document.getElementById('copyText');
+      copyBtn.classList.remove('copied');
+      copyText.textContent = '一鍵複製連結';
+    });
+    
+    tgModal.addEventListener('click', function(e) {
+      if (e.target === tgModal) {
+        tgModal.style.display = 'none';
+        // 重置複製按鈕狀態
+        const copyBtn = document.querySelector('.copy-btn');
+        const copyText = document.getElementById('copyText');
+        copyBtn.classList.remove('copied');
+        copyText.textContent = '一鍵複製連結';
+      }
+    });
+    
+    // 複製TG連結功能
+    function copyTGURL() {
+      const tgURL = 'https://t.me/jojoblacklist';
+      navigator.clipboard.writeText(tgURL).then(function() {
+        const copyBtn = document.querySelector('.copy-btn');
+        const copyText = document.getElementById('copyText');
+        copyBtn.classList.add('copied');
+        copyText.textContent = '已複製！';
+        
+        // 3秒後恢復原始文字
+        setTimeout(function() {
+          copyBtn.classList.remove('copied');
+          copyText.textContent = '一鍵複製連結';
+        }, 3000);
+      }).catch(function(err) {
+        console.error('複製失敗: ', err);
+        // 備用方案：創建臨時輸入框
+        const tempInput = document.createElement('input');
+        tempInput.value = tgURL;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        
+        const copyText = document.getElementById('copyText');
+        copyText.textContent = '已複製！';
+        setTimeout(function() {
+          copyText.textContent = '一鍵複製連結';
+        }, 3000);
+      });
     }
 
     // 清潔按鈕功能
