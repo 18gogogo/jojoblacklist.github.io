@@ -28,7 +28,7 @@
       }
     }
     
-    .wx-modal, .discord-modal, .playstore-modal, .apk-modal {
+    .wx-modal, .discord-modal, .playstore-modal, .apk-modal, .tg-modal {
       display: none;
       position: fixed;
       top: 0;
@@ -41,7 +41,7 @@
       justify-content: center;
     }
     
-    .wx-modal-content, .discord-modal-content, .playstore-modal-content, .apk-modal-content {
+    .wx-modal-content, .discord-modal-content, .playstore-modal-content, .apk-modal-content, .tg-modal-content {
       background-color: white;
       padding: 1.5rem;
       border-radius: 1rem;
@@ -50,7 +50,7 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
     
-    .wx-qrcode, .discord-qrcode, .playstore-qrcode, .apk-qrcode {
+    .wx-qrcode, .discord-qrcode, .playstore-qrcode, .apk-qrcode, .tg-qrcode {
       width: 180px;
       height: 180px;
       margin: 1rem auto;
@@ -107,6 +107,58 @@
     
     .apk-btn { background-color: #34A853; }
     .apk-btn:hover { background-color: #2D9248; }
+    
+    /* Telegram按鈕樣式 */
+    .tg-btn {
+      background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+      box-shadow: 0 4px 6px rgba(0, 119, 181, 0.2);
+    }
+    .tg-btn:hover {
+      background: linear-gradient(135deg, #0077b5 0%, #0066aa 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 8px rgba(0, 119, 181, 0.3);
+    }
+    
+    /* 複製按鈕樣式 */
+    .copy-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .copy-btn:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+    .copy-btn.copied {
+      background-color: #2e7d32;
+      animation: pulse 0.5s;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(46, 125, 50, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+    }
+    
+    /* URL顯示區域樣式 */
+    .url-display {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 10px 0;
+      font-family: monospace;
+      font-size: 12px;
+      word-break: break-all;
+      color: #333;
+    }
     
     .hidden-element { display: none !important; }
     
@@ -178,6 +230,23 @@
     </div>
   </div>
   
+  <!-- Telegram群組彈窗 -->
+  <div id="tgModal" class="tg-modal">
+    <div class="tg-modal-content">
+      <h3 class="text-xl font-bold mb-4" style="color: #0088cc;">加入 JOJOBLACKLIST TG 群組</h3>
+      <div class="tg-qrcode">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/jojoblacklist" alt="TG群組二維碼" width="200" height="200">
+      </div>
+      <p class="mb-2 text-gray-600 text-sm">掃描二維碼加入 Telegram 群組</p>
+      <div class="url-display">https://t.me/jojoblacklist</div>
+      <button class="copy-btn mb-3" onclick="copyTGURL()">
+        <i class="fa-solid fa-copy"></i>
+        <span id="copyText">一鍵複製連結</span>
+      </button>
+      <button id="closeTgModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+    </div>
+  </div>
+  
   <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
     <div class="flex items-center space-x-2">
       <i class="fa-solid fa-newspaper text-xl md:text-2xl"></i>
@@ -212,6 +281,12 @@
           <i class="fa-solid fa-cloud-arrow-down mr-2"></i>
           檢查更新 Check for updates
         </a>
+        
+        <!-- 新增的TG按鈕 -->
+        <button id="tgBtn" class="tg-btn text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center hover:opacity-90">
+          <i class="fab fa-telegram mr-2"></i>
+          加入TG群組 JOIN TG GROUP
+        </button>
         
         <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
      
@@ -315,6 +390,73 @@
       timer = setInterval(fetchNews, 60 * 60 * 1000);
     }
 
+    // TG群組按鈕功能
+    const tgModal = document.getElementById('tgModal');
+    const tgBtn = document.getElementById('tgBtn');
+    const closeTgModal = document.getElementById('closeTgModal');
+    
+    if (tgBtn) {
+      tgBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        tgModal.style.display = 'flex';
+      });
+    }
+    
+    if (closeTgModal) {
+      closeTgModal.addEventListener('click', function() {
+        tgModal.style.display = 'none';
+        resetCopyButton();
+      });
+    }
+    
+    if (tgModal) {
+      tgModal.addEventListener('click', function(e) {
+        if (e.target === tgModal) {
+          tgModal.style.display = 'none';
+          resetCopyButton();
+        }
+      });
+    }
+    
+    // 重置複製按鈕狀態
+    function resetCopyButton() {
+      const copyBtn = document.querySelector('.copy-btn');
+      const copyText = document.getElementById('copyText');
+      if (copyBtn && copyText) {
+        copyBtn.classList.remove('copied');
+        copyText.textContent = '一鍵複製連結';
+      }
+    }
+    
+    // 複製TG連結功能
+    function copyTGURL() {
+      const tgURL = 'https://t.me/jojoblacklist';
+      const copyBtn = document.querySelector('.copy-btn');
+      const copyText = document.getElementById('copyText');
+      
+      navigator.clipboard.writeText(tgURL).then(function() {
+        copyBtn.classList.add('copied');
+        copyText.textContent = '已複製！';
+        
+        // 3秒後恢復原始文字
+        setTimeout(resetCopyButton, 3000);
+      }).catch(function(err) {
+        console.error('複製失敗: ', err);
+        
+        // 備用方案：創建臨時輸入框
+        const tempInput = document.createElement('input');
+        tempInput.value = tgURL;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        
+        copyBtn.classList.add('copied');
+        copyText.textContent = '已複製！';
+        setTimeout(resetCopyButton, 3000);
+      });
+    }
+
     const rentModal = document.getElementById('rentModal');
     const rentBtn = document.getElementById('rentBtn');
     const closeRentModal = document.getElementById('closeRentModal');
@@ -326,72 +468,94 @@
       });
     }
     
-    closeRentModal.addEventListener('click', function() {
-      rentModal.style.display = 'none';
-    });
-    
-    rentModal.addEventListener('click', function(e) {
-      if (e.target === rentModal) {
+    if (closeRentModal) {
+      closeRentModal.addEventListener('click', function() {
         rentModal.style.display = 'none';
-      }
-    });
+      });
+    }
+    
+    if (rentModal) {
+      rentModal.addEventListener('click', function(e) {
+        if (e.target === rentModal) {
+          rentModal.style.display = 'none';
+        }
+      });
+    }
     
     const sellModal = document.getElementById('sellModal');
     const sellBtn = document.getElementById('sellBtn');
     const closeSellModal = document.getElementById('closeSellModal');
     
-    sellBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      sellModal.style.display = 'flex';
-    });
+    if (sellBtn) {
+      sellBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        sellModal.style.display = 'flex';
+      });
+    }
     
-    closeSellModal.addEventListener('click', function() {
-      sellModal.style.display = 'none';
-    });
-    
-    sellModal.addEventListener('click', function(e) {
-      if (e.target === sellModal) {
+    if (closeSellModal) {
+      closeSellModal.addEventListener('click', function() {
         sellModal.style.display = 'none';
-      }
-    });
+      });
+    }
+    
+    if (sellModal) {
+      sellModal.addEventListener('click', function(e) {
+        if (e.target === sellModal) {
+          sellModal.style.display = 'none';
+        }
+      });
+    }
     
     const homeInsuranceModal = document.getElementById('homeInsuranceModal');
     const homeInsuranceBtn = document.getElementById('homeInsuranceBtn');
     const closeHomeInsuranceModal = document.getElementById('closeHomeInsuranceModal');
     
-    homeInsuranceBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      homeInsuranceModal.style.display = 'flex';
-    });
+    if (homeInsuranceBtn) {
+      homeInsuranceBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        homeInsuranceModal.style.display = 'flex';
+      });
+    }
     
-    closeHomeInsuranceModal.addEventListener('click', function() {
-      homeInsuranceModal.style.display = 'none';
-    });
-    
-    homeInsuranceModal.addEventListener('click', function(e) {
-      if (e.target === homeInsuranceModal) {
+    if (closeHomeInsuranceModal) {
+      closeHomeInsuranceModal.addEventListener('click', function() {
         homeInsuranceModal.style.display = 'none';
-      }
-    });
+      });
+    }
+    
+    if (homeInsuranceModal) {
+      homeInsuranceModal.addEventListener('click', function(e) {
+        if (e.target === homeInsuranceModal) {
+          homeInsuranceModal.style.display = 'none';
+        }
+      });
+    }
     
     const movingModal = document.getElementById('movingModal');
     const movingBtn = document.getElementById('movingBtn');
     const closeMovingModal = document.getElementById('closeMovingModal');
     
-    movingBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      movingModal.style.display = 'flex';
-    });
+    if (movingBtn) {
+      movingBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        movingModal.style.display = 'flex';
+      });
+    }
     
-    closeMovingModal.addEventListener('click', function() {
-      movingModal.style.display = 'none';
-    });
-    
-    movingModal.addEventListener('click', function(e) {
-      if (e.target === movingModal) {
+    if (closeMovingModal) {
+      closeMovingModal.addEventListener('click', function() {
         movingModal.style.display = 'none';
-      }
-    });
+      });
+    }
+    
+    if (movingModal) {
+      movingModal.addEventListener('click', function(e) {
+        if (e.target === movingModal) {
+          movingModal.style.display = 'none';
+        }
+      });
+    }
     
     window.onload = () => {
       fetchNews();
@@ -400,4 +564,3 @@
   </script>
 </body>
 </html>
-
