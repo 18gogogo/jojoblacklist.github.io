@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TenantReview 每日資訊 - 香港、台灣、中國</title>
+  <title>TenantReview 每日新聞 - 香港、台灣、中國</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body { background: #f9fafb; }
     .news-content { white-space: pre-line; }
     
+    /* 手機優化樣式 */
     @media (max-width: 640px) {
       .header-title { font-size: 1.25rem; }
       .header-subtitle { font-size: 0.75rem; }
@@ -22,12 +23,9 @@
       .download-img { max-width: 180px; height: auto; display: block; margin: 0 auto; }
       .main-title { font-size: 1.5rem; }
       .refresh-btn { padding: 0.75rem; }
-      .iframe-wrap {
-        padding-bottom: 50%;
-        margin-bottom: 1.5rem;
-      }
     }
     
+    /* 彈窗樣式 */
     .wx-modal, .discord-modal, .playstore-modal, .apk-modal, .tg-modal {
       display: none;
       position: fixed;
@@ -40,7 +38,6 @@
       align-items: center;
       justify-content: center;
     }
-    
     .wx-modal-content, .discord-modal-content, .playstore-modal-content, .apk-modal-content, .tg-modal-content {
       background-color: white;
       padding: 1.5rem;
@@ -49,18 +46,22 @@
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    
     .wx-qrcode, .discord-qrcode, .playstore-qrcode, .apk-qrcode, .tg-qrcode {
       width: 180px;
       height: 180px;
       margin: 1rem auto;
     }
 
+    /* 裝修維修/清潔彈窗內容樣式 */
     #rentModal .wx-modal-content, #sellModal .wx-modal-content {
       padding: 2rem;
     }
-    #rentModal h3, #sellModal h3 { color: #333; }
-    #rentModal p, #sellModal p { color: #666; }
+    #rentModal h3, #sellModal h3 {
+      color: #333;
+    }
+    #rentModal p, #sellModal p {
+      color: #666;
+    }
     #rentModal button, #sellModal button {
       background-color: #007bff;
       border: none;
@@ -73,6 +74,7 @@
       background-color: #0056b3;
     }
     
+    /* 獨立顯示樣式 - 修正Android WebView顯示問題 */
     .independent-display {
       background-color: #f0f0f0;
       padding: 0.75rem;
@@ -91,32 +93,50 @@
       text-align: center;
     }
     
-    .news-list { gap: 1rem; }
+    /* 新聞卡片間距優化 */
+    .news-list {
+      gap: 1rem;
+    }
     
-    .loading-spinner { animation: spin 1s linear infinite; }
+    /* 加載動畫優化 */
+    .loading-spinner {
+      animation: spin 1s linear infinite;
+    }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
     
-    .discord-btn { background-color: #5865F2; }
-    .discord-btn:hover { background-color: #4752C4; }
+    /* Discord按鈕樣式 */
+    .discord-btn {
+      background-color: #5865F2;
+    }
+    .discord-btn:hover {
+      background-color: #4752C4;
+    }
     
-    .playstore-btn { background-color: #4285F4; }
-    .playstore-btn:hover { background-color: #3367D6; }
+    /* Play Store按鈕樣式 */
+    .playstore-btn {
+      background-color: #4285F4;
+    }
+    .playstore-btn:hover {
+      background-color: #3367D6;
+    }
     
-    .apk-btn { background-color: #34A853; }
-    .apk-btn:hover { background-color: #2D9248; }
+    /* APK下載按鈕樣式 */
+    .apk-btn {
+      background-color: #34A853;
+    }
+    .apk-btn:hover {
+      background-color: #2D9248;
+    }
     
     /* Telegram按鈕樣式 */
     .tg-btn {
       background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
-      box-shadow: 0 4px 6px rgba(0, 119, 181, 0.2);
     }
     .tg-btn:hover {
       background: linear-gradient(135deg, #0077b5 0%, #0066aa 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 8px rgba(0, 119, 181, 0.3);
     }
     
     /* 複製按鈕樣式 */
@@ -139,13 +159,6 @@
     }
     .copy-btn.copied {
       background-color: #2e7d32;
-      animation: pulse 0.5s;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(46, 125, 50, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
     }
     
     /* URL顯示區域樣式 */
@@ -160,38 +173,14 @@
       color: #333;
     }
     
-    .hidden-element { display: none !important; }
-    
-    .iframe-wrap {
-      position: relative;
-      width: 100%;
-      padding-bottom: 70%;
-      height: 0;
-      overflow: hidden;
-      margin: 1rem 0;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .iframe-wrap iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      border-radius: 0.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .iframe-wrap {
-        padding-bottom: 28.125%;
-        margin: 2rem 0;
-      }
+    /* 隱藏元素 */
+    .hidden-element {
+      display: none !important;
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
+  <!-- 裝修維修彈窗（保留但不會被觸發） -->
   <div id="rentModal" class="wx-modal">
     <div class="wx-modal-content">
       <h3 class="text-xl font-bold mb-4">裝修維修</h3>
@@ -200,6 +189,7 @@
     </div>
   </div>
 
+  <!-- 清潔彈窗 -->
   <div id="sellModal" class="wx-modal">
     <div class="wx-modal-content">
       <h3 class="text-xl font-bold mb-4">清潔</h3>
@@ -208,6 +198,7 @@
     </div>
   </div>
 
+  <!-- Google Play商店彈窗 -->
   <div id="playstoreModal" class="playstore-modal hidden-element">
     <div class="playstore-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼前往 Google Play 商店</h3>
@@ -219,17 +210,18 @@
     </div>
   </div>
   
+  <!-- APK下載彈窗 -->
   <div id="apkModal" class="apk-modal hidden-element">
     <div class="apk-modal-content">
       <h3 class="text-xl font-bold mb-4">掃描二維碼下載 APK 檔案</h3>
       <div class="apk-qrcode">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/18gogogo/jojoblacklist/releases" alt="APK下載二維碼" width="200" height="200">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/18gogogo/jojoblacklist/releases " alt="APK下載二維碼" width="200" height="200">
       </div>
-      <p class="mb-4 text-gray-600 text-sm">或複製以下連結https://github.com/18gogogo/jojoblacklist/releases</p>
+      <p class="mb-4 text-gray-600 text-sm">或複製連結</p>
       <button id="closeApkModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
   </div>
-  
+
   <!-- Telegram群組彈窗 -->
   <div id="tgModal" class="tg-modal">
     <div class="tg-modal-content">
@@ -247,74 +239,70 @@
     </div>
   </div>
   
+  <!-- 頁首 -->
   <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
     <div class="flex items-center space-x-2">
       <i class="fa-solid fa-newspaper text-xl md:text-2xl"></i>
-      <span class="header-title text-xl md:text-3xl font-extrabold tracking-tight">TenantReview 每日資訊</span>
+      <span class="header-title text-xl md:text-3xl font-extrabold tracking-tight">TenantReview 每日新聞</span>
     </div>
     <span class="header-subtitle text-xs md:text-base">香港・台灣・中國地區</span>
   </header>
 
+  <!-- 主內容 -->
   <main class="flex-1 container mx-auto px-3 py-4 md:py-6">
     <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-        <h2 class="main-title text-xl md:text-3xl font-bold text-blue-900 tracking-tight">最新資訊</h2>
-      </div>
-    </div>
-
-    <div class="iframe-wrap">
-      <iframe 
-        src="https://blog.18gogogo.de5.net" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0" 
-        title="Blog Content" 
-        allow="camera; microphone; autoplay; encrypted-media; fullscreen" 
-        allowfullscreen
-        loading="lazy">
-      </iframe>
-    </div>
-
-    <div class="mb-6">
-      <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-        <a href="https://github.com/18gogogo/jojoblacklist/releases" target="_blank" rel="noopener" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-          <i class="fa-solid fa-cloud-arrow-down mr-2"></i>
-          檢查更新 Check for updates
-        </a>
-        
-        <!-- 新增的TG按鈕 -->
-        <button id="tgBtn" class="tg-btn text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center hover:opacity-90">
-          <i class="fab fa-telegram mr-2"></i>
-          加入群組 JOIN GROUP
-        </button>
-        
-        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-     
-        <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
-          <a href="repair-ads.html" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
-          <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
-          <button id="homeInsuranceBtn" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">家居保險</button>
-          <button id="movingBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
-        </div>
-
-        <div id="movingModal" class="wx-modal">
-          <div class="wx-modal-content">
-            <h3 class="text-xl font-bold mb-4">搬運</h3>
-            <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-            <button id="closeMovingModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+        <h2 class="main-title text-xl md:text-3xl font-bold text-blue-900 tracking-tight">最新新聞</h2>
+        <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <!-- 檢查更新按鈕 -->
+          <a href="https://github.com/18gogogo/jojoblacklist/releases" target="_blank" rel="noopener" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+            <i class="fa-solid fa-cloud-arrow-down mr-2"></i>
+            檢查更新 Check for updates
+          </a>
+          
+          <!-- TG群組按鈕 -->
+          <button id="tgBtn" class="tg-btn hover:opacity-90 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+            <i class="fab fa-telegram mr-2"></i>
+            加入群組 JOIN GROUP
+          </button>
+          
+          <!-- Buy Me A Coffee 按鈕 -->
+          <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+       
+          <!-- 新增的七個按鈕（裝修維修已改為連結） -->
+          <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
+            <a href="repair-ads.html" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
+            <button id="sellBtn" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
+            <button id="homeInsuranceBtn" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">家居保險</button>
+            <button id="movingBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
           </div>
-        </div>
 
-        <div id="homeInsuranceModal" class="wx-modal">
-          <div class="wx-modal-content">
-            <h3 class="text-xl font-bold mb-4">家居保險</h3>
-            <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-            <button id="closeHomeInsuranceModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+          <!-- 搬運彈窗 -->
+          <div id="movingModal" class="wx-modal">
+            <div class="wx-modal-content">
+              <h3 class="text-xl font-bold mb-4">搬運</h3>
+              <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
+              <button id="closeMovingModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+            </div>
+          </div>
+
+          <!-- 家居保險彈窗 -->
+          <div id="homeInsuranceModal" class="wx-modal">
+            <div class="wx-modal-content">
+              <h3 class="text-xl font-bold mb-4">家居保險</h3>
+              <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
+              <button id="closeHomeInsuranceModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+            </div>
           </div>
         </div>
       </div>
+      <!-- 手動更新按鈕 -->
+      <button id="refreshBtn" class="refresh-btn bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full flex items-center shadow text-sm font-semibold justify-center w-full sm:w-auto mt-0 hidden-element">
+        <i class="fa-solid fa-rotate-right mr-2"></i>手動更新新聞
+      </button> 
     </div>
 
+    <!-- 新聞列表 -->
     <div id="news-list" class="news-list grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
     <div id="loading" class="text-center text-gray-600 my-6 text-base hidden">
       <div class="inline-block loading-spinner mr-2"><i class="fa-solid fa-spinner"></i></div>
@@ -323,19 +311,22 @@
     <div id="error" class="text-center text-red-600 my-6 text-sm hidden"></div>
   </main>
 
+  <!-- 頁尾 -->
   <footer class="bg-blue-900 text-white text-center py-3 mt-8 shadow-inner text-xs md:text-sm">
     <span>資料來源：NewsData.io | 每小時自動更新 | © 2025-2026 18GOGOGO 保留所有權利</span>
   </footer>
 
+  <!-- JavaScript 腳本 -->
   <script>
     const newsList = document.getElementById('news-list');
     const loading = document.getElementById('loading');
     const errorDiv = document.getElementById('error');
+    const refreshBtn = document.getElementById('refreshBtn');
     let timer = null;
 
     async function fetchNews() {
       const apiKey = 'pub_9834bfcaba7e4eb3a66ef563c7d15783';
-      const query = '租';
+      const query = '租';//房客 OR 租約 OR 房屋糾紛 OR 租霸 OR 租客 OR 租務糾紛
       const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(query)}&language=zh`;
       loading.classList.remove('hidden');
       errorDiv.classList.add('hidden');
@@ -357,7 +348,7 @@
           throw new Error(data.message);
         }
       } catch (e) {
-        errorDiv.textContent = "因觀看資訊流量過高導致服務器不穩定，請稍後再試點擊市場資訊按鈕。" + e.message;
+        errorDiv.textContent = "因觀看新聞流量過高導致服務器不穩定，請稍後再試點擊市場資訊按鈕。" + e.message;
         errorDiv.classList.remove('hidden');
       } finally {
         loading.classList.add('hidden');
@@ -366,7 +357,7 @@
 
     function renderNews(articles) {
       if (!articles.length) {
-        newsList.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">暫無相關資訊</div>';
+        newsList.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">暫無相關新聞</div>';
         return;
       }
       newsList.innerHTML = articles.slice(0, 30).map(article => `
@@ -387,7 +378,7 @@
 
     function startAutoRefresh() {
       if (timer) clearInterval(timer);
-      timer = setInterval(fetchNews, 60 * 60 * 1000);
+      timer = setInterval(fetchNews, 60 * 60 * 1000); // 每小時更新
     }
 
     // TG群組按鈕功能
@@ -395,54 +386,47 @@
     const tgBtn = document.getElementById('tgBtn');
     const closeTgModal = document.getElementById('closeTgModal');
     
-    if (tgBtn) {
-      tgBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        tgModal.style.display = 'flex';
-      });
-    }
+    tgBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      tgModal.style.display = 'flex';
+    });
     
-    if (closeTgModal) {
-      closeTgModal.addEventListener('click', function() {
-        tgModal.style.display = 'none';
-        resetCopyButton();
-      });
-    }
-    
-    if (tgModal) {
-      tgModal.addEventListener('click', function(e) {
-        if (e.target === tgModal) {
-          tgModal.style.display = 'none';
-          resetCopyButton();
-        }
-      });
-    }
-    
-    // 重置複製按鈕狀態
-    function resetCopyButton() {
+    closeTgModal.addEventListener('click', function() {
+      tgModal.style.display = 'none';
+      // 重置複製按鈕狀態
       const copyBtn = document.querySelector('.copy-btn');
       const copyText = document.getElementById('copyText');
-      if (copyBtn && copyText) {
+      copyBtn.classList.remove('copied');
+      copyText.textContent = '一鍵複製連結';
+    });
+    
+    tgModal.addEventListener('click', function(e) {
+      if (e.target === tgModal) {
+        tgModal.style.display = 'none';
+        // 重置複製按鈕狀態
+        const copyBtn = document.querySelector('.copy-btn');
+        const copyText = document.getElementById('copyText');
         copyBtn.classList.remove('copied');
         copyText.textContent = '一鍵複製連結';
       }
-    }
+    });
     
     // 複製TG連結功能
     function copyTGURL() {
       const tgURL = 'https://t.me/+GE3zT0d4_JM1Yzll';
-      const copyBtn = document.querySelector('.copy-btn');
-      const copyText = document.getElementById('copyText');
-      
       navigator.clipboard.writeText(tgURL).then(function() {
+        const copyBtn = document.querySelector('.copy-btn');
+        const copyText = document.getElementById('copyText');
         copyBtn.classList.add('copied');
         copyText.textContent = '已複製！';
         
         // 3秒後恢復原始文字
-        setTimeout(resetCopyButton, 3000);
+        setTimeout(function() {
+          copyBtn.classList.remove('copied');
+          copyText.textContent = '一鍵複製連結';
+        }, 3000);
       }).catch(function(err) {
         console.error('複製失敗: ', err);
-        
         // 備用方案：創建臨時輸入框
         const tempInput = document.createElement('input');
         tempInput.value = tgURL;
@@ -451,112 +435,75 @@
         document.execCommand('copy');
         document.body.removeChild(tempInput);
         
-        copyBtn.classList.add('copied');
+        const copyText = document.getElementById('copyText');
         copyText.textContent = '已複製！';
-        setTimeout(resetCopyButton, 3000);
+        setTimeout(function() {
+          copyText.textContent = '一鍵複製連結';
+        }, 3000);
       });
     }
 
-    const rentModal = document.getElementById('rentModal');
-    const rentBtn = document.getElementById('rentBtn');
-    const closeRentModal = document.getElementById('closeRentModal');
-    
-    if (rentBtn) {
-      rentBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        rentModal.style.display = 'flex';
-      });
-    }
-    
-    if (closeRentModal) {
-      closeRentModal.addEventListener('click', function() {
-        rentModal.style.display = 'none';
-      });
-    }
-    
-    if (rentModal) {
-      rentModal.addEventListener('click', function(e) {
-        if (e.target === rentModal) {
-          rentModal.style.display = 'none';
-        }
-      });
-    }
-    
+    // 清潔按鈕功能
     const sellModal = document.getElementById('sellModal');
     const sellBtn = document.getElementById('sellBtn');
     const closeSellModal = document.getElementById('closeSellModal');
     
-    if (sellBtn) {
-      sellBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        sellModal.style.display = 'flex';
-      });
-    }
+    sellBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      sellModal.style.display = 'flex';
+    });
     
-    if (closeSellModal) {
-      closeSellModal.addEventListener('click', function() {
+    closeSellModal.addEventListener('click', function() {
+      sellModal.style.display = 'none';
+    });
+    
+    sellModal.addEventListener('click', function(e) {
+      if (e.target === sellModal) {
         sellModal.style.display = 'none';
-      });
-    }
+      }
+    });
     
-    if (sellModal) {
-      sellModal.addEventListener('click', function(e) {
-        if (e.target === sellModal) {
-          sellModal.style.display = 'none';
-        }
-      });
-    }
-    
+    // 家居保險按鈕功能
     const homeInsuranceModal = document.getElementById('homeInsuranceModal');
     const homeInsuranceBtn = document.getElementById('homeInsuranceBtn');
     const closeHomeInsuranceModal = document.getElementById('closeHomeInsuranceModal');
     
-    if (homeInsuranceBtn) {
-      homeInsuranceBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        homeInsuranceModal.style.display = 'flex';
-      });
-    }
+    homeInsuranceBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      homeInsuranceModal.style.display = 'flex';
+    });
     
-    if (closeHomeInsuranceModal) {
-      closeHomeInsuranceModal.addEventListener('click', function() {
+    closeHomeInsuranceModal.addEventListener('click', function() {
+      homeInsuranceModal.style.display = 'none';
+    });
+    
+    homeInsuranceModal.addEventListener('click', function(e) {
+      if (e.target === homeInsuranceModal) {
         homeInsuranceModal.style.display = 'none';
-      });
-    }
+      }
+    });
     
-    if (homeInsuranceModal) {
-      homeInsuranceModal.addEventListener('click', function(e) {
-        if (e.target === homeInsuranceModal) {
-          homeInsuranceModal.style.display = 'none';
-        }
-      });
-    }
-    
+    // 搬運按鈕功能
     const movingModal = document.getElementById('movingModal');
     const movingBtn = document.getElementById('movingBtn');
     const closeMovingModal = document.getElementById('closeMovingModal');
     
-    if (movingBtn) {
-      movingBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        movingModal.style.display = 'flex';
-      });
-    }
+    movingBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      movingModal.style.display = 'flex';
+    });
     
-    if (closeMovingModal) {
-      closeMovingModal.addEventListener('click', function() {
+    closeMovingModal.addEventListener('click', function() {
+      movingModal.style.display = 'none';
+    });
+    
+    movingModal.addEventListener('click', function(e) {
+      if (e.target === movingModal) {
         movingModal.style.display = 'none';
-      });
-    }
+      }
+    });
     
-    if (movingModal) {
-      movingModal.addEventListener('click', function(e) {
-        if (e.target === movingModal) {
-          movingModal.style.display = 'none';
-        }
-      });
-    }
-    
+    refreshBtn.addEventListener('click', fetchNews);
     window.onload = () => {
       fetchNews();
       startAutoRefresh();
@@ -564,6 +511,4 @@
   </script>
 </body>
 </html>
-
-
 
