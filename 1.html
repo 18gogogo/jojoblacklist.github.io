@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>重要通知｜本程式將於下個月停止更新</title>
-  <meta name="description" content="重要通知：本程式將於下個月停止更新，請至 Google Play 或 GitHub 下載新版應用程式。提供 QR Code、快速開啟與一鍵複製連結。" />
+  <meta name="description" content="重要通知：本程式將於下個月停止更新,請至 Google Play 或 GitHub 下載新版應用程式。提供 QR Code、快速開啟與一鍵複製連結。" />
   <style>
     :root {
       --bg: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #8b5cf6 100%);
@@ -81,7 +81,7 @@
 
     /* 倒數與自動轉址條 */
     .auto-box { margin: 14px 0 18px; padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, #000 12%, #fff 0%); background: color-mix(in oklab, #ffffff 70%, transparent); }
-    /* 已停用自動導向設計，隱藏區塊 */
+    /* 已停用自動導向設計,隱藏區塊 */
     .auto-box { display: none !important; }
     .auto-top { display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
     .auto-actions { display: inline-flex; gap: 8px; }
@@ -94,7 +94,7 @@
       .lead { font-size: 14.5px; }
     }
 
-    /* 新增：iframe 樣式優化，確保與原設計匹配 */
+    /* 新增：iframe 樣式優化,確保與原設計匹配 */
     .iframe-wrap { width: 100%; height: 220px; border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid #eef2ff; }
     .iframe-wrap iframe { width: 100%; height: 100%; border: none; }
     @media (max-width: 620px) { .iframe-wrap { height: 300px; } }
@@ -128,7 +128,7 @@
         </div>
       </header>
 
-      <p class="lead" id="lead">為確保您持續獲得安全維護與功能更新，請盡快下載新版應用程式。您可透過下方 Google Play 或 GitHub APK 下載管道，掃描 QR Code 或直接點擊開啟連結。</p>
+      <p class="lead" id="lead">為確保您持續獲得安全維護與功能更新,請盡快下載新版應用程式。您可透過下方 Google Play 或 GitHub APK 下載管道,掃描 QR Code 或直接點擊開啟連結。</p>
 
       <div class="auto-box" role="status" aria-live="polite">
         <div class="auto-top">
@@ -158,7 +158,7 @@
           <div class="t-right">
             <div class="t-meta">
               <h3 id="gplay-title">Google Play 商店</h3>
-              <p id="gplay-desc">建議從官方商店安裝，以獲得最佳相容性與自動更新。</p>
+              <p id="gplay-desc">建議從官方商店安裝,以獲得最佳相容性與自動更新。</p>
               <div class="row">
                 <button class="btn" data-copy="https://play.google.com/store/apps/dev?id=7619891121674916095" id="gplay-copy">複製連結</button>
               </div>
@@ -166,36 +166,36 @@
           </div>
         </section>
 
-        <!-- 修改後的 GitHub 部分：替換為顯示 https://blog.18gogogo.top/ 的 iframe -->
+        <!-- 修改後的網頁內容部分：顯示 https://18gogogo.top -->
         <section class="tile" aria-labelledby="gh-title">
           <div class="t-left">
             <div class="iframe-wrap">
-              <iframe src="https://blog.18gogogo.de5.net" frameborder="0" marginheight="0" marginwidth="0" title="Blog Content" allow="camera; microphone; autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+              <iframe src="https://18gogogo.top" frameborder="0" marginheight="0" marginwidth="0" title="Website Content" allow="camera; microphone; autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
             </div>
             <div class="plat-badges">
               <span class="plat-badge gh" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.17-3.37-1.17-.46-1.18-1.12-1.5-1.12-1.5-.91-.62.07-.61.07-.61 1 .07 1.53 1.05 1.53 1.05.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-                <span id="gh-chip">18GOGOGO Blog</span>
+                <span id="gh-chip">官方網頁</span>
               </span>
             </div>
           </div>
           <div class="t-right">
             <div class="t-meta">
-              <h3 id="gh-title">部落格內容</h3>
-              <p id="gh-desc">瀏覽最新部落格文章與資訊。</p>
+              <h3 id="gh-title">網頁內容</h3>
+              <p id="gh-desc">瀏覽最新網頁資訊與內容。</p>
               <div class="row">
-                <button class="btn" data-copy="https://github.com/18gogogo/jojoblacklist/releases" id="gh-copy">複製連結</button>
+                <button class="btn" data-copy="https://18gogogo.top" id="gh-copy">複製連結</button>
               </div>
             </div>
           </div>
         </section>
       </div>
 
-      <div class="tips" id="tips">提示：安裝 APK 前請於裝置設定中允許「安裝未知來源」，並確認來源可信。為了您的安全，請勿從非官方連結下載安裝檔。</div>
+      <div class="tips" id="tips">提示：安裝 APK 前請於裝置設定中允許「安裝未知來源」,並確認來源可信。為了您的安全,請勿從非官方連結下載安裝檔。</div>
 
       <footer>
         <div>Copyright © <span id="y"></span> <span id="footer">本站僅作更新通知與導引。</span></div>
-        <div id="help">如需協助，請聯繫我們Email或至18GOGOGO Blog頁面查詢最新資訊。</div>
+        <div id="help">如需協助,請聯繫我們Email或至官方網頁查詢最新資訊。</div>
       </footer>
     </div>
   </div>
@@ -209,24 +209,24 @@
       zh: {
         badge: '系統公告',
         title: '重要通知：本程式將於下個月停止更新',
-        lead: '為確保您持續獲得安全維護與功能更新，請盡快下載新版應用程式。您可透過下方 Google Play 或 GitHub APK 下載管道，掃描 QR Code 或直接點擊開啟連結。',
+        lead: '為確保您持續獲得安全維護與功能更新,請盡快下載新版應用程式。您可透過下方 Google Play 或 GitHub APK 下載管道,掃描 QR Code 或直接點擊開啟連結。',
         auto: (s) => `將在 <strong><span id="count">${s}</span>s</strong> 後自動導向至 Google Play`,
         cancel: '取消自動導向',
         go: '立即前往',
         gplayTitle: 'Google Play 商店',
-        gplayDesc: '建議從官方商店安裝，以獲得最佳相容性與自動更新。',
+        gplayDesc: '建議從官方商店安裝,以獲得最佳相容性與自動更新。',
         gplayBtn: '前往 Google Play',
         gplayCopy: '複製連結',
-        ghTitle: '部落格內容',
-        ghDesc: '瀏覽最新部落格文章與資訊。',
-        ghBtn: '開啟部落格',
+        ghTitle: '網頁內容',
+        ghDesc: '瀏覽最新網頁資訊與內容。',
+        ghBtn: '開啟網頁',
         ghCopy: '複製連結',
-        tips: '提示：安裝 APK 前請於裝置設定中允許「安裝未知來源」，並確認來源可信。為了您的安全，請勿從非官方連結下載安裝檔。',
+        tips: '提示：安裝 APK 前請於裝置設定中允許「安裝未知來源」,並確認來源可信。為了您的安全,請勿從非官方連結下載安裝檔。',
         footer: '本站僅作更新通知與導引。',
-        help: '如需協助，請聯繫我們Email或至18GOGOGO Blog頁面查詢最新資訊。',
+        help: '如需協助,請聯繫我們Email或至18GOGOGO網頁查詢最新資訊。',
         toastCopied: '已複製連結',
         chipGplay: 'Google Play',
-        chipGithub: '18 GOGOGO Blog'
+        chipGithub: '18GOGOGO 網頁'
       },
       en: {
         badge: 'Service Notice',
@@ -239,16 +239,16 @@
         gplayDesc: 'Recommended for best compatibility and auto updates.',
         gplayBtn: 'Open Google Play',
         gplayCopy: 'Copy Link',
-        ghTitle: 'Blog Content',
-        ghDesc: 'Browse the latest blog posts and information.',
-        ghBtn: 'Open Blog',
+        ghTitle: 'Website Content',
+        ghDesc: 'Browse the latest website information and content.',
+        ghBtn: 'Open Website',
         ghCopy: 'Copy Link',
-        tips: 'Tip: Before installing APK, allow “Unknown Sources” in your device settings and ensure the source is trusted. Do not download from unofficial links.',
+        tips: 'Tip: Before installing APK, allow "Unknown Sources" in your device settings and ensure the source is trusted. Do not download from unofficial links.',
         footer: 'This site is for update notice and guidance only.',
-        help: 'Need help? Contact us e-mail or check the 18gogogo blog project page for updates.',
+        help: 'Need help? Contact us e-mail or check the 18gogogo website page for updates.',
         toastCopied: 'Link copied',
         chipGplay: 'Google Play',
-        chipGithub: '18GOGOGO Blog'
+        chipGithub: '18GOGOGO Website'
       }
     };
 
@@ -321,7 +321,7 @@
       document.getElementById('tips').textContent = I18N.tips;
       document.getElementById('footer').textContent = I18N.footer;
       document.getElementById('help').textContent = I18N.help;
-      // 已取消自動導向設計，不再更新 auto 文案與控制
+      // 已取消自動導向設計,不再更新 auto 文案與控制
 
       // 語言切換後重新綁定複製事件（以確保多語言切換時功能正常）
       bindCopyI18n();
@@ -337,8 +337,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
