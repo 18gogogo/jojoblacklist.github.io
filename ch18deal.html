@@ -2,85 +2,84 @@
 <!--IOS 同電腦蝦EXE用的-->
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="format-detection" content="telephone=no">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<title>18Deal</title>
-<style>
-html,body{margin:0;padding:0;height:100%;overflow:hidden;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;touch-action:manipulation;overscroll-behavior:none}
-iframe{position:fixed;inset:0;width:100vw;height:100dvh;border:0;display:block;background:transparent}
-#fallback{position:fixed;inset:0;display:none;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#333;text-align:center;padding:24px}
-#__vconsole,.vc-switch,[class*="inspector"],[id*="inspector"],[class*="selectorgadget"],[id*="selectorgadget"],.sg_tip,.sg_info{display:none!important}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>18Ddeal</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* 針對WebView優化 */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script type="text/javascript">
+        // 用於與Android WebView通信的接口
+        function setupWebViewJSBridge() {
+            window.onload = function() {
+                // 檢測Android WebView的JavaScript接口
+                if (window.Android) {
+                    console.log("Android WebView接口已連接");
+                }
+                
+                // 處理iframe加載完成事件
+                document.querySelector('iframe').onload = function() {
+                    console.log("iframe已加載完成");
+                    // 如果需要，可以在這裡通知Android
+                    if (window.Android && window.Android.onIframeLoaded) {
+                        window.Android.onIframeLoaded();
+                    }
+                };
+            };
+        }
+        
+        // 初始化WebView橋接
+        setupWebViewJSBridge();
+    </script>
 </head>
 <body>
-<iframe id="frame" title="18Deal" allow="camera; microphone; autoplay; encrypted-media; fullscreen; geolocation; clipboard-read; clipboard-write" allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-<div id="fallback"><div><div style="font-size:18gogogo-7tl.pages.devpx;font-weight:600;margin-bottom:8px">內容載入失敗</div><div style="font-size:14px;opacity:.8">請確認網路或目標網址是否可用</div></div></div>
-<script type="text/javascript">
-(function(){
-  var frame=document.getElementById('frame');
-  var fallback=document.getElementById('fallback');
-  var p=new URLSearchParams(location.search);
-  var u=p.get('url');
-  var ub64=p.get('url_b64');
-  var h=p.get('html');
-  var hb64=p.get('html_b64');
-  var strict=p.get('strict');
-  var defaultSrc='https://18gogogo-7tl.pages.dev/18deal';
-  var baseSandbox='allow-scripts allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation';
-  if(strict==='1'){frame.setAttribute('sandbox',baseSandbox);}else{frame.setAttribute('sandbox',baseSandbox+' allow-same-origin');}
-  function decodeB64(s){try{return decodeURIComponent(escape(atob(s)));}catch(e){try{return atob(s);}catch(_){return null;}}}
-  function buildSrcdoc(content){
-    var meta='<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">';
-    var style='<style>'+
-      'html,body{margin:0;padding:0;width:100%;height:100%;overflow-x:hidden;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}'+
-      '*{outline:none!important;-webkit-tap-highlight-color:transparent!important;box-shadow:none!important;-webkit-focus-ring-color:transparent!important}'+
-      '*:not(input):not(textarea){-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}'+
-      'a,button,input,textarea,select{-webkit-tap-highlight-color:rgba(0,0,0,0)!important}'+
-      '#__vconsole,.vc-switch,.__react_component_tooltip,[class*="inspector"],[id*="inspector"],[class*="debug"],[id*="debug"]{display:none!important}'+
-      '</style>';
-    var script='<script>'+
-      'document.addEventListener("DOMContentLoaded",function(){'+
-        'document.querySelectorAll("*").forEach(function(el){el.removeAttribute("title");});'+
-        'document.addEventListener("contextmenu",function(e){e.preventDefault();},false);'+
-      '});'+
-      '<\/script>';
+    <iframe src="https://18gogogo-7tl.pages.dev/18deal" frameborder="0" marginheight="0" marginwidth="0" title="JOJOBLACKLIST" allow="camera; microphone; autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
     
-    if(content.indexOf('<body')===-1 && content.indexOf('<html')===-1){
-        return '<!DOCTYPE html><html><head>'+meta+style+'</head><body>'+content+script+'</body></html>';
-    }
-    if(content.indexOf('<head')!==-1){
-        return content.replace('<head>', '<head>'+meta+style).replace('</body>', script+'</body>');
-    }
-    return meta+style+content+script;
-  }
-  var srcSet=false;
-  if(hb64){
-    var d=decodeB64(hb64);
-    if(d!=null){frame.setAttribute('srcdoc',buildSrcdoc(d));srcSet=true;}
-  }else if(h){
-    try{frame.setAttribute('srcdoc',buildSrcdoc(decodeURIComponent(h)));}catch(e){frame.setAttribute('srcdoc',buildSrcdoc(h));}
-    srcSet=true;
-  }else if(ub64){
-    var du=decodeB64(ub64);
-    if(du){try{frame.src=decodeURIComponent(du);}catch(e){frame.src=du;}} else {frame.src=defaultSrc;}
-    srcSet=true;
-  }else if(u){
-    try{frame.src=decodeURIComponent(u);}catch(e){frame.src=u;}
-    srcSet=true;
-  }
-  if(!srcSet){frame.src=defaultSrc;}
-  var timer=setTimeout(function(){fallback.style.display='flex';},9000);
-  frame.addEventListener('load',function(){clearTimeout(timer);fallback.style.display='none';if(window.Android&&typeof window.Android.onIframeLoaded==='function'){try{window.Android.onIframeLoaded();}catch(_){}}});
-  frame.addEventListener('error',function(){clearTimeout(timer);fallback.style.display='flex';if(window.Android&&typeof window.Android.onIframeError==='function'){try{window.Android.onIframeError();}catch(_){}}});
-})();
-</script>
+    <script type="text/javascript">
+        // 處理WebView中的特殊情況
+        document.addEventListener("DOMContentLoaded", function() {
+            // 修復某些Android WebView版本中的滾動問題
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+            
+            // 處理可能的iframe跨域問題
+            var iframe = document.querySelector('iframe');
+            iframe.addEventListener('error', function() {
+                console.error("iframe加載失敗，可能是跨域問題");
+                // 可以在這裡添加備用方案
+            });
+        });
+    </script>
 </body>
 </html>
+
 
 
 
