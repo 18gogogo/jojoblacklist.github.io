@@ -19,7 +19,7 @@ iframe{position:fixed;inset:0;width:100vw;height:100dvh;border:0;display:block;b
 </head>
 <body>
 <iframe id="frame" title="18Deal" allow="camera; microphone; autoplay; encrypted-media; fullscreen; geolocation; clipboard-read; clipboard-write" allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-<div id="fallback"><div><div style="font-size:18px;font-weight:600;margin-bottom:8px">內容載入失敗</div><div style="font-size:14px;opacity:.8">請確認網路或目標網址是否可用</div></div></div>
+<div id="fallback"><div><div style="font-size:18gogogo.pages.devpx;font-weight:600;margin-bottom:8px">內容載入失敗</div><div style="font-size:14px;opacity:.8">請確認網路或目標網址是否可用</div></div></div>
 <script type="text/javascript">
 (function(){
   var frame=document.getElementById('frame');
@@ -30,7 +30,7 @@ iframe{position:fixed;inset:0;width:100vw;height:100dvh;border:0;display:block;b
   var h=p.get('html');
   var hb64=p.get('html_b64');
   var strict=p.get('strict');
-  var defaultSrc='https://18gogogo.de5.net/18deal';
+  var defaultSrc='https://18gogogo.pages.dev/18deal';
   var baseSandbox='allow-scripts allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation';
   if(strict==='1'){frame.setAttribute('sandbox',baseSandbox);}else{frame.setAttribute('sandbox',baseSandbox+' allow-same-origin');}
   function decodeB64(s){try{return decodeURIComponent(escape(atob(s)));}catch(e){try{return atob(s);}catch(_){return null;}}}
@@ -81,5 +81,6 @@ iframe{position:fixed;inset:0;width:100vw;height:100dvh;border:0;display:block;b
 </script>
 </body>
 </html>
+
 
 
