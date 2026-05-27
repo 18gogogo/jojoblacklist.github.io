@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--GOOGLE PLAY 市場資訊用的-->
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +10,7 @@
   <style>
     body { background: #f9fafb; }
     .news-content { white-space: pre-line; }
-    
+
     /* 手機優化樣式 */
     @media (max-width: 640px) {
       .header-title { font-size: 1.25rem; }
@@ -24,7 +25,7 @@
       .main-title { font-size: 1.5rem; }
       .refresh-btn { padding: 0.75rem; }
     }
-    
+
     /* 彈窗樣式 */
     .wx-modal, .discord-modal, .playstore-modal, .apk-modal, .tg-modal {
       display: none;
@@ -73,7 +74,7 @@
     #rentModal button:hover, #sellModal button:hover {
       background-color: #0056b3;
     }
-    
+
     /* 獨立顯示樣式 - 修正Android WebView顯示問題 */
     .independent-display {
       background-color: #f0f0f0;
@@ -92,12 +93,12 @@
       width: 100%;
       text-align: center;
     }
-    
+
     /* 新聞卡片間距優化 */
     .news-list {
       gap: 1rem;
     }
-    
+
     /* 加載動畫優化 */
     .loading-spinner {
       animation: spin 1s linear infinite;
@@ -106,7 +107,7 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
+
     /* Discord按鈕樣式 */
     .discord-btn {
       background-color: #5865F2;
@@ -114,7 +115,7 @@
     .discord-btn:hover {
       background-color: #4752C4;
     }
-    
+
     /* Play Store按鈕樣式 */
     .playstore-btn {
       background-color: #4285F4;
@@ -122,7 +123,7 @@
     .playstore-btn:hover {
       background-color: #3367D6;
     }
-    
+
     /* APK下載按鈕樣式 */
     .apk-btn {
       background-color: #34A853;
@@ -130,7 +131,7 @@
     .apk-btn:hover {
       background-color: #2D9248;
     }
-    
+
     /* Telegram按鈕樣式 */
     .tg-btn {
       background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
@@ -138,7 +139,18 @@
     .tg-btn:hover {
       background: linear-gradient(135deg, #0077b5 0%, #0066aa 100%);
     }
-    
+
+    /* 香檳金 WEPA 按鈕樣式 */
+    .wepa-btn {
+      background: linear-gradient(135deg, #D4A76A 0%, #C4955A 100%);
+      color: #fff;
+    }
+    .wepa-btn:hover {
+      background: linear-gradient(135deg, #C4955A 0%, #B0854A 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(180, 140, 80, 0.4);
+    }
+
     /* 複製按鈕樣式 */
     .copy-btn {
       background-color: #4CAF50;
@@ -160,7 +172,7 @@
     .copy-btn.copied {
       background-color: #2e7d32;
     }
-    
+
     /* URL顯示區域樣式 */
     .url-display {
       background-color: #f5f5f5;
@@ -172,7 +184,7 @@
       word-break: break-all;
       color: #333;
     }
-    
+
     /* 隱藏元素 */
     .hidden-element {
       display: none !important;
@@ -209,7 +221,7 @@
       <button id="closePlaystoreModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
   </div>
-  
+
   <!-- APK下載彈窗 -->
   <div id="apkModal" class="apk-modal hidden-element">
     <div class="apk-modal-content">
@@ -238,7 +250,7 @@
       <button id="closeTgModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
   </div>
-  
+
   <!-- 頁首 -->
   <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
     <div class="flex items-center space-x-2">
@@ -259,16 +271,22 @@
             <i class="fa-solid fa-cloud-arrow-down mr-2"></i>
             檢查更新 Check for updates
           </a>
-          
+
           <!-- TG群組按鈕 -->
           <button id="tgBtn" class="tg-btn hover:opacity-90 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
             <i class="fab fa-telegram mr-2"></i>
             加入群組 JOIN GROUP
           </button>
-          
+
+          <!-- WEPA 斷。捨。離。拍賣 按鈕（香檳金色） -->
+          <a href="wepa.html" class="wepa-btn px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+            <i class="fa-solid fa-gavel mr-2"></i>
+            WEPA 斷。捨。離。拍賣
+          </a>
+
           <!-- Buy Me A Coffee 按鈕 -->
           <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""  data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
-       
+
           <!-- 新增的七個按鈕（裝修維修已改為連結） -->
           <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
             <a href="repair-ads.html" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
@@ -299,7 +317,7 @@
       <!-- 手動更新按鈕 -->
       <button id="refreshBtn" class="refresh-btn bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full flex items-center shadow text-sm font-semibold justify-center w-full sm:w-auto mt-0 hidden-element">
         <i class="fa-solid fa-rotate-right mr-2"></i>手動更新新聞
-      </button> 
+      </button>
     </div>
 
     <!-- 新聞列表 -->
@@ -385,12 +403,12 @@
     const tgModal = document.getElementById('tgModal');
     const tgBtn = document.getElementById('tgBtn');
     const closeTgModal = document.getElementById('closeTgModal');
-    
+
     tgBtn.addEventListener('click', function(e) {
       e.preventDefault();
       tgModal.style.display = 'flex';
     });
-    
+
     closeTgModal.addEventListener('click', function() {
       tgModal.style.display = 'none';
       // 重置複製按鈕狀態
@@ -399,7 +417,7 @@
       copyBtn.classList.remove('copied');
       copyText.textContent = '一鍵複製連結';
     });
-    
+
     tgModal.addEventListener('click', function(e) {
       if (e.target === tgModal) {
         tgModal.style.display = 'none';
@@ -410,7 +428,7 @@
         copyText.textContent = '一鍵複製連結';
       }
     });
-    
+
     // 複製TG連結功能
     function copyTGURL() {
       const tgURL = 'https://t.me/+GE3zT0d4_JM1Yzll';
@@ -419,7 +437,7 @@
         const copyText = document.getElementById('copyText');
         copyBtn.classList.add('copied');
         copyText.textContent = '已複製！';
-        
+
         // 3秒後恢復原始文字
         setTimeout(function() {
           copyBtn.classList.remove('copied');
@@ -434,7 +452,7 @@
         tempInput.select();
         document.execCommand('copy');
         document.body.removeChild(tempInput);
-        
+
         const copyText = document.getElementById('copyText');
         copyText.textContent = '已複製！';
         setTimeout(function() {
@@ -447,62 +465,62 @@
     const sellModal = document.getElementById('sellModal');
     const sellBtn = document.getElementById('sellBtn');
     const closeSellModal = document.getElementById('closeSellModal');
-    
+
     sellBtn.addEventListener('click', function(e) {
       e.preventDefault();
       sellModal.style.display = 'flex';
     });
-    
+
     closeSellModal.addEventListener('click', function() {
       sellModal.style.display = 'none';
     });
-    
+
     sellModal.addEventListener('click', function(e) {
       if (e.target === sellModal) {
         sellModal.style.display = 'none';
       }
     });
-    
+
     // 家居保險按鈕功能
     const homeInsuranceModal = document.getElementById('homeInsuranceModal');
     const homeInsuranceBtn = document.getElementById('homeInsuranceBtn');
     const closeHomeInsuranceModal = document.getElementById('closeHomeInsuranceModal');
-    
+
     homeInsuranceBtn.addEventListener('click', function(e) {
       e.preventDefault();
       homeInsuranceModal.style.display = 'flex';
     });
-    
+
     closeHomeInsuranceModal.addEventListener('click', function() {
       homeInsuranceModal.style.display = 'none';
     });
-    
+
     homeInsuranceModal.addEventListener('click', function(e) {
       if (e.target === homeInsuranceModal) {
         homeInsuranceModal.style.display = 'none';
       }
     });
-    
+
     // 搬運按鈕功能
     const movingModal = document.getElementById('movingModal');
     const movingBtn = document.getElementById('movingBtn');
     const closeMovingModal = document.getElementById('closeMovingModal');
-    
+
     movingBtn.addEventListener('click', function(e) {
       e.preventDefault();
       movingModal.style.display = 'flex';
     });
-    
+
     closeMovingModal.addEventListener('click', function() {
       movingModal.style.display = 'none';
     });
-    
+
     movingModal.addEventListener('click', function(e) {
       if (e.target === movingModal) {
         movingModal.style.display = 'none';
       }
     });
-    
+
     refreshBtn.addEventListener('click', fetchNews);
     window.onload = () => {
       fetchNews();
@@ -511,6 +529,3 @@
   </script>
 </body>
 </html>
-
-
-
