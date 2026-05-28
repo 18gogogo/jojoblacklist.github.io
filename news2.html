@@ -11,7 +11,6 @@
         body {
             background: #f9fafb;
         }
-
         .news-content {
             white-space: pre-line;
         }
@@ -79,7 +78,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .wx-modal-content,
         .discord-modal-content,
         .playstore-modal-content,
@@ -93,7 +91,6 @@
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
-
         .wx-qrcode,
         .discord-qrcode,
         .playstore-qrcode,
@@ -110,17 +107,14 @@
         #sellModal .wx-modal-content {
             padding: 2rem;
         }
-
         #rentModal h3,
         #sellModal h3 {
             color: #333;
         }
-
         #rentModal p,
         #sellModal p {
             color: #666;
         }
-
         #rentModal button,
         #sellModal button {
             background-color: #007bff;
@@ -130,7 +124,6 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         #rentModal button:hover,
         #sellModal button:hover {
             background-color: #0056b3;
@@ -149,7 +142,6 @@
             width: 100%;
             text-align: center;
         }
-
         .independent-display a {
             display: block;
             width: 100%;
@@ -165,7 +157,6 @@
         .loading-spinner {
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -179,7 +170,6 @@
         .discord-btn {
             background-color: #5865F2;
         }
-
         .discord-btn:hover {
             background-color: #4752C4;
         }
@@ -188,7 +178,6 @@
         .playstore-btn {
             background-color: #4285F4;
         }
-
         .playstore-btn:hover {
             background-color: #3367D6;
         }
@@ -197,7 +186,6 @@
         .apk-btn {
             background-color: #34A853;
         }
-
         .apk-btn:hover {
             background-color: #2D9248;
         }
@@ -206,7 +194,6 @@
         .tg-btn {
             background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
         }
-
         .tg-btn:hover {
             background: linear-gradient(135deg, #0077b5 0%, #0066aa 100%);
         }
@@ -217,11 +204,7 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
         }
-
         .wepa-btn:hover {
             background: linear-gradient(135deg, #C4955A 0%, #B0854A 100%);
             transform: translateY(-1px);
@@ -242,14 +225,33 @@
             align-items: center;
             gap: 6px;
         }
-
         .copy-btn:hover {
             background-color: #45a049;
             transform: translateY(-2px);
         }
-
         .copy-btn.copied {
             background-color: #2e7d32;
+        }
+
+        /* 確定按鈕樣式（WEPA彈窗） */
+        .confirm-btn {
+            background-color: #D4A76A;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .confirm-btn:hover {
+            background-color: #C4955A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(180, 140, 80, 0.4);
         }
 
         /* URL顯示區域樣式 */
@@ -271,177 +273,183 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-<!-- 裝修維修彈窗（保留但不會被觸發） -->
-<div id="rentModal" class="wx-modal">
-    <div class="wx-modal-content">
-        <h3 class="text-xl font-bold mb-4">裝修維修</h3>
-        <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-        <button id="closeRentModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-    </div>
-</div>
-
-<!-- 清潔彈窗 -->
-<div id="sellModal" class="wx-modal">
-    <div class="wx-modal-content">
-        <h3 class="text-xl font-bold mb-4">清潔</h3>
-        <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
-        <button id="closeSellModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
-    </div>
-</div>
-
-<!-- Google Play商店彈窗 -->
-<div id="playstoreModal" class="playstore-modal hidden-element">
-    <div class="playstore-modal-content">
-        <h3 class="text-xl font-bold mb-4">掃描二維碼前往 Google Play 商店</h3>
-        <div class="playstore-qrcode">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://play.google.com/store/apps/dev?id=7619891121674916095"
-                 alt="Google Play二維碼" width="200" height="200">
+    <!-- 裝修維修彈窗（保留但不會被觸發） -->
+    <div id="rentModal" class="wx-modal">
+        <div class="wx-modal-content">
+            <h3 class="text-xl font-bold mb-4">裝修維修</h3>
+            <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+            <button id="closeRentModal"
+            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
         </div>
-        <p class="mb-4 text-gray-600 text-sm">或複製以下連結：https://play.google.com/store/apps/dev?id=7619891121674916095</p>
-        <button id="closePlaystoreModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
-</div>
 
-<!-- APK下載彈窗 -->
-<div id="apkModal" class="apk-modal hidden-element">
-    <div class="apk-modal-content">
-        <h3 class="text-xl font-bold mb-4">掃描二維碼下載 APK 檔案</h3>
-        <div class="apk-qrcode">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/18gogogo/jojoblacklist/releases "
-                 alt="APK下載二維碼" width="200" height="200">
+    <!-- 清潔彈窗 -->
+    <div id="sellModal" class="wx-modal">
+        <div class="wx-modal-content">
+            <h3 class="text-xl font-bold mb-4">清潔</h3>
+            <p class="mb-4 text-gray-600 text-sm">敬請期待，我們一直滿足您的需要。</p>
+            <button id="closeSellModal"
+            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
         </div>
-        <p class="mb-4 text-gray-600 text-sm">或複製連結</p>
-        <button id="closeApkModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
-</div>
 
-<!-- Telegram群組彈窗 -->
-<div id="tgModal" class="tg-modal">
-    <div class="tg-modal-content">
-        <h3 class="text-xl font-bold mb-4" style="color: #0088cc;">加入群組</h3>
-        <div class="tg-qrcode">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/+GE3zT0d4_JM1Yzll"
-                 alt="群組二維碼" width="200" height="200">
+    <!-- Google Play商店彈窗 -->
+    <div id="playstoreModal" class="playstore-modal hidden-element">
+        <div class="playstore-modal-content">
+            <h3 class="text-xl font-bold mb-4">掃描二維碼前往 Google Play 商店</h3>
+            <div class="playstore-qrcode">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://play.google.com/store/apps/dev?id=7619891121674916095"
+                alt="Google Play二維碼" width="200" height="200">
+            </div>
+            <p class="mb-4 text-gray-600 text-sm">或複製以下連結：https://play.google.com/store/apps/dev?id=7619891121674916095</p>
+            <button id="closePlaystoreModal"
+            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
         </div>
-        <p class="mb-2 text-gray-600 text-sm">掃描二維碼加入群組</p>
-        <div class="url-display">https://t.me/+GE3zT0d4_JM1Yzll</div>
-        <button class="copy-btn mb-3" onclick="copyTGURL()">
-            <i class="fa-solid fa-copy"></i>
-            <span id="copyText">一鍵複製連結</span>
-        </button>
-        <button id="closeTgModal" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
     </div>
-</div>
 
-<!-- WEPA 拍賣彈窗（新） -->
-<div id="wepaModal" class="wepa-modal">
-    <div class="wepa-modal-content">
-        <h3 class="text-xl font-bold mb-4" style="color: #D4A76A;">WEPA 斷。捨。離。拍賣</h3>
-        <p class="mb-2 text-gray-600 text-sm">即將前往以下網址</p>
-        <div class="url-display">https://18gogogo.top/wepa.html</div>
-        <button id="confirmWepaBtn" class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg text-sm font-semibold mt-3">
-            確定
-        </button>
+    <!-- APK下載彈窗 -->
+    <div id="apkModal" class="apk-modal hidden-element">
+        <div class="apk-modal-content">
+            <h3 class="text-xl font-bold mb-4">掃描二維碼下載 APK 檔案</h3>
+            <div class="apk-qrcode">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://github.com/18gogogo/jojoblacklist/releases"
+                alt="APK下載二維碼" width="200" height="200">
+            </div>
+            <p class="mb-4 text-gray-600 text-sm">或複製連結</p>
+            <button id="closeApkModal"
+            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+        </div>
     </div>
-</div>
 
-<!-- 頁首 -->
-<header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
-    <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-newspaper text-xl md:text-2xl"></i>
-        <span class="header-title text-xl md:text-3xl font-extrabold tracking-tight">TenantReview 每日新聞</span>
+    <!-- Telegram群組彈窗 -->
+    <div id="tgModal" class="tg-modal">
+        <div class="tg-modal-content">
+            <h3 class="text-xl font-bold mb-4" style="color: #0088cc;">加入群組</h3>
+            <div class="tg-qrcode">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/+GE3zT0d4_JM1Yzll"
+                alt="群組二維碼" width="200" height="200">
+            </div>
+            <p class="mb-2 text-gray-600 text-sm">掃描二維碼加入群組</p>
+            <div class="url-display">https://t.me/+GE3zT0d4_JM1Yzll</div>
+            <button class="copy-btn mb-3" onclick="copyTGURL()">
+                <i class="fa-solid fa-copy"></i>
+                <span id="copyText">一鍵複製連結</span>
+            </button>
+            <button id="closeTgModal"
+            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+        </div>
     </div>
-    <span class="header-subtitle text-xs md:text-base">香港・台灣・中國地區</span>
-</header>
 
-<!-- 主內容 -->
-<main class="flex-1 container mx-auto px-3 py-4 md:py-6">
-    <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <h2 class="main-title text-xl md:text-3xl font-bold text-blue-900 tracking-tight">最新新聞</h2>
-            <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                <!-- 檢查更新按鈕 -->
-                <a href="https://github.com/18gogogo/jojoblacklist/releases" target="_blank" rel="noopener"
-                   class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+    <!-- WEPA 斷。捨。離。拍賣 彈窗 -->
+    <div id="wepaModal" class="wepa-modal">
+        <div class="wepa-modal-content">
+            <h3 class="text-xl font-bold mb-4" style="color: #B0854A;">WEPA 斷。捨。離。拍賣</h3>
+            <div class="wepa-qrcode">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://18gogogo.top/wepa.html"
+                alt="WEPA二維碼" width="200" height="200">
+            </div>
+            <p class="mb-2 text-gray-600 text-sm">掃描二維碼前往 WEPA 拍賣平台</p>
+            <div class="url-display">https://18gogogo.top/wepa.html</div>
+            <button class="copy-btn mb-3" onclick="copyWepaURL()">
+                <i class="fa-solid fa-copy"></i>
+                <span id="copyWepaText">一鍵複製連結</span>
+            </button>
+            <button id="confirmWepaBtn" class="confirm-btn">
+                <i class="fa-solid fa-check"></i>
+                確定
+            </button>
+        </div>
+    </div>
+
+    <!-- 頁首 -->
+    <header class="bg-blue-900 text-white p-4 shadow flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-newspaper text-xl md:text-2xl"></i>
+            <span class="header-title text-xl md:text-3xl font-extrabold tracking-tight">TenantReview 每日新聞</span>
+        </div>
+        <span class="header-subtitle text-xs md:text-base">香港・台灣・中國地區</span>
+    </header>
+
+    <!-- 主內容 -->
+    <main class="flex-1 container mx-auto px-3 py-4 md:py-6">
+        <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <h2 class="main-title text-xl md:text-3xl font-bold text-blue-900 tracking-tight">最新新聞</h2>
+                <div class="btn-group flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    <!-- 檢查更新按鈕 -->
+                    <a href="https://github.com/18gogogo/jojoblacklist/releases" target="_blank" rel="noopener"
+                    class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
                     <i class="fa-solid fa-cloud-arrow-down mr-2"></i>
                     檢查更新 Check for updates
                 </a>
 
                 <!-- TG群組按鈕 -->
                 <button id="tgBtn"
-                        class="tg-btn hover:opacity-90 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-                    <i class="fab fa-telegram mr-2"></i>
-                    加入群組 JOIN GROUP
-                </button>
+                class="tg-btn hover:opacity-90 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+                <i class="fab fa-telegram mr-2"></i>
+                加入群組 JOIN GROUP
+            </button>
 
-                <!-- WEPA 斷。捨。離。拍賣 按鈕（改為觸發彈窗） -->
-                <button id="wepaBtn"
-                        class="wepa-btn px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-                    <i class="fa-solid fa-gavel mr-2"></i>
-                    WEPA 斷。捨。離。拍賣
-                </button>
+            <!-- WEPA 斷。捨。離。拍賣 按鈕（香檳金色，點擊打開彈窗） -->
+            <button id="wepaBtn"
+            class="wepa-btn px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
+            <i class="fa-solid fa-gavel mr-2"></i>
+            WEPA 斷。捨。離。拍賣
+        </button>
 
-                <!-- Buy Me A Coffee 按鈕 -->
-                <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
-                        data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji=""
-                        data-font="Inter" data-text="Buy me a coffee" data-outline-color="#000000"
-                        data-font-color="#000000" data-coffee-color="#ffffff"></script>
+        <!-- Buy Me A Coffee 按鈕 -->
+        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+        data-name="bmc-button" data-slug="18gogogo" data-color="#FFDD00" data-emoji="" data-font="Inter"
+        data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000"
+        data-coffee-color="#ffffff"></script>
 
-                <!-- 新增的七個按鈕（裝修維修已改為連結） -->
-                <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
-                    <a href="repair-ads.html"
-                       class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
-                    <button id="sellBtn"
-                            class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-                        清潔
-                    </button>
-                    <button id="homeInsuranceBtn"
-                            class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-                        家居保險
-                    </button>
-                    <button id="movingBtn"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">
-                        搬運
-                    </button>
-                </div>
+        <!-- 新增的七個按鈕（裝修維修已改為連結） -->
+        <div class="flex flex-row gap-2 w-full sm:w-auto mt-3">
+            <a href="repair-ads.html"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">裝修維修</a>
+            <button id="sellBtn"
+            class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">清潔</button>
+            <button id="homeInsuranceBtn"
+            class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">家居保險</button>
+            <button id="movingBtn"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full flex items-center text-sm font-semibold shadow transition justify-center">搬運</button>
+        </div>
 
-                <!-- 搬運彈窗 -->
-                <div id="movingModal" class="wx-modal">
-                    <div class="wx-modal-content">
-                        <h3 class="text-xl font-bold mb-4">搬運</h3>
-                        <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
-                        <button id="closeMovingModal"
-                                class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 家居保險彈窗 -->
-                <div id="homeInsuranceModal" class="wx-modal">
-                    <div class="wx-modal-content">
-                        <h3 class="text-xl font-bold mb-4">家居保險</h3>
-                        <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
-                        <button id="closeHomeInsuranceModal"
-                                class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉
-                        </button>
-                    </div>
-                </div>
+        <!-- 搬運彈窗 -->
+        <div id="movingModal" class="wx-modal">
+            <div class="wx-modal-content">
+                <h3 class="text-xl font-bold mb-4">搬運</h3>
+                <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
+                <button id="closeMovingModal"
+                class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
             </div>
         </div>
-        <!-- 手動更新按鈕 -->
-        <button id="refreshBtn"
-                class="refresh-btn bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full flex items-center shadow text-sm font-semibold justify-center w-full sm:w-auto mt-0 hidden-element">
-            <i class="fa-solid fa-rotate-right mr-2"></i>手動更新新聞
-        </button>
-    </div>
 
-    <!-- 新聞列表 -->
-    <div id="news-list" class="news-list grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
-    <div id="loading" class="text-center text-gray-600 my-6 text-base hidden">
-        <div class="inline-block loading-spinner mr-2"><i class="fa-solid fa-spinner"></i></div>
-        載入中...
+        <!-- 家居保險彈窗 -->
+        <div id="homeInsuranceModal" class="wx-modal">
+            <div class="wx-modal-content">
+                <h3 class="text-xl font-bold mb-4">家居保險</h3>
+                <p class="mb-4 text-gray-600 text-sm">敬敬请期待，我們一直滿足您的需要。</p>
+                <button id="closeHomeInsuranceModal"
+                class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm">關閉</button>
+            </div>
+        </div>
     </div>
-    <div id="error" class="text-center text-red-600 my-6 text-sm hidden"></div>
+</div>
+<!-- 手動更新按鈕 -->
+<button id="refreshBtn"
+class="refresh-btn bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-full flex items-center shadow text-sm font-semibold justify-center w-full sm:w-auto mt-0 hidden-element">
+<i class="fa-solid fa-rotate-right mr-2"></i>手動更新新聞
+</button>
+</div>
+
+<!-- 新聞列表 -->
+<div id="news-list" class="news-list grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
+<div id="loading" class="text-center text-gray-600 my-6 text-base hidden">
+    <div class="inline-block loading-spinner mr-2"><i class="fa-solid fa-spinner"></i></div>
+    載入中...
+</div>
+<div id="error" class="text-center text-red-600 my-6 text-sm hidden"></div>
 </main>
 
 <!-- 頁尾 -->
@@ -459,8 +467,9 @@
 
     async function fetchNews() {
         const apiKey = 'pub_9834bfcaba7e4eb3a66ef563c7d15783';
-        const query = '租';//房客 OR 租約 OR 房屋糾紛 OR 租霸 OR 租客 OR 租務糾紛
-        const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(query)}&language=zh`;
+        const query = '租'; //房客 OR 租約 OR 房屋糾紛 OR 租霸 OR 租客 OR 租務糾紛
+        const url =
+        `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(query)}&language=zh`;
         loading.classList.remove('hidden');
         errorDiv.classList.add('hidden');
         newsList.innerHTML = '';
@@ -474,7 +483,7 @@
                     url: article.link,
                     publishedAt: article.pubDate,
                     content: article.description || '',
-                    source: {name: article.source_id || '未知來源'}
+                    source: { name: article.source_id || '未知來源' }
                 }));
                 renderNews(allArticles);
             } else {
@@ -490,29 +499,22 @@
 
     function renderNews(articles) {
         if (!articles.length) {
-            newsList.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8">暫無相關新聞</div>';
+            newsList.innerHTML =
+            '<div class="col-span-full text-center text-gray-500 py-8">暫無相關新聞</div>';
             return;
         }
         newsList.innerHTML = articles.slice(0, 30).map(article => `
                 <div class="bg-white rounded-xl shadow p-4 flex flex-col h-full border border-gray-100 hover:shadow-md transition-shadow duration-200 news-card">
                     <div class="mb-2 flex items-center text-gray-500 news-meta">
                         <i class="fa-solid fa-calendar-days mr-1 text-xs"></i>
-                        <span>${article.publishedAt ? new Date(article.publishedAt).toLocaleString('zh-Hant', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-        }) : ''}</span>
+                        <span>${article.publishedAt ? new Date(article.publishedAt).toLocaleString('zh-Hant', {year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}) : ''}</span>
                         <span class="mx-2">|</span>
                         <i class="fa-solid fa-globe mr-1 text-xs"></i>
                         <span>${article.source.name || "未知來源"}</span>
                     </div>
                     <h3 class="font-bold news-title mb-2 text-blue-800 leading-snug line-clamp-2">${article.title}</h3>
                     <div class="news-content text-gray-700 flex-1 mb-3 leading-relaxed line-clamp-3">${article.content}</div>
-                    <a href="${article.url}" target="_blank"
-                       class="mt-auto text-blue-700 hover:underline flex items-center text-sm font-medium"><i
-                                class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"></i>閱讀全文</a>
+                    <a href="${article.url}" target="_blank" class="mt-auto text-blue-700 hover:underline flex items-center text-sm font-medium"><i class="fa-solid fa-arrow-up-right-from-square mr-1 text-xs"></i>閱讀全文</a>
                 </div>
             `).join('');
     }
@@ -522,50 +524,49 @@
         timer = setInterval(fetchNews, 60 * 60 * 1000); // 每小時更新
     }
 
-    // ---------- TG群組按鈕功能 ----------
+    // ==================== TG群組按鈕功能 ====================
     const tgModal = document.getElementById('tgModal');
     const tgBtn = document.getElementById('tgBtn');
     const closeTgModal = document.getElementById('closeTgModal');
 
-    tgBtn.addEventListener('click', function (e) {
+    tgBtn.addEventListener('click', function(e) {
         e.preventDefault();
         tgModal.style.display = 'flex';
     });
 
-    closeTgModal.addEventListener('click', function () {
+    closeTgModal.addEventListener('click', function() {
         tgModal.style.display = 'none';
-        resetCopyButton();
+        resetTgCopyButton();
     });
 
-    tgModal.addEventListener('click', function (e) {
+    tgModal.addEventListener('click', function(e) {
         if (e.target === tgModal) {
             tgModal.style.display = 'none';
-            resetCopyButton();
+            resetTgCopyButton();
         }
     });
 
-    function resetCopyButton() {
-        const copyBtn = document.querySelector('.copy-btn');
+    function resetTgCopyButton() {
+        const copyBtn = document.querySelector('#tgModal .copy-btn');
         const copyText = document.getElementById('copyText');
-        if (copyBtn && copyText) {
-            copyBtn.classList.remove('copied');
-            copyText.textContent = '一鍵複製連結';
-        }
+        if (copyBtn) copyBtn.classList.remove('copied');
+        if (copyText) copyText.textContent = '一鍵複製連結';
     }
 
     // 複製TG連結功能
     function copyTGURL() {
         const tgURL = 'https://t.me/+GE3zT0d4_JM1Yzll';
-        navigator.clipboard.writeText(tgURL).then(function () {
-            const copyBtn = document.querySelector('.copy-btn');
+        navigator.clipboard.writeText(tgURL).then(function() {
+            const copyBtn = document.querySelector('#tgModal .copy-btn');
             const copyText = document.getElementById('copyText');
-            copyBtn.classList.add('copied');
-            copyText.textContent = '已複製！';
-            setTimeout(function () {
-                copyBtn.classList.remove('copied');
-                copyText.textContent = '一鍵複製連結';
+            if (copyBtn) copyBtn.classList.add('copied');
+            if (copyText) copyText.textContent = '已複製！';
+
+            setTimeout(function() {
+                if (copyBtn) copyBtn.classList.remove('copied');
+                if (copyText) copyText.textContent = '一鍵複製連結';
             }, 3000);
-        }).catch(function (err) {
+        }).catch(function(err) {
             console.error('複製失敗: ', err);
             const tempInput = document.createElement('input');
             tempInput.value = tgURL;
@@ -573,100 +574,141 @@
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
+
             const copyText = document.getElementById('copyText');
-            copyText.textContent = '已複製！';
-            setTimeout(function () {
-                copyText.textContent = '一鍵複製連結';
+            if (copyText) copyText.textContent = '已複製！';
+            setTimeout(function() {
+                if (copyText) copyText.textContent = '一鍵複製連結';
             }, 3000);
         });
     }
 
-    // ---------- WEPA 按鈕及彈窗功能 ----------
+    // ==================== WEPA 彈窗功能 ====================
     const wepaModal = document.getElementById('wepaModal');
     const wepaBtn = document.getElementById('wepaBtn');
     const confirmWepaBtn = document.getElementById('confirmWepaBtn');
 
-    wepaBtn.addEventListener('click', function (e) {
+    // 點擊 WEPA 按鈕打開彈窗
+    wepaBtn.addEventListener('click', function(e) {
         e.preventDefault();
         wepaModal.style.display = 'flex';
+        resetWepaCopyButton();
     });
 
-    // 點擊確定按鈕：直接跳轉到拍賣頁面
-    confirmWepaBtn.addEventListener('click', function () {
+    // 點擊「確定」按鈕 → 本頁直接跳轉到 WEPA 頁面
+    confirmWepaBtn.addEventListener('click', function() {
         window.location.href = 'https://18gogogo.top/wepa.html';
     });
 
     // 點擊彈窗背景關閉（不跳轉）
-    wepaModal.addEventListener('click', function (e) {
+    wepaModal.addEventListener('click', function(e) {
         if (e.target === wepaModal) {
             wepaModal.style.display = 'none';
+            resetWepaCopyButton();
         }
     });
 
-    // ---------- 清潔按鈕功能 ----------
+    function resetWepaCopyButton() {
+        const copyBtn = document.querySelector('#wepaModal .copy-btn');
+        const copyWepaText = document.getElementById('copyWepaText');
+        if (copyBtn) copyBtn.classList.remove('copied');
+        if (copyWepaText) copyWepaText.textContent = '一鍵複製連結';
+    }
+
+    // 複製 WEPA 連結功能
+    function copyWepaURL() {
+        const wepaURL = 'https://18gogogo.top/wepa.html';
+        navigator.clipboard.writeText(wepaURL).then(function() {
+            const copyBtn = document.querySelector('#wepaModal .copy-btn');
+            const copyWepaText = document.getElementById('copyWepaText');
+            if (copyBtn) copyBtn.classList.add('copied');
+            if (copyWepaText) copyWepaText.textContent = '已複製！';
+
+            setTimeout(function() {
+                if (copyBtn) copyBtn.classList.remove('copied');
+                if (copyWepaText) copyWepaText.textContent = '一鍵複製連結';
+            }, 3000);
+        }).catch(function(err) {
+            console.error('複製失敗: ', err);
+            const tempInput = document.createElement('input');
+            tempInput.value = wepaURL;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const copyWepaText = document.getElementById('copyWepaText');
+            if (copyWepaText) copyWepaText.textContent = '已複製！';
+            setTimeout(function() {
+                if (copyWepaText) copyWepaText.textContent = '一鍵複製連結';
+            }, 3000);
+        });
+    }
+
+    // ==================== 清潔按鈕功能 ====================
     const sellModal = document.getElementById('sellModal');
     const sellBtn = document.getElementById('sellBtn');
     const closeSellModal = document.getElementById('closeSellModal');
 
-    sellBtn.addEventListener('click', function (e) {
+    sellBtn.addEventListener('click', function(e) {
         e.preventDefault();
         sellModal.style.display = 'flex';
     });
 
-    closeSellModal.addEventListener('click', function () {
+    closeSellModal.addEventListener('click', function() {
         sellModal.style.display = 'none';
     });
 
-    sellModal.addEventListener('click', function (e) {
+    sellModal.addEventListener('click', function(e) {
         if (e.target === sellModal) {
             sellModal.style.display = 'none';
         }
     });
 
-    // ---------- 家居保險按鈕功能 ----------
+    // ==================== 家居保險按鈕功能 ====================
     const homeInsuranceModal = document.getElementById('homeInsuranceModal');
     const homeInsuranceBtn = document.getElementById('homeInsuranceBtn');
     const closeHomeInsuranceModal = document.getElementById('closeHomeInsuranceModal');
 
-    homeInsuranceBtn.addEventListener('click', function (e) {
+    homeInsuranceBtn.addEventListener('click', function(e) {
         e.preventDefault();
         homeInsuranceModal.style.display = 'flex';
     });
 
-    closeHomeInsuranceModal.addEventListener('click', function () {
+    closeHomeInsuranceModal.addEventListener('click', function() {
         homeInsuranceModal.style.display = 'none';
     });
 
-    homeInsuranceModal.addEventListener('click', function (e) {
+    homeInsuranceModal.addEventListener('click', function(e) {
         if (e.target === homeInsuranceModal) {
             homeInsuranceModal.style.display = 'none';
         }
     });
 
-    // ---------- 搬運按鈕功能 ----------
+    // ==================== 搬運按鈕功能 ====================
     const movingModal = document.getElementById('movingModal');
     const movingBtn = document.getElementById('movingBtn');
     const closeMovingModal = document.getElementById('closeMovingModal');
 
-    movingBtn.addEventListener('click', function (e) {
+    movingBtn.addEventListener('click', function(e) {
         e.preventDefault();
         movingModal.style.display = 'flex';
     });
 
-    closeMovingModal.addEventListener('click', function () {
+    closeMovingModal.addEventListener('click', function() {
         movingModal.style.display = 'none';
     });
 
-    movingModal.addEventListener('click', function (e) {
+    movingModal.addEventListener('click', function(e) {
         if (e.target === movingModal) {
             movingModal.style.display = 'none';
         }
     });
 
-    // 手動更新按鈕
+    // ==================== 手動更新按鈕 ====================
     refreshBtn.addEventListener('click', fetchNews);
 
-    // 初始化
+    // ==================== 頁面初始化 ====================
     window.onload = () => {
         fetchNews();
         startAutoRefresh();
